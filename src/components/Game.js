@@ -12,6 +12,8 @@ class Game extends Component {
 
   render() {
 
+    // iterates through fields and returns a new array of alternating
+    // grammar fields - hoins them back into a sentence
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
