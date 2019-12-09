@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
+// To-do:
+// see if there's an need to 'reset' the form with a function (see ada-pets-react solution)
+// increment the count for player form each time the form is submitted
+
 class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +18,8 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     };
 
-    // this.onFormChange = this.onFormChange.bind(this);
-    // this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onFormChange = this.onFormChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onFormChange = (event) => {
@@ -27,7 +31,23 @@ class PlayerSubmissionForm extends Component {
     });
   }
 
-  // onFormSubmit
+  // send all new form fields to game by calling
+  // this.props.showPoemCallback(poem)
+  onFormSubmit = (event) => {
+    event.preventDefault();
+
+    this.setState({
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: '',
+    });
+
+    const poem = this.state;
+    this.props.showPoemCallback(poem);
+  }
 
 
   render() {
@@ -84,7 +104,7 @@ class PlayerSubmissionForm extends Component {
           </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input onClick={this.onFormSubmit} type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>
         </form>
       </div>

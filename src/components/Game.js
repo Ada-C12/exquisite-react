@@ -8,6 +8,11 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+  }
+
+  showPoem = (poem) => {
+    console.log("KRISTINA");
   }
 
   render() {
@@ -36,7 +41,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm showPoemCallback={this.showPoem}/>
 
         <FinalPoem />
 
