@@ -12,11 +12,21 @@ class Game extends Component {
   }
 
   showPoem = (poem) => {
+    // iterate through poem object
+    // display each property
+    
+    
+    
+    // return (
+    //   <div>
+    //     {poem.adverb}
+    //   </div>
+    // )
+    console.log(poem);
     console.log("KRISTINA");
   }
 
   render() {
-
     // iterates through fields and returns a new array of alternating
     // grammar fields - hoins them back into a sentence
     const exampleFormat = FIELDS.map((field) => {
@@ -44,7 +54,6 @@ class Game extends Component {
         <PlayerSubmissionForm showPoemCallback={this.showPoem}/>
 
         <FinalPoem />
-
       </div>
     );
   }

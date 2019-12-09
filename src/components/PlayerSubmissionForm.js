@@ -47,6 +47,7 @@ class PlayerSubmissionForm extends Component {
 
     const poem = this.state;
     this.props.showPoemCallback(poem);
+    // reset the form on submit
   }
 
 
@@ -63,42 +64,42 @@ class PlayerSubmissionForm extends Component {
               placeholder="adjective"
               type="text"
               onChange={this.onFormChange}
-              value={this.state.name}
+              value={this.state.adjective1}
               name="adjective1" 
             />
             <input 
               placeholder="noun"
               type="text"
               onChange={this.onFormChange}
-              value={this.state.name}
+              value={this.state.noun1}
               name="noun1" 
             />
             <input 
               placeholder="adverb"
               type="text"
               onChange={this.onFormChange}
-              value={this.state.name}
+              value={this.state.adverb}
               name="adverb" 
             />
             <input 
               placeholder="verb"
               type="text"
               onChange={this.onFormChange}
-              value={this.state.name}
+              value={this.state.verb}
               name="verb" 
             />
             the<input 
               placeholder="adjective"
               type="text"
               onChange={this.onFormChange}
-              value={this.state.name}
+              value={this.state.adjective2}
               name="adjective2" 
             />
             <input 
               placeholder="noun"
               type="text"
               onChange={this.onFormChange}
-              value={this.state.name}
+              value={this.state.noun2}
               name="noun2" 
             />.
           </div>
