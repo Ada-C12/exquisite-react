@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
-// To-do:
-// increment the count for player form each time the form is submitted
-
 class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +29,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   // send all new form fields to game by calling
-  // this.props.showPoemCallback(poem)
+  // this.props.savePoemCallback(poem)
   onFormSubmit = (event) => {
     event.preventDefault();
     
@@ -48,7 +45,14 @@ class PlayerSubmissionForm extends Component {
     });
 
     const poem = this.state;
-    this.props.showPoemCallback(poem);
+    this.props.savePoemCallback({
+      adjective1: this.state.adjective1,
+      noun1: this.state.noun1,
+      adverb: this.state.adverb,
+      verb: this.state.verb,
+      adjective2: this.state.adjective2,
+      noun2: this.state.noun2,
+    });
   }
 
   incrementPlayerCount = () => {
