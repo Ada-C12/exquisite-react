@@ -58,7 +58,7 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
             The
             <input
-              className={this.state.input1 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              className={this.state.input1 ? "" : "PlayerSubmissionForm__input--invalid"}
               placeholder="adjective"
               name="input1"
               type="text" 
@@ -66,7 +66,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.input1}
             />
             <input
-              className={this.state.input2 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              className={this.state.input2 ? "" : "PlayerSubmissionForm__input--invalid"}
               placeholder="noun"
               name="input2"
               type="text" 
@@ -74,7 +74,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.input2}
             />
             <input
-              className={this.state.input3 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              className={this.state.input3 ? "" : "PlayerSubmissionForm__input--invalid"}
               placeholder="adverb"
               name="input3"
               type="text" 
@@ -82,7 +82,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.input3}
             />
             <input
-              className={this.state.input4 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              className={this.state.input4 ? "" : "PlayerSubmissionForm__input--invalid"}
               placeholder="verb"
               name="input4"
               type="text" 
@@ -91,7 +91,7 @@ class PlayerSubmissionForm extends Component {
             />
             the
             <input
-              className={this.state.input5 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              className={this.state.input5 ? "" : "PlayerSubmissionForm__input--invalid"}
               placeholder="adjective"
               name="input5"
               type="text" 
@@ -99,7 +99,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.input5}
             />
             <input
-              className={this.state.input6 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              className={this.state.input6 ? "" : "PlayerSubmissionForm__input--invalid"}
               placeholder="noun"
               name="input6"
               type="text" 
