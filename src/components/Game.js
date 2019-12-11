@@ -16,7 +16,8 @@ class Game extends Component {
   }
 
   onSubmitForm = (submission) => {
-    const updatedPoem = this.state.fullPoem.push(submission)
+    let updatedPoem = this.state.fullPoem
+    updatedPoem.push(submission)
     this.setState({
       recentSubmission: submission,
       fullPoem: updatedPoem,

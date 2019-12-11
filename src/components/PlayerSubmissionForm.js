@@ -16,6 +16,17 @@ class PlayerSubmissionForm extends Component {
     };
   }
 
+  resetState = () => {
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    });
+  }
+
   onInputChange = (event) => {
     const field = event.target.name;
     const value = event.target.value;
@@ -42,13 +53,31 @@ class PlayerSubmissionForm extends Component {
     });
   }
 
+  onSubmit = (event) => {
+    event.preventDefault();
+    let poem = '';
+    const fields = this.props.fields
+
+    let i;
+    for (i = 0; i < fields.length; i++) {
+      if (fields[i].key) {
+        poem += this.state[fields[i].key] + ' ';
+      } else {
+        poem += fields[i] + ' ';
+      }
+    }
+
+    this.props.onSubmitFormCallback(poem);
+    this.resetState();
+  }
+
   render() {
     // console.log(this.state.adj1);
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
             {this.inputFields()}
