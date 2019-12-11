@@ -8,6 +8,20 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      lines: [],
+    }
+  }
+
+  addGame = (newLine) => {
+    console.log("add game ", newLine.adj1)
+    const lines = this.state.lines
+    lines.push(newLine)
+
+    this.setState({
+      lines
+    })
   }
 
   render() {
@@ -31,10 +45,10 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
-
+        
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addGameCallback={this.addGame}/>
 
         <FinalPoem />
 
