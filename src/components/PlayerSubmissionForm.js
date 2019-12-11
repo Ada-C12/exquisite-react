@@ -5,25 +5,119 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adjective1: '',
+      noun1: '',
+      adverb1: '',
+      verb1: '',
+      adjective2: '',
+      noun2: '',
+    }
+  }
+
+  onFieldChange = (event) => {
+    const { name, value } = event.target;
+
+    const updatedState = {};
+    updatedState[name] = value;
+    this.setState(updatedState);
+  }
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+
+    const newFormSub = {
+      adjective1: this.state.adjective1,
+      noun1: this.state.noun1,
+      adverb1: this.state.adverb1,
+      verb1: this.state.verb1,
+      adjective2: this.state.adjective2,
+      noun2: this.state.noun2,
+    }
+    
+    this.setState({
+      adjective1: '',
+      noun1: '',
+      adverb1: '',
+      verb1: '',
+      adjective2: '',
+      noun2: '',
+    });
+
+    this.props.addSubCallback(newFormSub);
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.player }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
-
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit} >
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
-
+            <p>The:</p>
+            <div>
+              <input
+                type="text"
+                name="adjective1"
+                placeholder="adjective"
+                value={this.state.adjective1}
+                onChange={this.onFieldChange}
+                className="PlayerSubmissionForm__poem-inputs"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="noun1"
+                placeholder="noun"
+                value={this.state.noun1}
+                onChange={this.onFieldChange}
+                // className="PlayerSubmissionForm__input--invalid"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="adverb1"
+                placeholder="adverb"
+                value={this.state.adverb1}
+                onChange={this.onFieldChange}
+                // className="PlayerSubmissionForm__input--invalid"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="verb1"
+                placeholder="verb"
+                value={this.state.verb1}
+                onChange={this.onFieldChange}
+                // className="PlayerSubmissionForm__input--invalid"
+              />
+            </div>
+            <p>the</p>
+            <div>
+              <input
+                type="text"
+                name="adjective2"
+                placeholder="adjective"
+                value={this.state.adjective2}
+                onChange={this.onFieldChange}
+                // className="PlayerSubmissionForm__input--invalid"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="noun2"
+                placeholder="noun"
+                value={this.state.noun2}
+                onChange={this.onFieldChange}
+                // className="PlayerSubmissionForm__input--invalid"
+              />
+            </div>
           </div>
 
           <div className="PlayerSubmissionForm__submit">
