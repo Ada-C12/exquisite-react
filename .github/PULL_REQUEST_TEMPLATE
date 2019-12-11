@@ -5,6 +5,6 @@ Congratulations! You're submitting your assignment.
 
 Feature | Feedback
 --- | ---
-How did this project differ from in-class examples? |
-How was this project similar to in-class examples? |
-If you had time to refactor one part of this project, what would you do to make it better? |
+How did this project differ from in-class examples? | The App component didn't actually do much. Otherwise it didn't feel that different.
+How was this project similar to in-class examples? | It's React. It includes components, lifting states, callback functions, and forms.
+If you had time to refactor one part of this project, what would you do to make it better? | I thought we would need to add validation but actually we didn't. Users can leave certain fields blank when submitting.
