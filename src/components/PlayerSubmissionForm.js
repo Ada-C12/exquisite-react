@@ -13,7 +13,6 @@ class PlayerSubmissionForm extends Component {
       adjectiveSecond: '',
       nounSecond: ''
     };
-    this.theNames = ["adjectiveFirst", "nounFirst", "adverb", "verb", "adjectiveSecond", "nounSecond"];
   }
 
   handleChange = (event) => {
@@ -23,43 +22,58 @@ class PlayerSubmissionForm extends Component {
     console.log(this.state);
   };
 
-  handleSubmit = () => {
-    this.setState = {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const sentence = this.props.fields.reduce((acc, field, i) => {
+      if (field.key) {
+        return `${acc} ${this.state[field.name].trim()}`;
+      }
+      else {
+        if (i > 0 && i < (this.props.fields.length - 1)) {
+          return `${acc} ${field}`;
+        }
+        return `${acc}${field}`;
+      }
+    }, '');
+
+    this.props.onSubmitLine(sentence);
+ 
+    this.setState({
       adjectiveFirst: '',
       nounFirst: '',
       adverb: '',
       verb: '',
       adjectiveSecond: '',
       nounSecond: ''
-    };
-    console.log(this.state);
+    });
   };
-
- 
-            
+      
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.currentPlayer}</h3>
 
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
             {
-             this.props.fields.map((field, i) => {
-              if (field.key) {
-                  return  <input
-                  placeholder={field.placeholder}
-                  type="text"
-                  name={this.theNames[i]}
-                  onChange={this.handleChange} />; 
-              } else {
-                  return <p>{field}</p>;}
-              })
-              }
-              
+              this.props.fields.map((field, i) => {
+                if (field.key) {
+                    return (
+                      <input
+                        placeholder={field.placeholder}
+                        value={this.state[field.name]}
+                        type="text"
+                        name={field.name}
+                        onChange={this.handleChange}
+                        key={field.name} 
+                      />
+                    ); 
+                } else {
+                    return <span key={i}>{field}</span>;}
+                })
+              }    
           </div>
 
           <div className="PlayerSubmissionForm__submit">
