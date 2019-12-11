@@ -39,6 +39,12 @@ class Game extends Component {
       }
     }).join(" ");
 
+    let recentSub = ""
+
+    if (this.state.recent != "" && this.state.inProgress === true) {
+      recentSub = <RecentSubmission text={this.state.recent}/>
+    }
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -51,9 +57,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission text={this.state.recent}/>
+        {recentSub}
 
-        <PlayerSubmissionForm addLineCallback={formText => this.addLine(formText)}/>
+        
 
         <FinalPoem />
 
