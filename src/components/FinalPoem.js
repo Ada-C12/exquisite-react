@@ -7,6 +7,8 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
+  // iterate through the poems (array of objects)
+  // and returns a new array of paragraph elements
   const poemStanzas = props.poems.map((stanza, i) => {
     return (
     <p key={i}>
@@ -15,7 +17,7 @@ const FinalPoem = (props) => {
     )
   });
 
-  let poemContent = props.poemSubmitted === true ? <p>{ poemStanzas }</p> : <p></p>;
+  let finalPoemContent = props.poemSubmitted === true ? <p>{ poemStanzas }</p> : <p></p>;
   
   return (
     <div className="FinalPoem">
@@ -24,7 +26,7 @@ const FinalPoem = (props) => {
         {/* add ternary that checks if the values of props.poemSubmitted is true */}
         {/* if true, call the show poem function here */}
         {/* else do nothing */}
-        { poemContent }
+        { finalPoemContent }
       </section>
       <div className="FinalPoem__reveal-btn-container">
         <input onClick={props.showPoemCallback} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
