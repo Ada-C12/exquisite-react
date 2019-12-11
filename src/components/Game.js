@@ -56,9 +56,13 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">{exampleFormat}</p>
+
         {recentSub}
 
-        <PlayerSubmissionForm addPoemLineCallback={this.addLine} />
+        <PlayerSubmissionForm
+          addPoemLineCallback={this.addLine}
+          fields={FIELDS}
+        />
 
         <FinalPoem />
       </div>

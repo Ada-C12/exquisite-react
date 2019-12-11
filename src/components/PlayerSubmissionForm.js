@@ -5,15 +5,15 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      playerNum: 1,
-      adj1: "",
-      noun1: "",
-      adv: "",
-      verb: "",
-      adj2: "",
-      noun2: ""
-    };
+    const userInput = {};
+
+    props.fields.forEach(field => {
+      if (field.key) {
+        userInput[field.key] = "";
+      }
+    });
+
+    this.state = userInput;
   }
 
   onFieldChange = event => {
