@@ -9,17 +9,26 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // playerCount: 1,
-      latestSentence: ''
+      latestSentence: '',
+      wholePoem: ''
     }
   }
 
   makeOneSentence = (words) => {
-    const sentence = `The ${words.adj1} ${words.noun1} ${words.adv} ${words.verb} the ${words.adj2} ${words.noun2}.`
+    const sentence = `The ${words.adj1} ${words.noun1} ${words.adv} ${words.verb} the ${words.adj2} ${words.noun2}.`;
+    this.addToPoem(sentence);
     this.setState({
       latestSentence: sentence,
     });
     console.log(sentence);
+  }
+// Moved this out of makeOneSentence and made it a helper method for clarity
+  addToPoem = (toAdd) => {
+    const updatedWholePoem = this.state.wholePoem + "\n" + toAdd;
+    this.setState({
+      wholePoem: updatedWholePoem
+    })
+    console.log(updatedWholePoem)
   }
 
   render() {
