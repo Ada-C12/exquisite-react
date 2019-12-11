@@ -10,7 +10,8 @@ class Game extends Component {
     super(props);
     this.state = {
       latestSentence: '',
-      wholePoem: ''
+      wholePoem: '',
+      showPoem: false
     }
   }
 
@@ -57,7 +58,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm makeOneSentenceCallback={this.makeOneSentence}/>
 
-        <FinalPoem />
+        <FinalPoem poem={this.state.wholePoem}/>
 
       </div>
     );
