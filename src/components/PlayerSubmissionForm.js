@@ -85,7 +85,7 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    const poemLine = `${this.state.adj1} ${this.state.noun1} ${this.state.adverb} ${this.state.verb} ${this.state.adj2} ${this.state.noun2}`
+    const poemLine = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adverb} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`
 
     this.setState({
       adj1: '',
