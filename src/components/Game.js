@@ -8,17 +8,39 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [],
+      currentPlayer: 1,
+    }
+  }
+
+  mapToString = (arrayOfStrings) => {
+    const newString = arrayOfStrings.map((string) => {
+      if (string.key) {
+        return string.placeholder;
+      } else {
+        return string;
+      }
+    }).join(" ");
+    return newString;
+  }
+
+  onFormSubmit = (submissionComponents) => {
+    const newSubmission = this.mapToString(submissionComponents);
+    
+    let { submissions, currentPlayer } = this.state;
+    
+    // need to add submissionComponents to submissions array
+    submissions.push(newSubmission);
+    // need to add one to currentPlayer
+    currentPlayer += 1;
+    
+    this.setState( {submissions, currentPlayer} );
   }
 
   render() {
-
-    const exampleFormat = FIELDS.map((field) => {
-      if (field.key) {
-        return field.placeholder;
-      } else {
-        return field;
-      }
-    }).join(" ");
+    const exampleFormat = this.mapToString(FIELDS);
 
     return (
       <div className="Game">
@@ -34,7 +56,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm playerNumber={this.state.currentPlayer} onFormSubmit={this.onFormSubmit} />
 
         <FinalPoem />
 
