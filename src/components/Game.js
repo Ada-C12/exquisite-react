@@ -49,7 +49,7 @@ class Game extends Component {
           onSubmit={this.onSubmission}
         />
 
-        <FinalPoem />
+        <FinalPoem lines={this.state.submissions}/>
 
       </div>
     );
