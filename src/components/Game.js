@@ -16,12 +16,17 @@ class Game extends Component {
   }
 
   addLine = (newLine) => {
-    console.log(newLine)
+    const makeArray = Object.values(newLine);
+    console.log(makeArray);
+
+    const makeSentence = makeArray.join(" ");
+    console.log(makeSentence);
+
     const allPoemUpdate = this.state.allSubmissions;
-    allPoemUpdate.push(newLine);
+    allPoemUpdate.push(makeSentence);
 
     this.setState({
-      recentSubmission: newLine,
+      recentSubmission: makeSentence,
       allSubmissions: allPoemUpdate,
     })
   }
@@ -48,7 +53,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission newLine={this.state.recentSubmission}/>
 
         <PlayerSubmissionForm addLineCallback={this.addLine}/>
 
