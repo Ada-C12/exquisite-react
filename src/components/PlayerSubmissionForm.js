@@ -12,17 +12,34 @@ class PlayerSubmissionForm extends Component {
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
-
+        
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
+              <div>The
+                <label htmlFor="adjective"></label>
+                <input name="adjective" placeholder="adjective" />
+              </div>
+              <div>
+              <label htmlFor="noun"></label>
+              <input name="noun" placeholder="noun" />
+            </div>
+            <div>
+              <label htmlFor="adverb"></label>
+              <input name="adverb" placeholder="adverb" />
+            </div>
+            <div>
+              <label htmlFor="verb"></label>
+              <input name="verb" placeholder="verb" />
+            </div>
+            <div>the
+                <label htmlFor="adjective2"></label>
+                <input name="adjective2" placeholder="adjective" />
+              </div>
+              <div>
+              <label htmlFor="noun"></label>
+              <input name="noun" placeholder="noun" />.
+            </div>
 
           </div>
 
