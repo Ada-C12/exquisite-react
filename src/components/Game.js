@@ -12,6 +12,7 @@ class Game extends Component {
     this.state = {
       player_num: 1,
       poem: [],
+      submitted: false,
     }
   }
 
@@ -23,6 +24,14 @@ class Game extends Component {
       player_num: this.state.player_num + 1,
       poem: newPoem
     })
+  }
+
+  finishPoem = () => {
+    console.log("submitting")
+    this.setState({
+      submitted: true
+    })
+
   }
 
   render() {
@@ -51,7 +60,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm player={this.state.player_num} addSubCallback={this.addSubmission}/>
 
-        <FinalPoem poemArray={this.state.poem}/>
+        <FinalPoem poemArray={this.state.poem} onFinalSubmit={this.finishPoem} submitted={this.state.submitted}/>
 
       </div>
     );
