@@ -67,6 +67,7 @@ class PlayerSubmissionForm extends Component {
                         type="text"
                         name={field.name}
                         onChange={this.handleChange}
+                        className={this.state[field.name] ? "" : "red"}
                         key={field.name} 
                       />
                     ); 
