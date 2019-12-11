@@ -13,6 +13,10 @@ class Game extends Component {
     }
   }
 
+  makeOneSentence = (words) => {
+    words.join(" ");
+  }
+
 
   render() {
 
@@ -38,7 +42,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm player={this.state.playerCount} makeOneSentenceCallback={this.makeOneSentence}/>
 
         <FinalPoem />
 
