@@ -46,7 +46,7 @@ class Game extends Component {
 
         <RecentSubmission sentence={this.state.latestSentence}/>
 
-        <PlayerSubmissionForm player={this.state.playerCount} makeOneSentenceCallback={this.makeOneSentence}/>
+        <PlayerSubmissionForm makeOneSentenceCallback={this.makeOneSentence}/>
 
         <FinalPoem />
 

@@ -35,6 +35,7 @@ class PlayerSubmissionForm extends Component {
       adj2: this.state.adj2,
       noun2: this.state.noun2
     }
+    const newPlayerCount = this.state.playerCount + 1;
     console.log(words)
 
 
@@ -46,7 +47,7 @@ class PlayerSubmissionForm extends Component {
       adj2: '',
       noun2: '',
       // does playercount state live in form or game? change this to a functional component and take away state?
-      playerCount: `${this.state.playerCount + 1}`
+      playerCount: newPlayerCount
     })
     this.props.makeOneSentenceCallback(words);
     console.log(words);
