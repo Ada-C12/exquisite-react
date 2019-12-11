@@ -12,7 +12,8 @@ class Game extends Component {
     this.state = {
       submissionCount: 0,
       recentSubmission: '',
-      submissionList: []
+      submissionList: [],
+      gameComplete: false,
     };
   }
 
@@ -30,6 +31,13 @@ class Game extends Component {
       submissionCount: updatedSubmissionCount,
       recentSubmission: updatedRecentSubmission,
       submissionList: updatedSubmissionList
+    })
+  }
+
+  onEndGame = () => {
+    const gameCompleteUpdate = true;
+    this.setState({
+      gameComplete: gameCompleteUpdate,
     })
   }
 
@@ -59,7 +67,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)}/>
 
-        <FinalPoem lines={this.state.submissionList}/>
+        <FinalPoem lines={this.state.submissionList} endGameCallback={this.onEndGame} gameEnded={this.state.gameComplete}/>
 
       </div>
     );
