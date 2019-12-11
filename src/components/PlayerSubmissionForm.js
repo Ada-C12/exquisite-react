@@ -16,6 +16,26 @@ class PlayerSubmissionForm extends Component {
     };
   }
 
+  resetState = () => {
+    this.setState({
+      adjetive: '',
+      noun: '',
+      adverb: '',
+      verb: '',
+      adjetive2: '',
+      noun2: '',
+    });
+  }
+
+  onFormChange = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+    
+    const updatedState = {};
+    updatedState[field] = value;
+    this.setState(updatedState);
+  }
+
   render() {
 
     return (
