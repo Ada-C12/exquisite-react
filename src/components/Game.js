@@ -44,7 +44,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm addLineCallback={this.addLine} player={this.state.submissions.length}/>
+        <PlayerSubmissionForm addLineCallback={this.addLine} player={this.state.submissions.length + 1}/>
 
         <FinalPoem />
 
