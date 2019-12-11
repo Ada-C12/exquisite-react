@@ -66,9 +66,13 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        { lastsubmission ? <RecentSubmission submission={lastsubmission} /> : '' }
-
-        <PlayerSubmissionForm playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
+        { poemCompleted 
+          ? '' 
+          : <div>
+              { lastsubmission ? <RecentSubmission submission={lastsubmission} /> : ''} 
+              <PlayerSubmissionForm playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
+            </div>
+        }
 
         <FinalPoem poemLines={submissions} revealPoem={poemCompleted} onRevealPoem={this.onRevealPoem} />
 
