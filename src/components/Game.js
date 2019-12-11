@@ -17,10 +17,13 @@ class Game extends Component {
   }
 
   onSubmitPoem = (submission) => {
+    let newFinalPoem = this.state.finalPoem;
+    newFinalPoem.push(submission);
     this.setState({
       recentPoem: submission,
-      finalPoem: this.state.finalPoem.push(submission),
+      finalPoem: newFinalPoem,
     })
+    // console.log(this.state.finalPoem);
   };
 
   render() {

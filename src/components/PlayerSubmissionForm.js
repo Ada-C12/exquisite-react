@@ -35,7 +35,7 @@ class PlayerSubmissionForm extends Component {
       }
     })
     )
-  } 
+  }
 
   onInputChange = (event) => {
     const updatedState = {};
@@ -47,13 +47,44 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   }
 
+
+  onSubmitPoem = (event) => {
+    // Stop the default page reload
+    event.preventDefault();
+    let poem = '';
+    const fields = this.props.fields;
+
+    for (let i = 0; i < fields.length; i++) {
+      if (fields[i].key) {
+        poem += (this.state[fields[i].key] + ' ')
+      } else {
+        poem += (fields[i] + ' ')
+      };
+    };
+
+
+    this.props.onSumbitPoemCallback(poem);
+
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    });
+  }
+
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form 
+          className="PlayerSubmissionForm__form" 
+          onSubmit={this.onSubmitPoem}
+        >
 
           <div className="PlayerSubmissionForm__poem-inputs">
             {this.inputFields()}
