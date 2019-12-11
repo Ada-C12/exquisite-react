@@ -13,6 +13,7 @@ class Game extends Component {
       submissions: [],
       currentPlayer: 1,
       lastsubmission: undefined,
+      poemCompleted: false,
     }
   }
 
@@ -42,8 +43,16 @@ class Game extends Component {
     this.setState( {submissions, currentPlayer, lastsubmission} );
   }
 
+  onRevealPoem = () => {
+    // change poemCompleted to true
+    let { poemCompleted } = this.state;
+    poemCompleted = true;
+    this.setState({ poemCompleted });
+  }
+
   render() {
     const exampleFormat = this.mapToString(FIELDS);
+    const { submissions, lastsubmission, currentPlayer, poemCompleted } = this.state;
 
     return (
       <div className="Game">
@@ -57,11 +66,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        { this.state.lastsubmission ? <RecentSubmission submission={this.state.lastsubmission} /> : '' }
+        { lastsubmission ? <RecentSubmission submission={lastsubmission} /> : '' }
 
-        <PlayerSubmissionForm playerNumber={this.state.currentPlayer} onFormSubmit={this.onFormSubmit} />
+        <PlayerSubmissionForm playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
 
-        <FinalPoem poemLines={this.state.submissions} />
+        <FinalPoem poemLines={submissions} revealPoem={poemCompleted} onRevealPoem={this.onRevealPoem} />
 
       </div>
     );
