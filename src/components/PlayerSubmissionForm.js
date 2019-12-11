@@ -35,7 +35,7 @@ class PlayerSubmissionForm extends Component {
       adjective2: this.state.adjective2,
       noun2: this.state.noun2,
     }
-    
+
     this.setState({
       adjective1: '',
       noun1: '',
@@ -44,8 +44,8 @@ class PlayerSubmissionForm extends Component {
       adjective2: '',
       noun2: '',
     });
-
-    this.props.addSubCallback(newFormSub);
+    
+    this.props.addSubCallback(`The ${newFormSub.adjective1 } ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
   }
 
   render() {
