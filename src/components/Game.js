@@ -11,7 +11,7 @@ import RecentSubmission from './RecentSubmission';
   // DONE add a section that shows the most_recent_submission after player submits a stanza
   // DONE hide the most_recent_submission section until a player submits a stanza
   
-  // hide the submission form & most_recent_submission section when "reveal" final poem is clicked
+  // hide the submission form & DONE most_recent_submission section when "reveal" final poem is clicked
 
 class Game extends Component {
 
@@ -75,7 +75,10 @@ class Game extends Component {
           poemSubmitted={ this.state.poemSubmitted }
         />
 
-        <PlayerSubmissionForm savePoemCallback={ this.addStanzas }/>
+        <PlayerSubmissionForm 
+          poemSubmitted={ this.state.poemSubmitted }
+          savePoemCallback={ this.addStanzas }
+        />
 
         <FinalPoem 
           poems={ this.state.savedPoem }

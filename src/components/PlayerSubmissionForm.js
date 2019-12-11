@@ -28,8 +28,6 @@ class PlayerSubmissionForm extends Component {
     });
   }
 
-  // send all new form fields to game by calling
-  // this.props.savePoemCallback(poem)
   onFormSubmit = (event) => {
     event.preventDefault();
     
@@ -44,7 +42,6 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     });
 
-    const poem = this.state;
     this.props.savePoemCallback({
       adjective1: this.state.adjective1,
       noun1: this.state.noun1,
@@ -60,63 +57,67 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
+    const submissionForm = 
+      <div className="PlayerSubmissionForm">
+          <h3>Player Submission Form for Player #{ this.state.clicks }</h3>
+
+          <form className="PlayerSubmissionForm__form" >
+
+            <div className="PlayerSubmissionForm__poem-inputs">
+              The<input 
+                placeholder="adjective"
+                type="text"
+                onChange={this.onFormChange}
+                value={this.state.adjective1}
+                name="adjective1" 
+              />
+              <input 
+                placeholder="noun"
+                type="text"
+                onChange={this.onFormChange}
+                value={this.state.noun1}
+                name="noun1" 
+              />
+              <input 
+                placeholder="adverb"
+                type="text"
+                onChange={this.onFormChange}
+                value={this.state.adverb}
+                name="adverb" 
+              />
+              <input 
+                placeholder="verb"
+                type="text"
+                onChange={this.onFormChange}
+                value={this.state.verb}
+                name="verb" 
+              />
+              the<input 
+                placeholder="adjective"
+                type="text"
+                onChange={this.onFormChange}
+                value={this.state.adjective2}
+                name="adjective2" 
+              />
+              <input 
+                placeholder="noun"
+                type="text"
+                onChange={this.onFormChange}
+                value={this.state.noun2}
+                name="noun2" 
+              />.
+            </div>
+
+            <div className="PlayerSubmissionForm__submit">
+              <input onClick={this.onFormSubmit} type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            </div>
+          </form>
+        </div>
+    
+    const submissionFormContent = this.props.poemSubmitted === false ? <p>{ submissionForm }</p> : <p></p>;
 
     return (
-      <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.state.clicks }</h3>
-
-        <form className="PlayerSubmissionForm__form" >
-
-          <div className="PlayerSubmissionForm__poem-inputs">
-            The<input 
-              placeholder="adjective"
-              type="text"
-              onChange={this.onFormChange}
-              value={this.state.adjective1}
-              name="adjective1" 
-            />
-            <input 
-              placeholder="noun"
-              type="text"
-              onChange={this.onFormChange}
-              value={this.state.noun1}
-              name="noun1" 
-            />
-            <input 
-              placeholder="adverb"
-              type="text"
-              onChange={this.onFormChange}
-              value={this.state.adverb}
-              name="adverb" 
-            />
-            <input 
-              placeholder="verb"
-              type="text"
-              onChange={this.onFormChange}
-              value={this.state.verb}
-              name="verb" 
-            />
-            the<input 
-              placeholder="adjective"
-              type="text"
-              onChange={this.onFormChange}
-              value={this.state.adjective2}
-              name="adjective2" 
-            />
-            <input 
-              placeholder="noun"
-              type="text"
-              onChange={this.onFormChange}
-              value={this.state.noun2}
-              name="noun2" 
-            />.
-          </div>
-
-          <div className="PlayerSubmissionForm__submit">
-            <input onClick={this.onFormSubmit} type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
-          </div>
-        </form>
-      </div>
+      <div>{ submissionFormContent }</div>
     );
   }
 }
