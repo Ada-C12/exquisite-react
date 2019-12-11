@@ -45,14 +45,17 @@ class PlayerSubmissionForm extends Component {
       return;
     }
 
-    const newPoemLine = {
-      adj1: this.state.adj1,
-      noun1: this.state.noun1,
-      adv: this.state.adv,
-      verb: this.state.verb,
-      adj2: this.state.adj2,
-      noun2: this.state.noun2
-    };
+    let newPoemLine = [];
+
+    this.props.fields.forEach(field => {
+      if (field.key) {
+        newPoemLine.push(this.state[field.key]);
+      } else {
+        newPoemLine.push(field);
+      }
+    });
+
+    newPoemLine = newPoemLine.join(" ");
 
     this.setState({
       playerNum: this.state.playerNum + 1,
