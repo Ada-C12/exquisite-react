@@ -11,7 +11,7 @@ class Game extends Component {
 
     this.state = {
       submissionCount: 0,
-      recentSubmission: {},
+      recentSubmission: '',
       submissionList: []
     };
   }
@@ -32,7 +32,6 @@ class Game extends Component {
       submissionList: updatedSubmissionList
     })
   }
-
 
   render() {
 
@@ -56,11 +55,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSub={this.state.recentSubmission} />
 
         <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)}/>
 
-        <FinalPoem />
+        <FinalPoem lines={this.state.submissionList}/>
 
       </div>
     );

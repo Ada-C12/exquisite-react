@@ -7,7 +7,7 @@ const FinalPoem = (props) => {
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-
+        {props.lines.map(line => (<p key={line}>{line}</p>))}
       </section>
 
       <div className="FinalPoem__reveal-btn-container">

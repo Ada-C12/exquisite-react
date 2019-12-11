@@ -32,14 +32,7 @@ class PlayerSubmissionForm extends Component {
 
     //validate
 
-    const newSubmission = {
-      adjectiveOne: this.state.adjectiveOne,
-      nounOne: this.state.nounOne,
-      adverb: this.state.adverb,
-      verb: this.state.verb,
-      adjectiveTwo: this.state.adjectiveTwo,
-      nounTwo: this.state.nounTwo
-    }
+    const newSubmission = `The ${this.state.adjectiveOne} ${this.state.nounOne} ${this.state.adverb} ${this.state.verb} the ${this.state.adjectiveTwo} ${this.state.nounTwo}.`
 
     this.setState({
       adjectiveOne: '',
