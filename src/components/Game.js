@@ -12,6 +12,7 @@ class Game extends Component {
     this.state = {
       submissions: [],
       currentPlayer: 1,
+      lastsubmission: undefined,
     }
   }
 
@@ -29,14 +30,16 @@ class Game extends Component {
   onFormSubmit = (submissionComponents) => {
     const newSubmission = this.mapToString(submissionComponents);
 
-    let { submissions, currentPlayer } = this.state;
+    let { submissions, currentPlayer, lastsubmission } = this.state;
     
-    // need to add submissionComponents to submissions array
+    // add submissionComponents to submissions array
     submissions.push(newSubmission);
-    // need to add one to currentPlayer
+    // add one to currentPlayer
     currentPlayer += 1;
+    // replace current last submission with this submission
+    lastsubmission = newSubmission;
     
-    this.setState( {submissions, currentPlayer} );
+    this.setState( {submissions, currentPlayer, lastsubmission} );
   }
 
   render() {
@@ -54,7 +57,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { this.state.lastsubmission ? <RecentSubmission submission={this.state.lastsubmission} /> : '' }
 
         <PlayerSubmissionForm playerNumber={this.state.currentPlayer} onFormSubmit={this.onFormSubmit} />
 
