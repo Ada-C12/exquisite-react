@@ -14,7 +14,7 @@ const RecentSubmission = (props) => {
     )
   });
   
-  const recentPoemContent = (recentPoem.length === 0) ? <div></div> : <div>{ recentPoem }</div> ;
+  const recentPoemContent = (recentPoem.length === 0 || props.poemSubmitted === true) ? <div></div> : <div>{ recentPoem }</div> ;
 
   return (
     <div>{ recentPoemContent }</div>

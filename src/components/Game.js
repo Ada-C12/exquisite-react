@@ -72,6 +72,7 @@ class Game extends Component {
 
         <RecentSubmission 
           recentPoem={ this.state.savedPoem.slice(-1) }
+          poemSubmitted={ this.state.poemSubmitted }
         />
 
         <PlayerSubmissionForm savePoemCallback={ this.addStanzas }/>
