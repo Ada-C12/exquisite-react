@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       adjective: '',
@@ -16,7 +16,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   onFieldChange = (event) => {
-    const { placeholder, value } = event.target;
+    const {placeholder, value} = event.target;
     const updatedState = {};
     updatedState[placeholder] = value;
 
@@ -24,7 +24,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   sendSubmission = (event) => {
-    event.preventDefautl();
+    event.preventDefault();
 
     const newSubmission = {
       adjective: this.state.adjective,
@@ -44,7 +44,7 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     });
 
-    this.props.addSubmissionCallback(newSubmission.join(" "));
+    this.props.addSubmissionCallback(newSubmission);
     // this.resetForm();
   }
 

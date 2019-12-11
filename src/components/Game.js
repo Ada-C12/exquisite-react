@@ -15,22 +15,14 @@ class Game extends Component {
   }
 
   addSubmission = (newSubmission) => {
-    console.log('Submit Line', newSubmission.adjective)
     const submissions = this.state.submissions
     submissions.push(newSubmission)
-
+    
+    // console.log(submissions)
     this.setState({
       submissions
     })
   }
-
-  // revealPoem = (event) => {
-  //   event.preventDefault();
-
-  //   this.setState({
-  //     isSubmitted: true
-  //   });
-  // }
 
   render() {
     console.log(this.state.submissions)
