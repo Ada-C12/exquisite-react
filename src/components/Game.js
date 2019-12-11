@@ -8,10 +8,26 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      inProgress: true,
+      recentSub: '',
+      poem: [],
+    }
   }
 
-  render() {
+  addLine = (line) => {
+    const poem = this.state.poem;
+    const newLine = line;
+    const recentSub = newLine;
 
+    poem.push(newLine)
+    this.setState({recentSub, poem,})
+  }
+
+
+  render() {
+    console.log(this.state.poem)
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -32,9 +48,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {/* <RecentSubmission /> */}
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addLineCallback={line => this.addLine(line)}/>
 
         <FinalPoem />
 
