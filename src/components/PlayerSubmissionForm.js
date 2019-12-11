@@ -33,12 +33,30 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
             <input
-              placeholder="hm..."
-              type="text" />
+              placeholder={this.state.adjectiveA === '' ? "adjective" : this.state.adjectiveA}
+              type="text"
+            />
+            <input
+              placeholder={this.state.nounA === '' ? "noun" : this.state.nounA}
+              type="text"
+            />
+            <input
+              placeholder={this.state.adverb === '' ? "adverb" : this.state.adverb}
+              type="text"
+            />
+            <input
+              placeholder={this.state.verb === '' ? "verb" : this.state.verb}
+              type="text"
+            />
+            <input
+              placeholder={this.state.adjectiveB === '' ? "adjective" : this.state.adjective}
+              type="text"
+            />
+            <input
+              placeholder={this.state.nounA === '' ? "noun" : this.state.nounB}
+              type="text"
+            />
 
           </div>
 
