@@ -16,11 +16,7 @@ class Game extends Component {
   }
 
   addLine = (newLine) => {
-    const makeArray = Object.values(newLine);
-    console.log(makeArray);
-
-    const makeSentence = makeArray.join(" ");
-    console.log(makeSentence);
+    const makeSentence = `The ${newLine.adjective} ${newLine.noun} ${newLine.adverb} ${newLine.verb} the ${newLine.adjective2} ${newLine.noun2}.`
 
     const allPoemUpdate = this.state.allSubmissions;
     allPoemUpdate.push(makeSentence);
@@ -29,6 +25,8 @@ class Game extends Component {
       recentSubmission: makeSentence,
       allSubmissions: allPoemUpdate,
     })
+
+    console.log(this.state.allSubmissions)
   }
 
   render() {
