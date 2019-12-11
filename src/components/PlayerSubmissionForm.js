@@ -49,6 +49,11 @@ class PlayerSubmissionForm extends Component {
     this.resetState();
   }
 
+  fieldValid = (field) => {
+    // const fieldName = this.state[field]
+    return this.state[field].match(/.+/);
+  }
+
   render() {
 
     return (
@@ -60,14 +65,16 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
             <div>The
               <label htmlFor="adjective"></label>
-              <input name="adjective" placeholder="adjective" 
-              onChange={this.onFormChange} value={this.state.adjective} />
+              <input name="adjective" placeholder="adjective" onChange={this.onFormChange} 
+              value={this.state.adjective} className={this.fieldValid("adjective") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
+              />
             </div>
 
             <div>
             <label htmlFor="noun"></label>
             <input name="noun" placeholder="noun" 
             onChange={this.onFormChange} value={this.state.noun}
+            className={this.fieldValid("noun") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
             />
             </div>
 
@@ -75,6 +82,7 @@ class PlayerSubmissionForm extends Component {
               <label htmlFor="adverb"></label>
               <input name="adverb" placeholder="adverb"
               onChange={this.onFormChange} value={this.state.adverb}
+              className={this.fieldValid("adverb") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
               />
             </div>
 
@@ -82,6 +90,7 @@ class PlayerSubmissionForm extends Component {
               <label htmlFor="verb"></label>
               <input name="verb" placeholder="verb" 
               onChange={this.onFormChange} value={this.state.verb}
+              className={this.fieldValid("verb") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
               />
             </div>
 
@@ -89,12 +98,16 @@ class PlayerSubmissionForm extends Component {
               <label htmlFor="adjective2"></label>
               <input name="adjective2" placeholder="adjective" 
               onChange={this.onFormChange} value={this.state.adjective2}
+              className={this.fieldValid("adjective2") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
               />
             </div>
 
             <div>
             <label htmlFor="noun2"></label>
-            <input name="noun2" placeholder="noun" />.
+            <input name="noun2" placeholder="noun" 
+            onChange={this.onFormChange} value={this.state.noun2}
+            className={this.fieldValid("noun2") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
+            />.
             </div>
 
           </div>
