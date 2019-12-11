@@ -60,47 +60,6 @@ class PlayerSubmissionForm extends Component {
               })
               }
               
-           {/* <p>The</p>
-            <input
-              placeholder="adjective"
-              type="text"
-              name="adjectiveFirst"
-              onChange={this.handleChange}
-              // I wan to figure out how to add a ternary to select  PlayerSubmissionFormt__input--invalid className
-              />
-
-            <input
-              placeholder="noun"
-              type="text"
-              name="nounFirst"
-              onChange={this.handleChange} />
-
-            <input
-              placeholder="adverb"
-              type="text" 
-              name="adverb"
-              onChange={this.handleChange} />
-
-            <input
-              placeholder="verb"
-              type="text" 
-              name="verb"
-              onChange={this.handleChange} />
-
-            <p>the</p>
-
-            <input
-              placeholder="adjective"
-              type="text" 
-              name="adjectiveSecond"
-              onChange={this.handleChange} />
-
-            <input
-              placeholder="noun"
-              type="text" 
-              name="nounSecond"
-              onChange={this.handleChange}/>
-              <p>.</p>  */}
           </div>
 
           <div className="PlayerSubmissionForm__submit">
