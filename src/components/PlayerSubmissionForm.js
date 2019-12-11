@@ -92,7 +92,7 @@ class PlayerSubmissionForm extends Component {
                 type="text"
                 onChange={this.onInputChange} 
                 value={this.state.verb} />
-              
+
               the
               <input
                 className={this.isInputValid(this.state.adjective2)}
@@ -109,8 +109,8 @@ class PlayerSubmissionForm extends Component {
                 type="text"
                 onChange={this.onInputChange} 
                 value={this.state.noun2} />
-            </div>              
-
+              .
+            </div>             
             <div className="PlayerSubmissionForm__submit">
               <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
             </div>
