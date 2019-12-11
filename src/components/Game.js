@@ -8,10 +8,39 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      savedPoem: [],
+      poemSubmitted: false,
+    };
+  }
+  
+  // store each line of submitted poem in array of poems
+  addStanzas = (stanza) => {
+    console.log("addStanzas method is being called");
+    console.log(stanza);
+
+    const poems = this.state.savedPoem;
+    poems.push(stanza);
+    this.setState({poems});
+
+    console.log(poems);
+    console.log(this.state.savedPoem);
+  }
+
+  // event handler function that when called
+  // will change the state for poemSubmitted to true
+  showFinalPoem = (event) => {
+    console.log("show final poem method is called")
+    
+    event.preventDefault();
+    this.setState({
+      poemSubmitted: true,
+    });
   }
 
   render() {
-
+    // iterates through fields and returns a new array of alternating
+    // grammar fields - joins them back into a sentence
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -32,12 +61,21 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          recentPoem={ this.state.savedPoem.slice(-1) }
+          poemSubmitted={ this.state.poemSubmitted }
+        />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          poemSubmitted={ this.state.poemSubmitted }
+          savePoemCallback={ this.addStanzas }
+        />
 
-        <FinalPoem />
-
+        <FinalPoem 
+          poems={ this.state.savedPoem }
+          poemSubmitted={ this.state.poemSubmitted }
+          showPoemCallback={ this.showFinalPoem }
+        />
       </div>
     );
   }
