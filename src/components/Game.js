@@ -15,11 +15,12 @@ class Game extends Component {
   }
 
   makeOneSentence = (words) => {
-    const wordsArray = words.keys
-    const sentence = wordsArray.join()
-
+    const sentence = `The ${words.adj1} ${words.noun1} ${words.adv} ${words.verb} the ${words.adj2} ${words.noun2}.`
+    this.setState({
+      latestSentence: sentence,
+    });
+    console.log(sentence);
   }
-
 
   render() {
 
@@ -43,7 +44,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission sentence={/>
+        <RecentSubmission sentence={this.state.latestSentence}/>
 
         <PlayerSubmissionForm player={this.state.playerCount} makeOneSentenceCallback={this.makeOneSentence}/>
 
