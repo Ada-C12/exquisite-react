@@ -37,6 +37,7 @@ class Game extends Component {
           <PlayerSubmissionForm
             playerNumber={this.state.submissions.length + 1}
             onSubmit={this.onSubmission}
+            fields={FIELDS}
           />
           <div className="FinalPoem__reveal-btn-container">
             <input
@@ -77,7 +78,7 @@ class Game extends Component {
   }
 }
 
-export const FIELDS = [
+const FIELDS = [
   "The",
   {
     key: 'adj1',

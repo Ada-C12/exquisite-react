@@ -49,6 +49,7 @@ class PlayerSubmissionForm extends Component {
     const putIn = (field, i) => {
       if (field.key) {
         const state = this.state[field.key];
+        
         return (<input placeholder={field.placeholder}
                   type="text"
                   htmlFor={field.key}
