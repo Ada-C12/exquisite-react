@@ -1,20 +1,43 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+class FinalPoem extends React.Component {
+  onButtonClick = () => {
+    this.props.onClickCallBack();
+  }
 
-  return (
-    <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+  render() {
+    const allPoems = this.props.allSubmissions.map((poem, i) => {
+      return (
+        <section key={i}>
+          <p>{`The ${poem.adj1} ${poem.noun1} ${poem.adv} ${poem.verb} the ${poem.adj2} ${poem.noun2} .`}</p>
+        </section>);
+    });
 
-      </section>
+    const gameResult = () => {
+      if (this.props.gameIsOver) {
+        return (
+          <section className="FinalPoem__poem">
+            <h3>Final Poem</h3>
+            {allPoems}
+          </section>);
+      } else {
+        return (<div className="FinalPoem__reveal-btn-container">
+          <input 
+          onClick={this.onButtonClick} 
+          type="button" 
+          value="We are finished: Reveal the Poem" 
+          className="FinalPoem__reveal-btn" />
+        </div>);
+      }
+    };
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+    return (
+      <div className="FinalPoem">
+        {gameResult()}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FinalPoem;

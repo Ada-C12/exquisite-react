@@ -2,7 +2,8 @@ import React from 'react';
 import './RecentSubmission.css';
 
 const RecentSubmission = (props) => {
-  const recentPoem = `The ${props.mostRecentPoem.adj1} ${props.mostRecentPoem.noun1} ${props.mostRecentPoem.adv} ${props.mostRecentPoem.verb} the ${props.mostRecentPoem.adj2} ${props.mostRecentPoem.noun2}`
+  const { adj1, noun1, adv, verb, adj2, noun2 } = props.mostRecentPoem;
+  const recentPoem = `The ${adj1} ${noun1} ${adv} ${verb} the ${adj2} ${noun2} .`
   return (
     <div className="RecentSubmission">
       <h3>The Most Recent Submission</h3>

@@ -11,6 +11,7 @@ class Game extends Component {
     this.state = {
       submissions: [],
       mostRecentPoem: undefined,
+      gameIsOver: false,
     }
   }
 
@@ -25,6 +26,12 @@ class Game extends Component {
     });
   }
 
+  onButtonClick = () => {
+    this.setState({
+      gameIsOver: true,
+    })
+  }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -36,11 +43,19 @@ class Game extends Component {
     }).join(" ");
 
     const mostRecentSubmission = () => {
-      if(this.state.mostRecentPoem === undefined){
-        return;
+      if (!this.state.gameIsOver && this.state.mostRecentPoem !== undefined) {
+        return <RecentSubmission 
+        mostRecentPoem={this.state.mostRecentPoem} 
+        gameIsOver={this.state.gameIsOver} />
       }
+    }
 
-      return <RecentSubmission mostRecentPoem={this.state.mostRecentPoem}/>
+    const submissionForm = () => {
+      if (!this.state.gameIsOver) {
+        return <PlayerSubmissionForm
+          addSubmissionCallBack={this.addSubmission}
+          player={this.state.submissions.length + 1} />;
+      }
     }
 
     return (
@@ -54,14 +69,13 @@ class Game extends Component {
         <p className="Game__format-example">
           {exampleFormat}
         </p>
-
         {mostRecentSubmission()}
+        {submissionForm()}
 
-        <PlayerSubmissionForm 
-          addSubmissionCallBack={this.addSubmission} 
-          player={this.state.submissions.length + 1}/>
-
-        <FinalPoem />
+        <FinalPoem 
+        allSubmissions={this.state.submissions} 
+        gameIsOver={this.state.gameIsOver} 
+        onClickCallBack={this.onButtonClick} />
 
       </div>
     );
