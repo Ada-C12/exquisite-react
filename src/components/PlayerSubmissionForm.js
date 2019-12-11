@@ -46,54 +46,30 @@ class PlayerSubmissionForm extends Component {
   }
     
   render() {
+    const putIn = (field, i) => {
+      if (field.key) {
+        const state = this.state[field.key];
+        return (<input placeholder={field.placeholder}
+                  type="text"
+                  htmlFor={field.key}
+                  name={field.key}
+                  className={this.validateClass(state)}
+                  value={state}
+                  onChange={this.onChange}
+                  key={i}
+                />);
+      } else {
+        return field
+      }  
+    }
+    
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{this.props.playerNumber}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmit}>
           <div className="PlayerSubmissionForm__poem-inputs">
-            The<input placeholder="adjective"
-              type="text"
-              htmlFor="adj1"
-              name="adj1"
-              className={this.validateClass(this.state.adj1)}
-              value={this.state.adj1}
-              onChange={this.onChange}/>
-            <input placeholder="noun"
-              type="text"
-              htmlFor="noun1"
-              name="noun1"
-              className={this.validateClass(this.state.noun1)}
-              value={this.state.noun1}
-              onChange={this.onChange}/>
-            <input placeholder="adverb"
-              type="text"
-              htmlFor="adv"
-              name="adv"
-              className={this.validateClass(this.state.adv)}
-              value={this.state.adv}
-              onChange={this.onChange}/>
-            <input placeholder="verb"
-              type="text"
-              htmlFor="verb"
-              name="verb"
-              className={this.validateClass(this.state.verb)}
-              value={this.state.verb}
-              onChange={this.onChange}/>
-            the<input placeholder="adjective"
-              type="text"
-              htmlFor="adj2"
-              name="adj2"
-              className={this.validateClass(this.state.adj2)}
-              value={this.state.adj2}
-              onChange={this.onChange}/>
-            <input placeholder="noun"
-              type="text"
-              htmlFor="noun2"
-              name="noun2"
-              className={this.validateClass(this.state.noun2)}
-              value={this.state.noun2}
-              onChange={this.onChange}/>.
+            {this.props.fields.map(putIn)}
           </div>
 
           <div className="PlayerSubmissionForm__submit">
