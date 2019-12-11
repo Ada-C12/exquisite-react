@@ -50,93 +50,76 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    // const FIELDS = this.props.fields;
+    if(!this.props.finalPoem) {
+      return (
+        <div className="PlayerSubmissionForm">
+          <h3>Player Submission Form for Player #{this.props.player}</h3>
 
-    // FIELDS.forEach(field => {
-    //   let output 
-    //   if(typeof(field) === String) {
-    //     output = <div>{field}</div>
-    //     console.log(output)
-    //   } else if(typeof(field) === Object) {
-    //     const key = field.key
-    //     const placeholder = field.placeholder
-    //     output =
-    //         <input
-    //           className={this.isInputValid(this.state.key)}
-    //           name={key}
-    //           placeholder={placeholder}
-    //           type="text"
-    //           onChange={this.onInputChange} 
-    //           value={this.state.key} />
-    //   };
-    // })
+          <form 
+          className="PlayerSubmissionForm__form"
+          onSubmit={this.onPlayerSubmit} >
 
-    return (
-      <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.props.player}</h3>
+            <div className="PlayerSubmissionForm__poem-inputs">
+              The
+              <input
+                className={this.isInputValid(this.state.adjective1)}
+                name="adjective1"
+                placeholder="adjective"
+                type="text"
+                onChange={this.onInputChange} 
+                value={this.state.adjective1} />
 
-        <form 
-        className="PlayerSubmissionForm__form"
-        onSubmit={this.onPlayerSubmit} >
+              <input
+                className={this.isInputValid(this.state.noun1)}
+                name="noun1"
+                placeholder="noun"
+                type="text"
+                onChange={this.onInputChange} 
+                value={this.state.noun1} />
 
-          <div className="PlayerSubmissionForm__poem-inputs">
-            The
-            <input
-              className={this.isInputValid(this.state.adjective1)}
-              name="adjective1"
-              placeholder="adjective"
-              type="text"
-              onChange={this.onInputChange} 
-              value={this.state.adjective1} />
+              <input
+                className={this.isInputValid(this.state.adverb)}
+                name="adverb"
+                placeholder="adverb"
+                type="text"
+                onChange={this.onInputChange} 
+                value={this.state.adverb} />
+              
+              <input
+                className={this.isInputValid(this.state.verb)}
+                name="verb"
+                placeholder="verb"
+                type="text"
+                onChange={this.onInputChange} 
+                value={this.state.verb} />
+              
+              the
+              <input
+                className={this.isInputValid(this.state.adjective2)}
+                name="adjective2"
+                placeholder="adjective"
+                type="text"
+                onChange={this.onInputChange} 
+                value={this.state.adjective2} />
 
-            <input
-              className={this.isInputValid(this.state.noun1)}
-              name="noun1"
-              placeholder="noun"
-              type="text"
-              onChange={this.onInputChange} 
-              value={this.state.noun1} />
+              <input
+                className={this.isInputValid(this.state.noun2)}
+                name="noun2"
+                placeholder="noun"
+                type="text"
+                onChange={this.onInputChange} 
+                value={this.state.noun2} />
+            </div>              
 
-            <input
-              className={this.isInputValid(this.state.adverb)}
-              name="adverb"
-              placeholder="adverb"
-              type="text"
-              onChange={this.onInputChange} 
-              value={this.state.adverb} />
-            
-            <input
-              className={this.isInputValid(this.state.verb)}
-              name="verb"
-              placeholder="verb"
-              type="text"
-              onChange={this.onInputChange} 
-              value={this.state.verb} />
-            
-            the
-            <input
-              className={this.isInputValid(this.state.adjective2)}
-              name="adjective2"
-              placeholder="adjective"
-              type="text"
-              onChange={this.onInputChange} 
-              value={this.state.adjective2} />
-
-            <input
-              className={this.isInputValid(this.state.noun2)}
-              name="noun2"
-              placeholder="noun"
-              type="text"
-              onChange={this.onInputChange} 
-              value={this.state.noun2} />
-          </div>              
-
-          <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
-          </div>
-        </form>
-      </div>
-    );
+            <div className="PlayerSubmissionForm__submit">
+              <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return('')
+    }
   }
 }
 

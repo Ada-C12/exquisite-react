@@ -11,7 +11,8 @@ class Game extends Component {
     
     this.state = {
       submissions : [],
-      player: 1
+      player: 1,
+      finalPoem: false,
     };
   }
 
@@ -20,6 +21,12 @@ class Game extends Component {
     this.setState({
       submissions: this.state.submissions,
       player: this.state.player + 1
+    });
+  }
+
+  onPoemSubmit = () => {
+    this.setState ({
+      finalPoem: true,
     });
   }
 
@@ -47,9 +54,9 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} player={this.state.player} />
+        <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} player={this.state.player} finalPoem={this.state.finalPoem} />
 
-        <FinalPoem />
+        <FinalPoem submissions={this.state.submissions} finalPoemCallBack={this.onPoemSubmit} finalPoem={this.state.finalPoem}/>
 
       </div>
     );
