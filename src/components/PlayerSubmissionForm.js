@@ -56,7 +56,11 @@ class PlayerSubmissionForm extends Component {
     this.setState({ clicks: this.state.clicks + 1 });
   }
 
-  render() {
+  isEmptyInput = (field) => {
+    return field.length;
+  }
+
+  render() {  
     const submissionForm = 
       <div className="PlayerSubmissionForm">
           <h3>Player Submission Form for Player #{ this.state.clicks }</h3>
@@ -65,13 +69,15 @@ class PlayerSubmissionForm extends Component {
 
             <div className="PlayerSubmissionForm__poem-inputs">
               The<input 
+                className={ this.isEmptyInput(this.state["adjective1"]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid" }
                 placeholder="adjective"
                 type="text"
                 onChange={this.onFormChange}
                 value={this.state.adjective1}
                 name="adjective1" 
               />
-              <input 
+              <input
+                className={ this.isEmptyInput(this.state["noun1"]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid" }
                 placeholder="noun"
                 type="text"
                 onChange={this.onFormChange}
@@ -79,13 +85,15 @@ class PlayerSubmissionForm extends Component {
                 name="noun1" 
               />
               <input 
+                className={ this.isEmptyInput(this.state["adverb"]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid" }
                 placeholder="adverb"
                 type="text"
                 onChange={this.onFormChange}
                 value={this.state.adverb}
                 name="adverb" 
               />
-              <input 
+              <input
+                className={ this.isEmptyInput(this.state["verb"]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid" }
                 placeholder="verb"
                 type="text"
                 onChange={this.onFormChange}
@@ -93,6 +101,7 @@ class PlayerSubmissionForm extends Component {
                 name="verb" 
               />
               the<input 
+                className={ this.isEmptyInput(this.state["adjective2"]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid" }
                 placeholder="adjective"
                 type="text"
                 onChange={this.onFormChange}
@@ -100,6 +109,7 @@ class PlayerSubmissionForm extends Component {
                 name="adjective2" 
               />
               <input 
+                className={ this.isEmptyInput(this.state["noun2"]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid" }
                 placeholder="noun"
                 type="text"
                 onChange={this.onFormChange}

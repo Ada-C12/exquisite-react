@@ -6,12 +6,12 @@ import RecentSubmission from './RecentSubmission';
 
 // To-do:
   // add proptypes to each component
-  // add CSS to make text box light pink when its not filled in
+  // DONE add CSS to make text box light pink when its not filled in
   
   // DONE add a section that shows the most_recent_submission after player submits a stanza
   // DONE hide the most_recent_submission section until a player submits a stanza
   
-  // hide the submission form & DONE most_recent_submission section when "reveal" final poem is clicked
+  // DONE hide the submission form & DONE most_recent_submission section when "reveal" final poem is clicked
 
 class Game extends Component {
 
