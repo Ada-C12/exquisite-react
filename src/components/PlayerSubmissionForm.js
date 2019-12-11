@@ -5,6 +5,15 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adjetive: '',
+      noun: '',
+      adverb: '',
+      verb: '',
+      adjetive2: '',
+      noun2: '',
+    };
   }
 
   render() {
@@ -20,10 +29,27 @@ class PlayerSubmissionForm extends Component {
             {
               // Put your form inputs here... We've put in one below as an example
             }
+            <p>The</p>
             <input
-              placeholder="hm..."
+              placeholder="adjetive"
               type="text" />
-
+            <input
+              placeholder="noun"
+              type="text" />
+            <input
+              placeholder="adverb"
+              type="text" />
+            <input
+              placeholder="verb"
+              type="text" />
+            <p>the</p>
+            <input
+              placeholder="adjetive"
+              type="text" />
+            <input
+              placeholder="noun"
+              type="text" />
+            <p>.</p>
           </div>
 
           <div className="PlayerSubmissionForm__submit">
