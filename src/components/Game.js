@@ -6,9 +6,29 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+  constructor() {
+    super();
+
+    this.state = {
+      allLines: [],
+      revealPoem: false,
+    };
+  };
+
+  addLine = (line) => {
+    const updatedSubmits = this.state.allLines;
+    updatedSubmits.push(line);
+
+    this.setState({
+      allLines: updatedSubmits,
+    });
+  };
+
+  finishPoem = () => {
+    this.setState({
+      revealPoem: true,
+    });
+  };
 
   render() {
 
@@ -19,6 +39,9 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const allLines = this.state.allLines;
+    const revealPoem = this.state.revealPoem;
 
     return (
       <div className="Game">
@@ -32,12 +55,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { (allLines.length > 0 && !revealPoem) ? <RecentSubmission lastLine={allLines[allLines.length - 1]} /> : '' }
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
-
+        { revealPoem ? '' : <PlayerSubmissionForm playerId={ allLines.length + 1 } addLine={ this.addLine } /> }
+        
+        <FinalPoem allLines={ allLines } revealPoem={ revealPoem } finishPoem={ this.finishPoem } />
       </div>
     );
   }
