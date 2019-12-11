@@ -23,9 +23,6 @@ class Game extends Component {
       player_num: this.state.player_num + 1,
       poem: newPoem
     })
-
-    console.log(this.state.poem)
-
   }
 
   render() {
@@ -50,7 +47,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission lastSub={this.state.poem[this.state.poem.length - 1]}/>
 
         <PlayerSubmissionForm player={this.state.player_num} addSubCallback={this.addSubmission}/>
 
