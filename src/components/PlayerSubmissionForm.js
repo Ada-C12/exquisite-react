@@ -36,6 +36,14 @@ class PlayerSubmissionForm extends Component {
     
     this.props.onSubmit(line);
   }
+
+  validateClass = (value) => {
+    if (value.length > 0) {
+      return "PlayerSubmissionForm__input"
+    } else {
+      return "PlayerSubmissionForm__input--invalid"
+    }
+  }
     
   render() {
     return (
@@ -48,42 +56,42 @@ class PlayerSubmissionForm extends Component {
               type="text"
               htmlFor="adj1"
               name="adj1"
-              className="PlayerSubmissionForm__input--invalid"
+              className={this.validateClass(this.state.adj1)}
               value={this.state.adj1}
               onChange={this.onChange}/>
             <input placeholder="noun"
               type="text"
               htmlFor="noun1"
               name="noun1"
-              className="PlayerSubmissionForm__input--invalid"
+              className={this.validateClass(this.state.noun1)}
               value={this.state.noun1}
               onChange={this.onChange}/>
             <input placeholder="adverb"
               type="text"
               htmlFor="adv"
               name="adv"
-              className="PlayerSubmissionForm__input--invalid"
+              className={this.validateClass(this.state.adv)}
               value={this.state.adv}
               onChange={this.onChange}/>
             <input placeholder="verb"
               type="text"
               htmlFor="verb"
               name="verb"
-              className="PlayerSubmissionForm__input--invalid"
+              className={this.validateClass(this.state.verb)}
               value={this.state.verb}
               onChange={this.onChange}/>
             the<input placeholder="adjective"
               type="text"
               htmlFor="adj2"
               name="adj2"
-              className="PlayerSubmissionForm__input--invalid"
+              className={this.validateClass(this.state.adj2)}
               value={this.state.adj2}
               onChange={this.onChange}/>
             <input placeholder="noun"
               type="text"
               htmlFor="noun2"
               name="noun2"
-              className="PlayerSubmissionForm__input--invalid"
+              className={this.validateClass(this.state.noun2)}
               value={this.state.noun2}
               onChange={this.onChange}/>.
           </div>
