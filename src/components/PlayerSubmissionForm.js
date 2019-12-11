@@ -14,7 +14,6 @@ class PlayerSubmissionForm extends Component {
     });
 
     this.state = userInput;
-    this.state.playerNum = 1;
   }
 
   onFieldChange = event => {
@@ -58,7 +57,6 @@ class PlayerSubmissionForm extends Component {
     newPoemLine = newPoemLine.join(" ");
 
     this.setState({
-      playerNum: this.state.playerNum + 1,
       adj1: "",
       noun1: "",
       adv: "",
@@ -73,7 +71,7 @@ class PlayerSubmissionForm extends Component {
   render() {
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.state.playerNum}</h3>
+        <h3>Player Submission Form for Player #{this.props.playerNum}</h3>
 
         <form
           className="PlayerSubmissionForm__form"
