@@ -3,15 +3,21 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
   
-  const finalPoem = () => {
+  const finalPoem = props.lines;
+
+  const finalPoemReturn = finalPoem.map((line, i) => {
+    return (
+      <p key={i}>{line}</p>
+    );
+  });
+  
+  const completePoem = () => {
   return (
-    <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-        {props.lines.map(line => (<p key={line}>{line}</p>))}
+        {finalPoemReturn}
       </section>
-      </div>
-  )
+    )
   };
 
   const poemButton = () => {
@@ -24,13 +30,7 @@ const FinalPoem = (props) => {
   
   return (
     <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
-        {props.lines.map(line => (<p key={line}>{line}</p>))}
-      </section>
-    <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.endGameCallback} />
-    </div>
+     {props.gameEnded === true ? completePoem() : poemButton()}
     </div>
   );
 }

@@ -19,18 +19,16 @@ class Game extends Component {
 
   onFormSubmission = (newSubmission) => {
     console.log('received new submission in Game')
-    //add submission + filler words to submissionList
+
     const updatedSubmissionList = this.state.submissionList;
     updatedSubmissionList.push(newSubmission)
 
-    //adjust recentSubmission
     const updatedRecentSubmission = updatedSubmissionList[updatedSubmissionList.length - 1]
-
     const updatedSubmissionCount = this.state.submissionCount + 1
     this.setState({
       submissionCount: updatedSubmissionCount,
       recentSubmission: updatedRecentSubmission,
-      submissionList: updatedSubmissionList
+      submissionList: updatedSubmissionList,
     })
   }
 
