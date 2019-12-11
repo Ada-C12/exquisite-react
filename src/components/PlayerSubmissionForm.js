@@ -25,7 +25,43 @@ class PlayerSubmissionForm extends Component {
   };
 
   validString = value => {
-    return value === "";
+    return value !== "";
+  };
+
+  onFormSubmit = event => {
+    event.preventDefault();
+
+    let allValid = true;
+
+    Object.values(this.state).forEach(value => {
+      if (!this.validString(value)) {
+        allValid = false;
+      }
+    });
+
+    if (!allValid) {
+      return;
+    }
+
+    const newPoemLine = {
+      adj1: this.state.adj1,
+      noun1: this.state.noun1,
+      adv: this.state.adv,
+      verb: this.state.verb,
+      adj2: this.state.adj2,
+      noun2: this.state.noun2
+    };
+
+    this.setState({
+      adj1: "",
+      noun1: "",
+      adv: "",
+      verb: "",
+      adj2: "",
+      noun2: ""
+    });
+
+    this.props.addPoemLineCallback(newPoemLine);
   };
 
   render() {
@@ -33,7 +69,10 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{}</h3>
 
-        <form className="PlayerSubmissionForm__form">
+        <form
+          className="PlayerSubmissionForm__form"
+          onSubmit={this.onFormSubmit}
+        >
           <div className="PlayerSubmissionForm__poem-inputs">
             The
             <input
@@ -43,8 +82,8 @@ class PlayerSubmissionForm extends Component {
               placeholder="adjective"
               className={
                 this.validString(this.state.adj1)
-                  ? "PlayerSubmissionForm__input--invalid"
-                  : ""
+                  ? ""
+                  : "PlayerSubmissionForm__input--invalid"
               }
             />
             <input
@@ -54,8 +93,8 @@ class PlayerSubmissionForm extends Component {
               placeholder="noun"
               className={
                 this.validString(this.state.noun1)
-                  ? "PlayerSubmissionForm__input--invalid"
-                  : ""
+                  ? ""
+                  : "PlayerSubmissionForm__input--invalid"
               }
             />
             <input
@@ -65,8 +104,8 @@ class PlayerSubmissionForm extends Component {
               placeholder="adverb"
               className={
                 this.validString(this.state.adv)
-                  ? "PlayerSubmissionForm__input--invalid"
-                  : ""
+                  ? ""
+                  : "PlayerSubmissionForm__input--invalid"
               }
             />
             <input
@@ -76,8 +115,8 @@ class PlayerSubmissionForm extends Component {
               placeholder="verb"
               className={
                 this.validString(this.state.verb)
-                  ? "PlayerSubmissionForm__input--invalid"
-                  : ""
+                  ? ""
+                  : "PlayerSubmissionForm__input--invalid"
               }
             />
             the
@@ -88,8 +127,8 @@ class PlayerSubmissionForm extends Component {
               placeholder="adjective"
               className={
                 this.validString(this.state.adj2)
-                  ? "PlayerSubmissionForm__input--invalid"
-                  : ""
+                  ? ""
+                  : "PlayerSubmissionForm__input--invalid"
               }
             />
             <input
@@ -99,8 +138,8 @@ class PlayerSubmissionForm extends Component {
               placeholder="noun"
               className={
                 this.validString(this.state.noun2)
-                  ? "PlayerSubmissionForm__input--invalid"
-                  : ""
+                  ? ""
+                  : "PlayerSubmissionForm__input--invalid"
               }
             />
             .
