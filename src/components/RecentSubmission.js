@@ -14,9 +14,7 @@ const RecentSubmission = (props) => {
   }
   return (
     <div className="RecentSubmission">
-      {getSubmission}
-      {/* <h3>The Most Recent Submission</h3>
-      <p className="RecentSubmission__submission">{  }</p> */}
+      {getSubmission()}
     </div>
   );
 }
