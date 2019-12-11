@@ -8,12 +8,26 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentSubmission: '',
+      finalPoem: []
+    }
     // up here in state
     // we will add a property for Recent Submission
     // (which will be filled with the result of the submitted PlayerSubmissionForm)
     // and a property for Final Poem
     // (which will contain all the Recent Submissions)
     // ((which will be pushed in everytime they're updated))
+  }
+  addRecentSubmission = (stanza) => {
+    // add stanza to Game state
+    const {finalPoem} = this.state;
+    finalPoem.push(stanza);
+    this.setState({
+      currentSubmission: stanza,
+      finalPoem,
+    })
+    console.log(stanza);
   }
 
   render() {
@@ -40,7 +54,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addRecentSubmission={(stanza) => { this.addRecentSubmission(stanza) }} />
 
         <FinalPoem />
 
