@@ -10,22 +10,28 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      poem: []
+      poemLines: [],
+      endScreen: false
     }
   }
 
-  addLine = (poemLine) => {
-    let poem = [...this.state.poem];
+  addPoemLine = (words) => {
+    let poem = [...this.state.poemLines];
 
-    poem.push(poemLine)
+    poem.push(words)
+
     this.setState({
-      poem: poem
+      poemLines: poem
     });
+  }
+
+  getLineCount = () => {
+    return this.state.poemLines.length + 1
   }
 
   revealPoem = () => {
     this.setState({
-      displayPoem: true
+      endScreen: true
     });
   }
 
@@ -39,8 +45,9 @@ class Game extends Component {
       }
     }).join(" ");
 
-    return (
-      <div className="Game">
+      const viewAllContent = (
+
+      <section>
         <h2>Game</h2>
 
         <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
@@ -51,14 +58,46 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          poemLine={this.state.poemLines.slice(-1)[0]}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          addPoemLineCallback={this.addPoemLine}
+          getLineCountCallback={this.getLineCount}
+          fields={ FIELDS }
+          />
 
-        <FinalPoem />
+        <FinalPoem 
+          poem={false}
+          revealFinalCallback={this.revealPoem}
+          fields={ FIELDS } />
+        
+        </section>
+        );
 
-      </div>
-    );
+        const displayEndGame = (
+          <section>
+            <h2>Game</h2>
+
+            <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
+
+            <p>Please follow the following format for your poetry submission:</p>
+
+            <p className="Game__format-example">
+              { exampleFormat }
+            </p>
+
+            <FinalPoem 
+              poem={this.state.poemLines}
+              revealFinalCallback={this.revealPoem}/>
+          </section>
+        );
+
+        return (
+          <div className="Game">
+            {this.state.endScreen ? displayEndGame : viewAllContent}
+          </div>
+        );
   }
 }
 
