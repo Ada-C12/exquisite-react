@@ -6,7 +6,7 @@ const FinalPoem = ({ poemLines }) => {
 
   const displayPoem = (poemLines) => {
     const collectedPoem = poemLines.map((line, i) => {
-      return <p key={i}>{line}</p>
+      return <p key={i}>{line}.</p>
     });
 
     return collectedPoem;
