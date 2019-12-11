@@ -10,15 +10,18 @@ class Game extends Component {
     super(props);
     this.state = {
       submissions: [],
+      mostRecentPoem: undefined,
     }
   }
 
   addSubmission = (submission) => {
+    const mostRecentPoem = submission;
     const submissions = this.state.submissions;
     submissions.push(submission);
 
     this.setState({
       submissions,
+      mostRecentPoem,
     });
   }
 
@@ -32,6 +35,14 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const mostRecentSubmission = () => {
+      if(this.state.mostRecentPoem === undefined){
+        return;
+      }
+
+      return <RecentSubmission mostRecentPoem={this.state.mostRecentPoem}/>
+    }
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -44,7 +55,7 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        {mostRecentSubmission()}
 
         <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} />
 
