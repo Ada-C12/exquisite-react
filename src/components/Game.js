@@ -22,8 +22,6 @@ class Game extends Component {
     this.setState({
       allLines: updatedSubmits,
     });
-
-    // console.log(this.state.allLines);
   };
 
   finishPoem = () => {
