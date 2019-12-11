@@ -8,10 +8,24 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      poem: [],
+      showPoem: false,
+    };
+  }
+
+  handleSubmitLine = (poemLine) => {
+    this.setState((prevState) => ({
+      poem: [...prevState.poem, poemLine]
+    }));
+  }
+
+  handleDisplayPoem = () => {
+    this.setState({ showPoem: true });
   }
 
   render() {
-
+    console.log(this.state.poem);
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -32,11 +46,19 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {!this.state.showPoem && (
+          <>
+            <RecentSubmission lastLine={this.state.poem[this.state.poem.length -1]} />
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+            <PlayerSubmissionForm fields={FIELDS} onSubmitLine={this.handleSubmitLine} currentPlayer={this.state.poem.length + 1} />
+          </>
+        )}
+      
+        <FinalPoem 
+          poem={this.state.poem} 
+          showPoem={this.state.showPoem} 
+          onDisplayPoem={this.handleDisplayPoem} 
+        />
 
       </div>
     );
@@ -48,27 +70,33 @@ const FIELDS = [
   {
     key: 'adj1',
     placeholder: 'adjective',
+    name: 'adjectiveFirst',
   },
   {
     key: 'noun1',
     placeholder: 'noun',
+    name: 'nounFirst',
   },
   {
     key: 'adv',
     placeholder: 'adverb',
+    name: 'adverb',
   },
   {
     key: 'verb',
     placeholder: 'verb',
+    name: 'verb',
   },
   "the",
   {
     key: 'adj2',
     placeholder: 'adjective',
+    name: 'adjectiveSecond',
   },
   {
     key: 'noun2',
     placeholder: 'noun',
+    name: 'nounSecond',
   },
   ".",
 ];
