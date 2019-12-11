@@ -11,7 +11,6 @@ class Game extends Component {
     
     this.state = {
       submissions : [],
-      player: 1,
       finalPoem: false,
     };
   }
@@ -20,7 +19,6 @@ class Game extends Component {
     this.state.submissions.push(submission)
     this.setState({
       submissions: this.state.submissions,
-      player: this.state.player + 1
     });
   }
 
@@ -52,9 +50,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentSubmission={this.state.submissions[this.state.submissions.length - 1]} finalPoem={this.state.finalPoem}/>
+        <RecentSubmission recentSubmission={this.state.submissions[this.state.submissions.length + 1]} finalPoem={this.state.finalPoem}/>
 
-        <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} player={this.state.player} finalPoem={this.state.finalPoem} fields={FIELDS}/>
+        <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} player={this.state.submissions.length + 1} finalPoem={this.state.finalPoem} fields={FIELDS}/>
 
         <FinalPoem submissions={this.state.submissions} finalPoemCallBack={this.onPoemSubmit} finalPoem={this.state.finalPoem}/>
 
