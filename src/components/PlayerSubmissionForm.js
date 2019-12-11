@@ -16,6 +16,14 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
+  onInputChange = (event) => {
+    const updatedState = {};
+    const field = event.target.name;
+    const value = event.target.value;
+    updatedState[field] = value;
+    this.setState(updatedState)
+  }
+
   onFormSubmit = (event) => {
     event.preventDefault();
     const words = {
@@ -37,7 +45,7 @@ class PlayerSubmissionForm extends Component {
       adj2: '',
       noun2: '',
       // does playercount state live in form or game? change this to a functional component and take away state?
-      this.state.playerCount += 1
+      playerCount: `${this.state.playerCount + 1}`
     })
   }
 
@@ -58,28 +66,34 @@ class PlayerSubmissionForm extends Component {
             <input
               placeholder="adjective"
               name="adj1"
-              onChange={this.onLastNameChange}
+              onChange={this.onInputChange}
+              value={this.state.adj1}
               type="text" />
             <input
               placeholder="noun"
               name="noun1"
+              onChange={this.onInputChange}
               type="text" />
             <input
               placeholder="adverb"
               name="adv"
+              onChange={this.onInputChange}
               type="text" />
             <input
               placeholder="verb"
               name="verb"
+              onChange={this.onInputChange}
               type="text" />
             the
             <input
               placeholder="adjective"
               name="adj2"
+              onChange={this.onInputChange}
               type="text" />
             <input
               placeholder="noun"
               name="noun2"
+              onChange={this.onInputChange}
               type="text" />
             .
 

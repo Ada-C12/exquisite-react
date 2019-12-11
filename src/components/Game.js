@@ -10,11 +10,14 @@ class Game extends Component {
     super(props);
     this.state = {
       playerCount: 1,
+      latestSentence: ''
     }
   }
 
   makeOneSentence = (words) => {
-    words.join(" ");
+    const wordsArray = words.keys
+    const sentence = wordsArray.join()
+
   }
 
 
@@ -40,7 +43,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission sentence={/>
 
         <PlayerSubmissionForm player={this.state.playerCount} makeOneSentenceCallback={this.makeOneSentence}/>
 
