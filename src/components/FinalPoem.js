@@ -6,7 +6,6 @@ class FinalPoem extends Component {
     super(props);
 
     this.state = {
-      revealPoem: false,
       finalPoem: '',
     };
   }
@@ -14,13 +13,14 @@ class FinalPoem extends Component {
   onRevealClick = (event) => {
     event.preventDefault();
 
+    this.props.finalPoemCallback();
+
     const formattedPoem = this.props.allLines.map((line, i) => {
       console.log(line);
       return <p key={i}>{line}</p>
     });
 
     this.setState({
-      revealPoem: true,
       finalPoem: formattedPoem,
     });
   }
@@ -28,10 +28,14 @@ class FinalPoem extends Component {
   render () {
     return (
       <div className="FinalPoem">
+        { this.props.revealPoem ? 
+
         <section className="FinalPoem__poem">
           <h3>Final Poem</h3>
           { this.state.finalPoem }
         </section>
+
+        :
 
         <div className="FinalPoem__reveal-btn-container">
           <input 
@@ -41,6 +45,7 @@ class FinalPoem extends Component {
             onClick={ this.onRevealClick }
           />
         </div>
+        }
       </div>
     );
   }
