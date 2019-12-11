@@ -65,7 +65,7 @@ class Game extends Component {
 
         {this.state.recentSubmission ? <RecentSubmission recentSub={this.state.recentSubmission}/> : ""}
 
-        {this.state.gameComplete ? "" : <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)}/> }
+        {this.state.gameComplete ? "" : <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)} format={FIELDS} /> }
 
         <FinalPoem lines={this.state.submissionList} endGameCallback={this.onEndGame} gameEnded={this.state.gameComplete}/>
 
@@ -79,27 +79,33 @@ const FIELDS = [
   {
     key: 'adj1',
     placeholder: 'adjective',
+    entry: '',
   },
   {
     key: 'noun1',
     placeholder: 'noun',
+    entry: '',
   },
   {
     key: 'adv',
     placeholder: 'adverb',
+    entry: '',
   },
   {
     key: 'verb',
     placeholder: 'verb',
+    entry: '',
   },
   "the",
   {
     key: 'adj2',
     placeholder: 'adjective',
+    entry: '',
   },
   {
     key: 'noun2',
     placeholder: 'noun',
+    entry: '',
   },
   ".",
 ];
