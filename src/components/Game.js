@@ -5,9 +5,22 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: FIELDS,
+    }
+  }
+
+  addSubmission = (newSubmission) => {
+    console.log('Submit Line', newSubmission.adjective)
+    const submissions = this.state.submissions
+    submissions.push(newSubmission)
+
+    this.setState({
+      submissions
+    })
   }
 
   render() {
@@ -34,7 +47,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission}/>
 
         <FinalPoem />
 

@@ -2,28 +2,96 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
+  constructor() {
+    super();
 
-  constructor(props) {
-    super(props);
+    this.state = {
+      adjective: '',
+      noun1: '',
+      adverb1: '',
+      verb: '',
+      adverb2: '',
+      noun2: '',
+    };
+  }
+
+  onFieldChange = (event) => {
+    const { placeholder, value } = event.target;
+    const updatedState = {};
+    updatedState[placeholder] = value;
+
+    this.setState(updatedState);
+  }
+
+  onFormSubmit = (event) => {
+    event.preventDefautl();
+
+    const newSubmission = {
+      adjective: this.state.adjective,
+      noun1: this.state.noun1,
+      adverb1: this.state.adverb1,
+      verb: this.state.verb,
+      adverb2: this.state.adverb2,
+      noun2: this.state.noun2,
+    }
+
+    this.setState({
+      adjective: '',
+      noun1: '',
+      adverb1: '',
+      verb: '',
+      adverb2: '',
+      noun2: '',
+    });
+
+    this.props.addSubmissionCallback(newSubmission)
+    // this.resetForm();
   }
 
   render() {
-
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
-
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
+            The
             <input
-              placeholder="hm..."
-              type="text" />
+            placeholder="adjective"
+            value={this.state.adjective}
+            onChange={this.onFieldChange}
+            type="text"/>
 
+            <input
+            placeholder="noun1"
+            value={this.state.noun1}
+            onChange={this.onFieldChange}
+            type="text"/>
+        
+            <input
+            placeholder="adverb1"
+            value={this.state.adverb1}
+            onChange={this.onFieldChange}
+            type="text"/>
+
+            <input
+            placeholder="verb"
+            value={this.state.verb}
+            onChange={this.onFieldChange}
+            type="text"/>
+            
+            the
+            <input
+            placeholder="adverb2"
+            value={this.state.adverb2}
+            onChange={this.onFieldChange}
+            type="text"/>
+        
+            <input
+            placeholder="noun2"
+            value={this.state.noun2}
+            onChange={this.onFieldChange}
+            type="text"/>.
           </div>
 
           <div className="PlayerSubmissionForm__submit">
