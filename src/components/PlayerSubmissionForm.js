@@ -39,18 +39,14 @@ class PlayerSubmissionForm extends Component {
 
   //on submit, this takes the event and then takes all the items into state very momentarily
   onSubmitLine = (event) => {
-    console.log("blarg")
+
     event.preventDefault();
-    const line = {
-      adj1: this.state.adj1,
-      noun1: this.state.noun1, 
-      adverb: this.state.adverb, 
-      verb: this.state.verb, 
-      adj2: this.state.adj2, 
-      noun2: this.state.noun2,
-    }
+
+    // this concatenates the line together
+    let line = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adverb} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`
 
     //then, it uses the line to pass into the addLineCallback function, which will go back to Game
+
     this.props.addLineCallback(line);
 
     //this resets the form for use next time
@@ -68,7 +64,6 @@ class PlayerSubmissionForm extends Component {
     this.setState({player: inc})
 
   }
-
 
 
   render() {

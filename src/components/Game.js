@@ -13,20 +13,13 @@ class Game extends Component {
     }
   }
 
-  addLine = (lineObject) => {
-      // console.log(lineObject)
-      // const placeholder = ["one"]
-      // if (this.state.lines.length === 0 ) {
-      //   this.setState({lines: placeholder})
-      // }
-      // else {
+  addLine = (lineString) => {
       const addingLine = []
       addingLine.push(this.state.lines)
-      addingLine.push(lineObject)
+      addingLine.push(lineString)
       this.setState({lines: addingLine})
-      // }
+      console.log(lineString)
   }
-
 
 
   render() {
@@ -55,7 +48,7 @@ class Game extends Component {
         <RecentSubmission />
 
         <PlayerSubmissionForm 
-          addLineCallback = {(lineObject) => this.addLine(lineObject)}
+          addLineCallback = {(lineString) => this.addLine(lineString)}
           
         />
         {console.log(this.state.lines)}
