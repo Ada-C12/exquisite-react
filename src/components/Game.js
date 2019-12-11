@@ -8,6 +8,12 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    // up here in state
+    // we will add a property for Recent Submission
+    // (which will be filled with the result of the submitted PlayerSubmissionForm)
+    // and a property for Final Poem
+    // (which will contain all the Recent Submissions)
+    // ((which will be pushed in everytime they're updated))
   }
 
   render() {
