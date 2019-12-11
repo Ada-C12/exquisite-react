@@ -53,8 +53,12 @@ class Game extends Component {
             <PlayerSubmissionForm fields={FIELDS} onSubmitLine={this.handleSubmitLine} currentPlayer={this.state.poem.length + 1} />
           </>
         )}
-
-        <FinalPoem poem={this.state.poem} showPoem={this.state.showPoem} onDisplayPoem={this.handleDisplayPoem} />
+      
+        <FinalPoem 
+          poem={this.state.poem} 
+          showPoem={this.state.showPoem} 
+          onDisplayPoem={this.handleDisplayPoem} 
+        />
 
       </div>
     );
