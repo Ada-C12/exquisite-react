@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -79,7 +80,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.playerNum}</h3>
 
         <form 
           className="PlayerSubmissionForm__form" 
@@ -98,5 +99,11 @@ class PlayerSubmissionForm extends Component {
     );
   }
 }
+
+PlayerSubmissionForm.propTypes = {
+  onSumbitPoemCallback: PropTypes.func.isRequired,
+  fields: PropTypes.array.isRequired,
+  playerNum: PropTypes.number.isRequired,
+};
 
 export default PlayerSubmissionForm;

@@ -13,15 +13,19 @@ class Game extends Component {
       recentPoem: '',
       finalPoem: [],
       finalDisplay: false,
+      playerNum: 1,
     }
   }
 
   onSubmitPoem = (submission) => {
     let newFinalPoem = this.state.finalPoem;
     newFinalPoem.push(submission);
+    let playNum = this.state.playerNum
+    playNum += 1
     this.setState({
       recentPoem: submission,
       finalPoem: newFinalPoem,
+      playerNum: playNum,
     })
     // console.log(this.state.finalPoem);
   };
@@ -53,6 +57,7 @@ class Game extends Component {
         <PlayerSubmissionForm 
           onSumbitPoemCallback={this.onSubmitPoem}
           fields={FIELDS} 
+          playerNum={this.state.playerNum}
         />
 
         <FinalPoem />
