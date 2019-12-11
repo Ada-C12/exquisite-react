@@ -8,8 +8,16 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSubmission: '',
+    };
   }
 
+  onSubmission = (line) => {
+    this.setState({ recentSubmission: line });
+  }
+  
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -32,9 +40,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission line={this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm onSubmit={this.onSubmission}/>
 
         <FinalPoem />
 
@@ -43,7 +51,7 @@ class Game extends Component {
   }
 }
 
-const FIELDS = [
+export const FIELDS = [
   "The",
   {
     key: 'adj1',
