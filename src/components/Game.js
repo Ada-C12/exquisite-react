@@ -10,12 +10,14 @@ class Game extends Component {
     super(props);
 
     this.state = {
+      submissions: [],
       recentSubmission: '',
     };
   }
 
   onSubmission = (line) => {
     this.setState({ recentSubmission: line });
+    this.setState({ submissions: [...this.state.submissions, line] });
   }
   
   render() {
@@ -42,7 +44,10 @@ class Game extends Component {
 
         <RecentSubmission line={this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm onSubmit={this.onSubmission}/>
+        <PlayerSubmissionForm
+          playerNumber={this.state.submissions.length + 1}
+          onSubmit={this.onSubmission}
+        />
 
         <FinalPoem />
 
