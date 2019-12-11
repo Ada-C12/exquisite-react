@@ -30,7 +30,7 @@ const FinalPoem = (props) => {
   
   return (
     <div className="FinalPoem">
-     {props.gameEnded === true ? completePoem() : poemButton()}
+     {props.gameEnded ? completePoem() : poemButton()}
     </div>
   );
 }
