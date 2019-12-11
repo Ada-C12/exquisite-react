@@ -8,6 +8,18 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissions: [],
+    }
+  }
+
+  addSubmission = (submission) => {
+    const submissions = this.state.submissions;
+    submissions.push(submission);
+
+    this.setState({
+      submissions,
+    });
   }
 
   render() {
@@ -29,12 +41,12 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} />
 
         <FinalPoem />
 

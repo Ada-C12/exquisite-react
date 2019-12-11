@@ -29,13 +29,31 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   }
 
+  resetState = () => {
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    });
+  }
+
+  onAddSubmission = (event) => {
+    // stop the default page reload
+    event.preventDefault();
+    this.props.addSubmissionCallBack(this.state);
+    this.resetState();
+  }
+
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form onSubmit={this.onAddSubmission} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
             The
