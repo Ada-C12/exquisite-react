@@ -101,6 +101,7 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onFieldChange}
               className={this.state.noun2 !== '' ? '' : "PlayerSubmissionForm__input--invalid"}
             />
+            .
           </div>
 
           <div className="PlayerSubmissionForm__submit">
