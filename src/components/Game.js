@@ -59,7 +59,7 @@ class Game extends Component {
 
         { revealPoem ? '' : <PlayerSubmissionForm playerId={ allLines.length + 1 } addLine={ this.addLine } /> }
         
-        <FinalPoem allLines={ allLines } revealPoem={ revealPoem } finalPoemCallback={ this.finishPoem } />
+        <FinalPoem allLines={ allLines } revealPoem={ revealPoem } finishPoem={ this.finishPoem } />
       </div>
     );
   }

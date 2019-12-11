@@ -1,60 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
-class FinalPoem extends Component {
-  constructor(props) {
-    super(props);
+// class FinalPoem extends Component {
+const FinalPoem = ({ allLines, revealPoem, finishPoem }) => {
+  const formattedPoem = allLines.map((line, i) => {
+    return <p key={i}>{line}</p>
+  });
 
-    this.state = {
-      finalPoem: '',
-    };
-  }
+  return (
+    <div className="FinalPoem">
+      { revealPoem ? 
 
-  onRevealClick = (event) => {
-    event.preventDefault();
+      <section className="FinalPoem__poem">
+        <h3>Final Poem</h3>
+        { formattedPoem }
+      </section>
 
-    this.props.finalPoemCallback();
+      :
 
-    const formattedPoem = this.props.allLines.map((line, i) => {
-      return <p key={i}>{line}</p>
-    });
-
-    this.setState({
-      finalPoem: formattedPoem,
-    });
-  }
-
-  render () {
-    return (
-      <div className="FinalPoem">
-        { this.props.revealPoem ? 
-
-        <section className="FinalPoem__poem">
-          <h3>Final Poem</h3>
-          { this.state.finalPoem }
-        </section>
-
-        :
-
-        <div className="FinalPoem__reveal-btn-container">
-          <input 
-            type="button" 
-            value="We are finished: Reveal the Poem" 
-            className="FinalPoem__reveal-btn" 
-            onClick={ this.onRevealClick }
-          />
-        </div>
-        }
+      <div className="FinalPoem__reveal-btn-container">
+        <input 
+          type="button" 
+          value="We are finished: Reveal the Poem" 
+          className="FinalPoem__reveal-btn" 
+          onClick={ finishPoem }
+        />
       </div>
-    );
-  }
+      }
+    </div>
+  );
+
 }
 
 FinalPoem.propTypes = {
   allLines: PropTypes.array.isRequired,
   revealPoem: PropTypes.bool.isRequired,
-  finalPoemCallback: PropTypes.func.isRequired,
+  finishPoem: PropTypes.func.isRequired,
 };
 
 export default FinalPoem;
