@@ -12,15 +12,20 @@ class Game extends Component {
       recentSubmission: '',
       fullPoem: [],
       finalDisplay: false,
+      playerNumber: 1,
     };
   }
 
   onSubmitForm = (submission) => {
-    let updatedPoem = this.state.fullPoem
-    updatedPoem.push(submission)
+    let updatedPoem = this.state.fullPoem;
+    let updatedPlayer = this.state.playerNumber;
+    updatedPlayer += 1;
+    updatedPoem.push(submission);
+
     this.setState({
       recentSubmission: submission,
       fullPoem: updatedPoem,
+      playerNumber: updatedPlayer,
     })
   }
 
@@ -48,7 +53,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm onSubmitFormCallback={this.onSubmitForm} fields={FIELDS}/>
+        <PlayerSubmissionForm onSubmitFormCallback={this.onSubmitForm} fields={FIELDS} playerNumber={this.state.playerNumber}/>
 
         <FinalPoem />
 

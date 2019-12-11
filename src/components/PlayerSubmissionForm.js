@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
 
@@ -75,7 +76,7 @@ class PlayerSubmissionForm extends Component {
     // console.log(this.state.adj1);
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.playerNumber}</h3>
 
         <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 
@@ -91,5 +92,11 @@ class PlayerSubmissionForm extends Component {
     );
   }
 }
+
+PlayerSubmissionForm.propTypes = {
+  onSubmitFormCallback: PropTypes.func.isRequired,
+  fields: PropTypes.array.isRequired,
+  playerNumber: PropTypes.number.isRequired,
+};
 
 export default PlayerSubmissionForm;
