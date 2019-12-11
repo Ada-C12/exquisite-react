@@ -14,6 +14,7 @@ class PlayerSubmissionForm extends Component {
     });
 
     this.state = userInput;
+    this.state.playerNum = 1;
   }
 
   onFieldChange = event => {
