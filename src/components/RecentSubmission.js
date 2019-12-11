@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './RecentSubmission.css';
 
 const RecentSubmission = (props) => {
@@ -19,6 +20,11 @@ const RecentSubmission = (props) => {
   return (
     <div>{ recentPoemContent }</div>
   );
-}
+};
+
+RecentSubmission.propTypes = {
+  recentPoem: PropTypes.array.isRequired,
+  poemSubmitted: PropTypes.bool.isRequired,
+};
 
 export default RecentSubmission;

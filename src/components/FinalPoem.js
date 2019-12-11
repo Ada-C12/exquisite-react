@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
@@ -28,7 +29,14 @@ const FinalPoem = (props) => {
       { conditionalButton }
     </div>
   );
-}
+};
+
+FinalPoem.propTypes = {
+  poems: PropTypes.array.isRequired,
+  poemSubmitted: PropTypes.bool.isRequired,
+  savePoemCallback: PropTypes.func.isRequired,
+};
+
 
 export default FinalPoem;
 
