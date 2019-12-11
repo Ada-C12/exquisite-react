@@ -17,7 +17,10 @@ const FinalPoem = ({ poemLines, revealPoem, onRevealPoem }) => {
         { revealPoem 
           ? <section className="FinalPoem__poem">
               <h3>Final Poem</h3> 
-              { displayPoem(poemLines) } 
+              { poemLines.length > 0 
+                ? displayPoem(poemLines) 
+                : <p className="FinalPoem__poem--empty">You didn't enter any lines of poetry.</p> 
+              } 
             </section> 
           : <div className="FinalPoem__reveal-btn-container">
               <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={ onRevealPoem } />
