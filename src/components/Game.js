@@ -15,7 +15,6 @@ class Game extends Component {
 
   addLine = newLine => {
     const lines = this.state.lines;
-
     lines.push(newLine);
 
     this.setState({
@@ -32,6 +31,16 @@ class Game extends Component {
       }
     }).join(" ");
 
+    let recentSub = "";
+
+    if (this.state.lines.length > 0) {
+      recentSub = (
+        <RecentSubmission
+          recentSub={this.state.lines[this.state.lines.length - 1]}
+        />
+      );
+    }
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -47,8 +56,7 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">{exampleFormat}</p>
-
-        <RecentSubmission />
+        {recentSub}
 
         <PlayerSubmissionForm addPoemLineCallback={this.addLine} />
 
