@@ -35,6 +35,8 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const allLines = this.state.allLines;
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -47,11 +49,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { allLines.length > 0 ? <RecentSubmission lastLine={allLines[allLines.length - 1]} /> : '' }
 
-        <PlayerSubmissionForm id={ this.state.allLines.length + 1 } addLine={ this.addLine } />
+        <PlayerSubmissionForm id={ allLines.length + 1 } addLine={ this.addLine } />
 
-        <FinalPoem allLines={ this.state.allLines } />
+        <FinalPoem allLines={ allLines } />
       </div>
     );
   }
