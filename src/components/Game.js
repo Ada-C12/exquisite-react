@@ -9,7 +9,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerCount: 1,
+      // playerCount: 1,
       latestSentence: ''
     }
   }

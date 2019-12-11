@@ -12,7 +12,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-      playerCount: props.player,
+      playerCount: 1,
     }
   }
 
@@ -76,7 +76,7 @@ class PlayerSubmissionForm extends Component {
               placeholder="noun"
               name="noun1"
               onChange={this.onInputChange}
-              value={this.state.noun}
+              value={this.state.noun1}
               type="text" />
             <input
               placeholder="adverb"
