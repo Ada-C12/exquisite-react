@@ -17,6 +17,22 @@ class PlayerSubmissionForm extends Component {
       objAdjective: '',
       objNoun: '',
     }
+
+    this.validators = {
+      subjAdjective: /.+/,
+      subjNoun: /.+/,
+      adverb: /.+/,
+      verb: /.+/,
+      objAdjective: /.+/,
+      objNoun: /.+/,
+    }
+  }
+
+  validate = (fieldName) => {
+    const value = this.state[fieldName];
+    const validation = this.validators[fieldName];
+
+    return (validation.test(value));
   }
 
   onFieldChange = (event) => {
@@ -42,6 +58,14 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
+    // returns if there's any invalid inputs
+    const keys = Object.keys(this.validators);
+    for (const key of keys) {
+      if (!this.validators[key].test(this.state[key])) {
+        return;
+      }
+    }
+
     // get the values from state
     const submissionComponentsArray = Object.values({ ...this.state });
     // pass up array to Game
@@ -51,6 +75,12 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
+    const subjAdjectiveValid = this.validate('subjAdjective');
+    const subjNounValid = this.validate('subjNoun');
+    const adverbValid = this.validate('adverb');
+    const verbValid = this.validate('verb');
+    const objAdjectiveValid = this.validate('objAdjective');
+    const objNounValid = this.validate('objNoun');
 
     return (
       <div className="PlayerSubmissionForm" onSubmit={this.onFormSubmit}>
@@ -65,24 +95,28 @@ class PlayerSubmissionForm extends Component {
               name={'subjAdjective'}
               value={this.state.subjAdjective}
               onChange={this.onFieldChange}
+              className={subjAdjectiveValid ? '' : 'PlayerSubmissionForm__input--invalid'}
               placeholder="adjective"
               type="text" />
             <input
               name={'subjNoun'}
               value={this.state.subjNoun}
               onChange={this.onFieldChange}
+              className={subjNounValid ? '' : 'PlayerSubmissionForm__input--invalid'}
               placeholder="noun"
               type="text" />
             <input
               name={'adverb'}
               value={this.state.adverb}
               onChange={this.onFieldChange}
+              className={adverbValid ? '' : 'PlayerSubmissionForm__input--invalid'}
               placeholder="adverb"
               type="text" />
             <input
               name={'verb'}
               value={this.state.verb}
               onChange={this.onFieldChange}
+              className={verbValid ? '' : 'PlayerSubmissionForm__input--invalid'}
               placeholder="verb"
               type="text" />
             the
@@ -90,12 +124,14 @@ class PlayerSubmissionForm extends Component {
               name={'objAdjective'}
               value={this.state.objAdjective}
               onChange={this.onFieldChange}
+              className={objAdjectiveValid ? '' : 'PlayerSubmissionForm__input--invalid'}
               placeholder="adjective"
               type="text" />
             <input
               name={'objNoun'}
               value={this.state.objNoun}
               onChange={this.onFieldChange}
+              className={objNounValid ? '' : 'PlayerSubmissionForm__input--invalid'}
               placeholder="noun"
               type="text" />
             .
