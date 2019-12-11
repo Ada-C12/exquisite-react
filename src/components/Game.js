@@ -73,7 +73,7 @@ class Game extends Component {
                 ? <RecentSubmission submission={lastsubmission} /> 
                 : ''
               } 
-              <PlayerSubmissionForm playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
+              <PlayerSubmissionForm formFields={FIELDS} playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
             </div>
         }
 
@@ -101,6 +101,10 @@ const FIELDS = [
   {
     key: 'verb',
     placeholder: 'verb',
+  },
+  {
+    key: 'preposition',
+    placeholder: 'preposition',
   },
   "the",
   {
