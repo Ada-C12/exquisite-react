@@ -28,7 +28,7 @@ class Game extends Component {
 
   onFormSubmit = (submissionComponents) => {
     const newSubmission = this.mapToString(submissionComponents);
-    
+
     let { submissions, currentPlayer } = this.state;
     
     // need to add submissionComponents to submissions array
@@ -58,7 +58,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm playerNumber={this.state.currentPlayer} onFormSubmit={this.onFormSubmit} />
 
-        <FinalPoem />
+        <FinalPoem poemLines={this.state.submissions} />
 
       </div>
     );
