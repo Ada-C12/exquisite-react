@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -29,8 +30,6 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
     const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
     
-    // if (name === '' || species === '' || image === '') return;
-
     const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`
     this.props.addLine(line);
 
@@ -47,7 +46,7 @@ class PlayerSubmissionForm extends Component {
   render() {
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.props.id }</h3>
+        <h3>Player Submission Form for Player #{ this.props.playerId }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmit}>
 
@@ -112,5 +111,10 @@ class PlayerSubmissionForm extends Component {
     );
   }
 }
+
+PlayerSubmissionForm.propTypes = {
+  playerId: PropTypes.number.isRequired,
+  addLine: PropTypes.func.isRequired,
+};
 
 export default PlayerSubmissionForm;

@@ -6,8 +6,8 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       allLines: [],
@@ -57,7 +57,7 @@ class Game extends Component {
 
         { (allLines.length > 0 && !revealPoem) ? <RecentSubmission lastLine={allLines[allLines.length - 1]} /> : '' }
 
-        { revealPoem ? '' : <PlayerSubmissionForm id={ allLines.length + 1 } addLine={ this.addLine } /> }
+        { revealPoem ? '' : <PlayerSubmissionForm playerId={ allLines.length + 1 } addLine={ this.addLine } /> }
         
         <FinalPoem allLines={ allLines } revealPoem={ revealPoem } finalPoemCallback={ this.finishPoem } />
       </div>

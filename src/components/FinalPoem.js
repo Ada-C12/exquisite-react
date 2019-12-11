@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
 class FinalPoem extends Component {
@@ -16,7 +17,6 @@ class FinalPoem extends Component {
     this.props.finalPoemCallback();
 
     const formattedPoem = this.props.allLines.map((line, i) => {
-      console.log(line);
       return <p key={i}>{line}</p>
     });
 
@@ -50,5 +50,11 @@ class FinalPoem extends Component {
     );
   }
 }
+
+FinalPoem.propTypes = {
+  allLines: PropTypes.array.isRequired,
+  revealPoem: PropTypes.bool.isRequired,
+  finalPoemCallback: PropTypes.func.isRequired,
+};
 
 export default FinalPoem;
