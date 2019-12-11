@@ -29,6 +29,8 @@ class PlayerSubmissionForm extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const { adj1, noun1, adverb, verb, adj2, noun2 } = this.state;
+
+    if (adj1 === '' || noun1 === '' || adverb === '' || verb === '' || adj2 === '' || noun2 === '' ) return;
     
     const line = `The ${adj1} ${noun1} ${adverb} ${verb} the ${adj2} ${noun2}.`
     this.props.addLine(line);
