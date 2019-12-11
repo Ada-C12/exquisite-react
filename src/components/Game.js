@@ -8,7 +8,31 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissionCount: 0,
+      recentSubmission: {},
+      submissionList: []
+    };
   }
+
+  onFormSubmission = (newSubmission) => {
+    console.log('received new submission in Game')
+    //add submission + filler words to submissionList
+    const updatedSubmissionList = this.state.submissionList;
+    updatedSubmissionList.push(newSubmission)
+
+    //adjust recentSubmission
+    const updatedRecentSubmission = updatedSubmissionList[updatedSubmissionList.length - 1]
+
+    const updatedSubmissionCount = this.state.submissionCount + 1
+    this.setState({
+      submissionCount: updatedSubmissionCount,
+      recentSubmission: updatedRecentSubmission,
+      submissionList: updatedSubmissionList
+    })
+  }
+
 
   render() {
 
@@ -34,7 +58,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)}/>
 
         <FinalPoem />
 
