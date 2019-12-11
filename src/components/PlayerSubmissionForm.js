@@ -31,7 +31,7 @@ class PlayerSubmissionForm extends Component {
 
   addLineCallback = (event) => {
     event.preventDefault();
-    const formText = "The" + this.state.input1 + this.state.input2 + this.state.input3 + this.state.input4 + "the" + this.state.input5 + this.state.input6 + "."
+    const formText = "The" + " " + this.state.input1 + " " + this.state.input2 + " " + this.state.input3 + " " + this.state.input4 + " " + "the" + " " + this.state.input5 + " " + this.state.input6 + "."
     this.props.addLineCallback(formText);
     this.setState({ 
       input1: "",
