@@ -11,11 +11,12 @@ class FinalPoem extends Component {
     };
   }
 
-  onRevealClick = () => {
-    console.log(this.props.allLines);
-    const formattedPoem = this.props.allLines.map((line) => {
+  onRevealClick = (event) => {
+    event.preventDefault();
+
+    const formattedPoem = this.props.allLines.map((line, i) => {
       console.log(line);
-      return <p>{line}</p>
+      return <p key={i}>{line}</p>
     });
 
     this.setState({
