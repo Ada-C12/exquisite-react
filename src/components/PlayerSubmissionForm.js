@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       adjective: '',
@@ -23,7 +23,7 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   }
 
-  onFormSubmit = (event) => {
+  sendSubmission = (event) => {
     event.preventDefautl();
 
     const newSubmission = {
@@ -44,16 +44,16 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     });
 
-    this.props.addSubmissionCallback(newSubmission)
+    this.props.addSubmissionCallback(newSubmission.join(" "));
     // this.resetForm();
   }
 
   render() {
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.index}</h3>
 
-        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
+        <form className="PlayerSubmissionForm__form" onSubmit={this.sendSubmission}>
           <div className="PlayerSubmissionForm__poem-inputs">
             The
             <input

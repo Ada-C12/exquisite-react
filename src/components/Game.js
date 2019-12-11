@@ -9,7 +9,8 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      submissions: FIELDS,
+      submissions: [],
+      isSubmitted: false,
     }
   }
 
@@ -23,8 +24,17 @@ class Game extends Component {
     })
   }
 
-  render() {
+  // revealPoem = (event) => {
+  //   event.preventDefault();
 
+  //   this.setState({
+  //     isSubmitted: true
+  //   });
+  // }
+
+  render() {
+    console.log(this.state.submissions)
+    
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -33,24 +43,25 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const mostRecentSubmission = this.state.submissions.last
+    
     return (
       <div className="Game">
         <h2>Game</h2>
-
         <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
-
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
-
+        <RecentSubmission submissions={mostRecentSubmission}/>
         <PlayerSubmissionForm addSubmissionCallback={this.addSubmission}/>
 
-        <FinalPoem />
-
+        <FinalPoem 
+          isSubmitted={this.state.isSubmitted}
+          revealPoem={this.revealPoem}
+          submissions={this.state.submissions}/>
       </div>
     );
   }
