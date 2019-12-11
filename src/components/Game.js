@@ -69,7 +69,10 @@ class Game extends Component {
         { poemCompleted 
           ? '' 
           : <div>
-              { lastsubmission ? <RecentSubmission submission={lastsubmission} /> : ''} 
+              { lastsubmission 
+                ? <RecentSubmission submission={lastsubmission} /> 
+                : ''
+              } 
               <PlayerSubmissionForm playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
             </div>
         }
