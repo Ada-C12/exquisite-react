@@ -47,8 +47,8 @@ class PlayerSubmissionForm extends Component {
   isInputValid = (input) => {
     console.log(input)
     if (input === ''){
-      return "PlayerSubmissionFormt__input--invalid"
-    }
+      return "PlayerSubmissionForm__input--invalid"
+    } 
   }
 
   render() {
