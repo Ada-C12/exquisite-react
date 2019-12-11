@@ -55,7 +55,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentSub={this.state.recentSubmission} />
+        {this.state.recentSubmission ? <RecentSubmission recentSub={this.state.recentSubmission}/> : ""}
 
         <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)}/>
 
