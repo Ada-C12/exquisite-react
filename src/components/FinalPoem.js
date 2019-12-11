@@ -13,10 +13,12 @@ const FinalPoem = (props) => {
 
   return (
     <div className="FinalPoem">
+      { props.submitted ?
       <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
-        { props.submitted ? displayPoem() : '' }
+         <h3>Final Poem</h3>
+          {displayPoem() }
       </section>
+      : '' }
 
       <div className="FinalPoem__reveal-btn-container">
         { props.submitted ? '' : <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={() => props.onFinalSubmit()} /> }
