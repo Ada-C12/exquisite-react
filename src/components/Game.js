@@ -6,9 +6,38 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      submissions: [],
+      lastSubmission: {}
+    }
+  };
+
+  addSubmission = (submission) => {
+
+    const submissions = this.state.submissions;
+
+    submissions.push(submission);
+    this.setState({
+      submissions
+    })
+  };
+
+  lastSubmission = (submission) => {
+
+    let { lastSubmission } = this.state.lastSubmission;
+
+    lastSubmission = submission
+    this.setState({
+      lastSubmission,
+    });
+
+    console.log(this.state.lastSubmission)
+
+  }
+
 
   render() {
 
@@ -32,9 +61,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission submission={this.state.lastSubmission}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} lastSubmissionCallback={this.lastSubmission} />
 
         <FinalPoem />
 
