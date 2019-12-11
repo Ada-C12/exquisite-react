@@ -18,11 +18,9 @@ class Game extends Component {
   addSubmission = (formData) => {
     const newLine = "The" + formData.adjective1 + formData.noun1 + formData.adverb1
 
-    const currentPeom = this.state.poem;
-
-
     this.setState({
-      poem: currentPeom + newLine
+      player_num: this.state.player_num + 1,
+      poem: this.state.poem + newLine
     })
 
     console.log(this.state.poem)
