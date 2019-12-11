@@ -52,7 +52,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={this.state.submissions[this.state.submissions.length - 1]} finalPoem={this.state.finalPoem}/>
 
         <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} player={this.state.player} finalPoem={this.state.finalPoem} />
 
