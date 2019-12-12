@@ -17,7 +17,6 @@ const FinalPoem = (props) => {
     if (poemComplete){
       return (
       <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
         {finalPoem}
       </section>
       )
@@ -32,6 +31,7 @@ const FinalPoem = (props) => {
 
   return (
     <div className="FinalPoem">
+      <h3>Final Poem</h3>
       {display()}
     </div>
   );
