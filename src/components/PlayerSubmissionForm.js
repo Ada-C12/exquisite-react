@@ -17,30 +17,6 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
-  adjectiveValid = () => {
-    return this.state.adjective.match(/[A-z]/)
-  }
-
-  nounValid = () => {
-    return this.state.noun.match(/[A-z]/)
-  }
-  
-  adverbValid = () => {
-    return this.state.adverb.match(/[A-z]/)
-  }
-
-  verbValid = () => {
-    return this.state.verb.match(/[A-z]/)
-  }
-
-  adjective2Valid = () => {
-    return this.state.adjective2.match(/[A-z]/)
-  }
-
-  noun2Valid = () => {
-    return this.state.noun2.match(/[A-z]/)
-  }
-
   onFormChange = (event) => {
     const updatedState = {};
 
@@ -50,6 +26,7 @@ class PlayerSubmissionForm extends Component {
     updatedState[field] = value;
 
     this.setState(updatedState)
+    
   }
 
   onSubmitSentence = (event) => {
@@ -86,7 +63,7 @@ class PlayerSubmissionForm extends Component {
               name="adjective"
               placeholder="adjective"
               type="text" 
-              className={this.adjectiveValid() ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
+              className={this.state.adjective ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
               onChange={this.onFormChange} 
               value={this.state.adjective} 
             />
@@ -94,7 +71,7 @@ class PlayerSubmissionForm extends Component {
               name="noun"
               placeholder="noun"
               type="text" 
-              className={this.nounValid() ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
+              className={this.state.noun ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
               onChange={this.onFormChange} 
               value={this.state.noun} 
             />
@@ -102,7 +79,7 @@ class PlayerSubmissionForm extends Component {
               name="adverb"
               placeholder="adverb"
               type="text" 
-              className={this.adverbValid() ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
+              className={this.state.adverb ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
               onChange={this.onFormChange} 
               value={this.state.adverb} 
             />
@@ -110,7 +87,7 @@ class PlayerSubmissionForm extends Component {
               name="verb"
               placeholder="verb"
               type="text" 
-              className={this.verbValid() ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
+              className={this.state.verb ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
               onChange={this.onFormChange} 
               value={this.state.verb} 
             />
@@ -119,7 +96,7 @@ class PlayerSubmissionForm extends Component {
               name="adjective2"
               placeholder="adjective"
               type="text" 
-              className={this.adjective2Valid() ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
+              className={this.state.adjective2 ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
               onChange={this.onFormChange} 
               value={this.state.adjective2} 
             />
@@ -127,7 +104,7 @@ class PlayerSubmissionForm extends Component {
               name="noun2"
               placeholder="noun"
               type="text" 
-              className={this.noun2Valid() ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
+              className={this.state.noun2 ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} 
               onChange={this.onFormChange} 
               value={this.state.noun2} 
             />

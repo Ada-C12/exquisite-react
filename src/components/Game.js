@@ -12,6 +12,7 @@ class Game extends Component {
     this.state = {
       submissions: [],
       player: 1,
+      revealPoem: false,
     }
   }
 
@@ -45,6 +46,14 @@ class Game extends Component {
       }
     }
 
+    const displayForm = () => {
+      return <PlayerSubmissionForm addSentenceCallback={this.addSentence} player={this.state.player}/>
+    }
+
+    const onFinalPoemSubmit = () => { 
+      this.setState({revealPoem: true})
+
+    }
 
     return (
       <div className="Game">
@@ -58,11 +67,10 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        {displayRecent()}
-
-        <PlayerSubmissionForm addSentenceCallback={this.addSentence} player={this.state.player}/>
-
-        <FinalPoem submissions={this.state.submissions}/>
+        {this.state.revealPoem ? "" : displayRecent() }
+        {this.state.revealPoem ? "" : displayForm()}
+   
+        <FinalPoem submissions={this.state.submissions} onFinalPoemSubmitCallback={onFinalPoemSubmit} revealPoem={this.state.revealPoem}/>
 
       </div>
     );
