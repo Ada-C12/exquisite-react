@@ -2,25 +2,34 @@ import React from 'react';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
-const formattedPoem = props.poem.map(line => {
-  return <p>{line}</p>;
-})
+  let formattedPoem = props.poem.map(line => {
+    return <p>{line}</p>;
+  })
+  // if (props.showPoem === false) {
+  //   formattedPoem = []
+  // }
+
+  const onClickTogglePoem = () => {
+    props.togglePoemCallback();
+  }
 
   return (
-    <div className="FinalPoem">
+    (props.showPoem === true)
+    ?
+    (<div className="FinalPoem">
       <section className="FinalPoem__poem">
-      {
-        this.state.showPoem === true &&
+      {/* {
+        props.showPoem === true && ( */}
         <h3>Final Poem</h3>
-           {formattedPoem}
-      }
-      
+          {formattedPoem}
+        {/* ) */}
+      {/* } */}
       </section>
-
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-      </div>
-    </div>
+    </div>)
+    :
+    (<div className="FinalPoem__reveal-btn-container">
+      <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={onClickTogglePoem}/>
+    </div>)
   );
 }
 

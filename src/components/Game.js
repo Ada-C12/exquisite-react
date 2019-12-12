@@ -31,6 +31,15 @@ class Game extends Component {
     })
   }
 
+  togglePoem = () => {
+    let curStatus = this.state.showPoem
+    curStatus = !curStatus
+    this.setState({
+      showPoem: curStatus,
+    })
+    console.log(`showPoem changed to ${curStatus}`)
+  }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -63,9 +72,10 @@ class Game extends Component {
         <PlayerSubmissionForm makeOneSentenceCallback={this.makeOneSentence}/>
         }
 
-
-        <FinalPoem poem={this.state.wholePoem}/>
-
+        {
+          this.state.showPoem === true &&
+        <FinalPoem poem={this.state.wholePoem} showPoem={this.state.showPoem} togglePoemCallback={this.togglePoem}/>
+        }
       </div>
     );
   }
