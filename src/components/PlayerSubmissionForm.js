@@ -71,29 +71,32 @@ class PlayerSubmissionForm extends Component {
       }
     });
 
-    return (
-      <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.state.count }</h3>
+    if(this.props.allPoemLines) {
+      return '';
+    } else {
+      return (
+        <div className="PlayerSubmissionForm">
+          <h3>Player Submission Form for Player #{ this.state.count }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+          <form className="PlayerSubmissionForm__form" >
 
-          <div className="PlayerSubmissionForm__poem-inputs">
-            
-          {lineFormat}
+            <div className="PlayerSubmissionForm__poem-inputs">
+              
+            {lineFormat}
 
-          </div>
+            </div>
 
-          <div className="PlayerSubmissionForm__submit">
-            <input
-            type="submit"
-            value="Submit Line"
-            className="PlayerSubmissionForm__submit-btn"
-            onClick={this.onSubmitHandler} />
-          </div>
-        </form>
-      </div>
+            <div className="PlayerSubmissionForm__submit">
+              <input
+              type="submit"
+              value="Submit Line"
+              className="PlayerSubmissionForm__submit-btn"
+              onClick={this.onSubmitHandler} />
+            </div>
+          </form>
+        </div>
     );
-  }
+  }}
 }
 
 export default PlayerSubmissionForm;

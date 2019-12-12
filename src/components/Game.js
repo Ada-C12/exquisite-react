@@ -11,6 +11,7 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
+      allPoemLines: false,
     };
   }
 
@@ -20,6 +21,10 @@ class Game extends Component {
     this.setState(submissions);
 
   } 
+
+  revealPoem = () => {
+    this.setState({allPoemLines: true})
+  }
 
 
   render() {
@@ -53,11 +58,15 @@ class Game extends Component {
 
         <PlayerSubmissionForm 
           fieldFormat={FIELDS}
-          updatedSubmissionCallback={this.addSubmission} 
+          updatedSubmissionCallback={this.addSubmission}
+          allPoemLines={this.state.allPoemLines}
+
         />
 
         <FinalPoem
           allLines={this.state.submissions}
+          revealPoemCallback={this.revealPoem}
+          allPoemLines={this.state.allPoemLines}
         />
 
       </div>

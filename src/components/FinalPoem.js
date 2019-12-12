@@ -9,21 +9,30 @@ const FinalPoem = (props) => {
     )
   })
 
-  return (
-    <div className="FinalPoem">
+  if(props.allPoemLines) {
+    return (
       <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+      <h3>Final Poem</h3>
 
-        {lines}
+      {lines}
 
+    </section>
 
-      </section>
+    )
+  } else {
+      return (
+        <div className="FinalPoem">
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-      </div>
-    </div>
-  );
-}
+          <div className="FinalPoem__reveal-btn-container">
+            <input
+            type="button"
+            value="We are finished: Reveal the Poem"
+            className="FinalPoem__reveal-btn"
+            onClick={props.revealPoemCallback} />
+          </div>
+        </div>
+      );
+    }}
+
 
 export default FinalPoem;
