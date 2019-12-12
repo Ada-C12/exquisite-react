@@ -10,23 +10,41 @@ class Game extends Component {
     super(props);
     this.state = {
       recentSubmission: '',
-      fullPoem: [],
-      finalDisplay: false,
+      finalPoem: [],
+      revealFinalPoem: false,
       playerNumber: 1,
     };
   }
 
   onSubmitForm = (submission) => {
-    let updatedPoem = this.state.fullPoem;
+    let updatedPoem = this.state.finalPoem;
+    updatedPoem.push(submission);
     let updatedPlayer = this.state.playerNumber;
     updatedPlayer += 1;
-    updatedPoem.push(submission);
 
     this.setState({
       recentSubmission: submission,
-      fullPoem: updatedPoem,
+      finalPoem: updatedPoem,
       playerNumber: updatedPlayer,
     })
+  }
+
+  onRevealPoem = () => {
+    this.setState({
+      revealFinalPoem: true,
+    })
+  }
+
+  displayRecentSubmission = () => {
+    if (!this.state.revealFinalPoem && this.state.recentSubmission !== '') {
+      return <RecentSubmission />
+    }
+  }
+
+  displayForm = () => {
+    if (!this.state.revealFinalPoem) {
+      return <PlayerSubmissionForm onSubmitFormCallback={this.onSubmitForm} fields={FIELDS} playerNumber={this.state.playerNumber}/>
+    }
   }
 
   render() {
@@ -51,11 +69,14 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.displayRecentSubmission()}
+        {this.displayForm()}
 
-        <PlayerSubmissionForm onSubmitFormCallback={this.onSubmitForm} fields={FIELDS} playerNumber={this.state.playerNumber}/>
+        {/* // <RecentSubmission />
 
-        <FinalPoem />
+        // <PlayerSubmissionForm onSubmitFormCallback={this.onSubmitForm} fields={FIELDS} playerNumber={this.state.playerNumber}/> */}
+
+        <FinalPoem poemData={this.state.finalPoem} onRevealPoemCallback={this.onRevealPoem} poemRevealed={this.state.revealFinalPoem}/>
 
       </div>
     );
