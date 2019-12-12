@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -68,24 +69,28 @@ class PlayerSubmissionForm extends Component {
             }
             The
             <input
+              className = {this.state.adj1 === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}
               placeholder="adjective"
               name="adj1"
               onChange={this.onInputChange}
               value={this.state.adj1}
               type="text" />
             <input
+              className = {this.state.noun1 === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}
               placeholder="noun"
               name="noun1"
               onChange={this.onInputChange}
               value={this.state.noun1}
               type="text" />
             <input
+              className = {this.state.adv === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}
               placeholder="adverb"
               name="adv"
               onChange={this.onInputChange}
               value={this.state.adv}
               type="text" />
             <input
+              className = {this.state.verb === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}
               placeholder="verb"
               name="verb"
               onChange={this.onInputChange}
@@ -93,12 +98,14 @@ class PlayerSubmissionForm extends Component {
               type="text" />
             the
             <input
+              className = {this.state.adj2 === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}
               placeholder="adjective"
               name="adj2"
               onChange={this.onInputChange}
               value={this.state.adj2}
               type="text" />
             <input
+              className = {this.state.noun2 === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}
               placeholder="noun"
               name="noun2"
               onChange={this.onInputChange}
