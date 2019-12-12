@@ -8,6 +8,17 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      sentences: []
+    }
+  }
+
+  onPlayerSubmit = (submissionData) => {
+    this.setState({
+      sentences: this.state.sentences.concat(submissionData)
+    })
+
   }
 
   render() {
@@ -34,7 +45,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm onFormSubmit={this.onPlayerSubmit}/>
 
         <FinalPoem />
 
