@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./PlayerSubmissionForm.css";
+import PropTypes from "prop-types";
 
 class PlayerSubmissionForm extends Component {
   constructor(props) {
@@ -162,5 +163,11 @@ class PlayerSubmissionForm extends Component {
     );
   }
 }
+
+PlayerSubmissionForm.propTypes = {
+  addPoemLineCallback: PropTypes.func.isRequired,
+  fields: PropTypes.array.isRequired,
+  playerNum: PropTypes.number.isRequired
+};
 
 export default PlayerSubmissionForm;
