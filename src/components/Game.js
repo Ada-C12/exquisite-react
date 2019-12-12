@@ -32,7 +32,7 @@ class Game extends Component {
       }
     }).join(" ");
 
-    
+    let player = this.state.poemLines.length + 1
 
     return (
       <div className="Game">
@@ -51,6 +51,7 @@ class Game extends Component {
         />
 
         <PlayerSubmissionForm 
+          player = {player}
           addPoemLineCallback = {this.addPoemLine}
         />
 

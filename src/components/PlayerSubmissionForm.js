@@ -20,7 +20,7 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
 
     const {adjective1, noun1, adverb, verb, adjective2, noun2} = this.state;
-    const recentLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}`
+    const recentLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}`;
 
     this.props.addPoemLineCallback(recentLine);
 
@@ -48,15 +48,12 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.player }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmitPoem}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
             <p>The</p>
             <input
               name="adjective1"
