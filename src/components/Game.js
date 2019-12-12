@@ -8,6 +8,23 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      playerInput: [],
+    }
+    
+  }
+
+
+  addPlayerInput = (newInput) => {
+    const {playerInput} = this.state
+    console.log(playerInput)
+
+    playerInput.push(newInput);
+
+    this.setState({
+      playerInput
+    })
   }
 
   render() {
@@ -34,7 +51,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}/>
 
         <FinalPoem />
 
@@ -44,6 +61,7 @@ class Game extends Component {
 }
 
 const FIELDS = [
+  // Can I use this FIELDS globally? Like can I use it in the state of PlayerSubmissionForm?
   "The",
   {
     key: 'adj1',
