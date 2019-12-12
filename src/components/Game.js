@@ -39,7 +39,7 @@ class Game extends Component {
     const player = this.state.poemLines.length + 1
 
     const displayRecentLine = () => {
-      if (this.state.poemLines.length > 0){
+      if (this.state.poemLines.length > 0 && !this.state.poemComplete){
         return (
           <RecentSubmission 
             recentLine = {this.state.poemLines[this.state.poemLines.length - 1]}
@@ -47,6 +47,13 @@ class Game extends Component {
         )
       }
     }
+
+    const displayForm = (!this.state.poemComplete) ? (
+          <PlayerSubmissionForm 
+          player = {player}
+          addPoemLineCallback = {this.addPoemLine}
+        />
+        ) : null;
 
     return (
       <div className="Game">
@@ -62,10 +69,7 @@ class Game extends Component {
 
         {displayRecentLine()}
 
-        <PlayerSubmissionForm 
-          player = {player}
-          addPoemLineCallback = {this.addPoemLine}
-        />
+        {displayForm}
 
         <FinalPoem 
           poemLines = {this.state.poemLines}
