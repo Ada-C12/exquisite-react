@@ -4,7 +4,7 @@ import './FinalPoem.css';
 const FinalPoem = (props) => {  
   
   const poemContent = props.submissions.map((line,key) => {
-    console.log(line)
+    // console.log(line)
     return <p key={key}>{line}</p>;
   });
 

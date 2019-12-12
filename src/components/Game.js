@@ -53,7 +53,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission submissions={this.state.submissions.last}/>
+        <RecentSubmission newSubmission={this.state.submissions.slice(-1)[0]}/>
         <PlayerSubmissionForm addSubmissionCallback={this.addSubmission}/>
 
         <FinalPoem 
