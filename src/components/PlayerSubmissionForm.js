@@ -6,8 +6,17 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    // loop through the props.formatFieldsPlaceholders and if there is a .key existing then do that stuff below
+
+    const blankFields = {}
+
+    for (let field in props.formatFieldsPlaceholders) {
+      if (field.key) {
+        blankFields[field.key] = '';
+      }
     }
+
+    this.state = blankFields;
   }
 
   onInputChange = (event) => {
@@ -24,6 +33,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   onSubmit = (event) => {
+
     event.preventDefault()
     console.log("button was pushed")
     // make the sentence from the state + format of line
@@ -39,7 +49,24 @@ class PlayerSubmissionForm extends Component {
     // call the callback from Game to add this form's full line to the game's submission in state
     this.props.submitLine(submissionAsLine)
     // reset state of this form
+    // need to make an object with keys = to state keys and values = to ''
+    const newState = this.resetState(this.state)
+
+    // then put it in setState
+    this.setState(
+      newState
+    )
   }
+
+  resetState = (oldState) => {
+    console.log('in resetState fn')
+    console.log('oldState', oldState)
+    const newState = {}
+    for (let key in oldState) {
+      newState[key] = ''
+    }
+    return newState
+    }
   
   
   render() {
@@ -55,6 +82,7 @@ class PlayerSubmissionForm extends Component {
             placeholder={field.placeholder}
             type="text"
             onChange={this.onInputChange}
+            value={this.state[field.key]}
           />
         )}
       else {
@@ -64,7 +92,7 @@ class PlayerSubmissionForm extends Component {
 
 
     console.log('props of playerSumbissionForm', this.props)
-    console.log('formInputs', formInputs)
+    // console.log('formInputs', formInputs)
     console.log('this.state', this.state)
     
 

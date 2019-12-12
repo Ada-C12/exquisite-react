@@ -12,6 +12,8 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
+      // submitted: false,
+      // showingFinal: false
     }
   }
 
@@ -33,6 +35,7 @@ class Game extends Component {
   render() {
 
     console.log('this.state', this.state)
+
 
     const currentPlayerNumber = this.state.submissions.length + 1
 
