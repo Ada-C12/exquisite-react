@@ -17,14 +17,9 @@ class Game extends Component {
   }
 
   addSubmission = (submissionString) => {
-    // submission comes in as a string
-    // add submission to state.submissions
-    console.log('addSubmission function in Game.js - submissionString', submissionString)
-
     const newSubmissions = this.state.submissions
 
     newSubmissions.push(submissionString)
-
 
     this.setState({
       submissions: newSubmissions
@@ -38,9 +33,6 @@ class Game extends Component {
   }
 
   render() {
-
-    console.log('this.state', this.state)
-
 
     const currentPlayerNumber = this.state.submissions.length + 1
 
@@ -57,9 +49,6 @@ class Game extends Component {
         submissionLine={this.state.submissions[this.state.submissions.length - 1]}
       />
       : ''
-
-
-    // console.log('fieldsAndPlaceholders', fieldsAndPlaceholders)
 
     return (
       <div className="Game">

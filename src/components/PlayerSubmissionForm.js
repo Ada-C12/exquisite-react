@@ -6,20 +6,13 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    // loop through the props.formatFieldsPlaceholders and if there is a .key existing then do that stuff below
-
     const blankFields = {}
 
-    console.log('props.formatFieldsPlaceholders',props.formatFieldsPlaceholders)
-
     props.formatFieldsPlaceholders.forEach((field) => {
-      console.log('field',field)
       if (field.key) {
         blankFields[field.key] = '';
       }
     });
-
-    console.log('blankfields',blankFields)
 
     this.state = blankFields;
   }
@@ -40,8 +33,6 @@ class PlayerSubmissionForm extends Component {
   onSubmit = (event) => {
 
     event.preventDefault()
-    console.log("button was pushed")
-    // make the sentence from the state + format of line
     const submissionAsLine = this.props.formatFieldsPlaceholders.map((field) => {
       if (field.key) {
         return this.state[field.key]
@@ -50,22 +41,17 @@ class PlayerSubmissionForm extends Component {
         return field
       }
     }).join(' ')
-    console.log('submissionAsLine', submissionAsLine)
-    // call the callback from Game to add this form's full line to the game's submission in state
+
     this.props.submitLine(submissionAsLine)
-    // reset state of this form
-    // need to make an object with keys = to state keys and values = to ''
+
     const newState = this.resetState(this.state)
 
-    // then put it in setState
     this.setState(
       newState
     )
   }
 
   resetState = (oldState) => {
-    console.log('in resetState fn')
-    console.log('oldState', oldState)
     const newState = {}
     for (let key in oldState) {
       newState[key] = ''
@@ -75,9 +61,7 @@ class PlayerSubmissionForm extends Component {
   
   
   render() {
-    
-    // Make an array of words + keys and placeholders with jsx and display it below
-    
+        
     const formInputs = this.props.formatFieldsPlaceholders.map((field,i) => {
       if (field.key) {
         return (
@@ -94,12 +78,6 @@ class PlayerSubmissionForm extends Component {
         return field
       }
     });
-
-
-    console.log('props of playerSumbissionForm', this.props)
-    // console.log('formInputs', formInputs)
-    console.log('this.state', this.state)
-    
 
     return (
       <div className="PlayerSubmissionForm">
