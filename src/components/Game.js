@@ -15,20 +15,24 @@ class Game extends Component {
     }
   }
 
-  addSubmission = (submission) => {
-    // submission comes in as object
-    // turn submission into submissionString
+  addSubmission = (submissionString) => {
+    // submission comes in as a string
+    // add submission to state.submissions
+    console.log('addSubmission function in Game.js - submissionString', submissionString)
 
-    const submissionString = `The ${submission.adj1} ${submission.noun} ${submission.adverb} ${submission.verb} the ${submission.adjective} ${submission.noun} .`
+    const newSubmissions = this.state.submissions
+
+    newSubmissions.push(submissionString)
+
 
     this.setState({
-      submissions: this.state.submissions.push(submissionString)
+      submissions: newSubmissions
     })
   }
 
   render() {
 
-    console.log('this.state', this.State)
+    console.log('this.state', this.state)
 
     const currentPlayerNumber = this.state.submissions.length + 1
 
@@ -39,6 +43,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const lastSubmission = this.state.submissions[this.state.submissions.length - 1]
 
     // console.log('fieldsAndPlaceholders', fieldsAndPlaceholders)
 
@@ -55,12 +61,13 @@ class Game extends Component {
         </p>
 
         <RecentSubmission
-          submissionLine={this.state.submissions[this.state.submissions.length - 1]}
+          submissionLine={lastSubmission}
         />
 
         <PlayerSubmissionForm 
           playerNumber={currentPlayerNumber}  
           formatFieldsPlaceholders={FIELDS}
+          submitLine={this.addSubmission}
         />
 
         <FinalPoem />

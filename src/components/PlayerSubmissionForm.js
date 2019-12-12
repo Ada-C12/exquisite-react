@@ -22,6 +22,24 @@ class PlayerSubmissionForm extends Component {
       updatedState
     )
   }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    console.log("button was pushed")
+    // make the sentence from the state + format of line
+    const submissionAsLine = this.props.formatFieldsPlaceholders.map((field) => {
+      if (field.key) {
+        return this.state[field.key]
+      }
+      else {
+        return field
+      }
+    }).join(' ')
+    console.log('submissionAsLine', submissionAsLine)
+    // call the callback from Game to add this form's full line to the game's submission in state
+    this.props.submitLine(submissionAsLine)
+    // reset state of this form
+  }
   
   
   render() {
@@ -69,7 +87,7 @@ class PlayerSubmissionForm extends Component {
               type="submit" 
               value="Submit Line" 
               className="PlayerSubmissionForm__submit-btn" 
-              // onClick={ }
+              onClick={this.onSubmit}
             />
           </div>
         </form>
