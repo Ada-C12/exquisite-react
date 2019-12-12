@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -41,21 +40,19 @@ class PlayerSubmissionForm extends Component {
   }
 
   makeFields () {
-    const allFields = []
-
-    this.props.fields.forEach(field => {
+    const allFields = this.props.fields.map((field, i) => {
 
       if(field.key){
         let wordType = field.key
-        allFields.push(<input name={wordType} value={this.state[wordType]} placeholder={field.placeholder} type="text" onChange={this.onFieldChange} className={this.validate(wordType) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} />)
+        return <input key={i} name={wordType} value={this.state[wordType]} placeholder={field.placeholder} type="text" onChange={this.onFieldChange} className={this.validate(wordType) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} />
       } else {
-        allFields.push(<span>{field}</span>)
+        return <span key={i}>{field}</span>
       }
     });
 
     return allFields
   }
-      
+
   onFormSubmit = (event) => {
     event.preventDefault();
 
