@@ -47,7 +47,10 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          allLines={this.state.submissions}
+        
+        />
         {/* {currentLine ? <RecentSubmission 
           currentLine={currentLine}
         /> : ''} */}
