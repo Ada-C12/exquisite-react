@@ -11,13 +11,25 @@ class Game extends Component {
     // Added by me
     this.state = { submissions:[] }
   }
+
   addLine = (submission) => {
     const submissions = this.state.submissions;
     submissions.push(submission);
     this.setState({ submissions })
-    console.log(this.state.submissions)
+    console.log(submissions)
   }
 
+  renderRecentSubmission = () => {
+    const submissions = this.state.submissions;
+    if (submissions.length === 0) {
+      return null;
+    }
+    return (
+      <RecentSubmission 
+        recentsubmission={submissions[submissions.length - 1]} 
+      />
+    );
+  }
 
   render() {
 
@@ -41,7 +53,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.renderRecentSubmission()}
 
         <PlayerSubmissionForm addLineCallback={this.addLine} player={this.state.submissions.length + 1}/>
 
