@@ -9,7 +9,10 @@ class Game extends Component {
   constructor(props) {
     super(props);
     // Added by me
-    this.state = { submissions:[] }
+    this.state = {
+      submissions:[], 
+      finalPoem: false
+    }
   }
 
   addLine = (submission) => {
@@ -17,6 +20,12 @@ class Game extends Component {
     submissions.push(submission);
     this.setState({ submissions })
     console.log(submissions)
+  }
+
+  finalPoemRender = () => {
+    this.setState({
+      finalPoem: true
+    });
   }
 
   renderRecentSubmission = () => {
@@ -55,9 +64,9 @@ class Game extends Component {
 
         {this.renderRecentSubmission()}
 
-        <PlayerSubmissionForm addLineCallback={this.addLine} player={this.state.submissions.length + 1}/>
+        <PlayerSubmissionForm addLineCallback={this.addLine} render={this.state.finalPoem} player={this.state.submissions.length + 1}/>
 
-        <FinalPoem submissions={this.state.submissions}/>
+        <FinalPoem submissions={this.state.submissions} render={this.state.finalPoem} finalPoemCallback={this.finalPoemRender}/>
 
       </div>
     );
