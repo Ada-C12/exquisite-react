@@ -30,6 +30,30 @@ class Game extends Component {
     // console.log(this.state.finalPoem);
   };
 
+  onFinalPoem = () => {
+    let poemState = this.state.poemState
+    poemState = true;
+    this.setState({
+      finalDisplay: poemState,
+    })
+  }
+
+  revealSubmission = () => {
+    if (!this.state.finalDisplay) {
+      return <RecentSubmission />
+    }
+  }
+
+  revealForms = () => {
+    if (!this.state.finalDisplay) {
+      return <PlayerSubmissionForm 
+      onSumbitPoemCallback={this.onSubmitPoem}
+      fields={FIELDS} 
+      playerNum={this.state.playerNum}
+      />
+    }
+  }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -51,16 +75,16 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        
+        {this.revealSubmission()}
+        {this.revealForms()}
+        
 
-        <RecentSubmission />
-
-        <PlayerSubmissionForm 
-          onSumbitPoemCallback={this.onSubmitPoem}
-          fields={FIELDS} 
-          playerNum={this.state.playerNum}
+        <FinalPoem 
+          onFinalPoemCallback={this.onFinalPoem}
+          finalPoem={this.state.finalPoem}
+          finalDisplay={this.state.finalDisplay}
         />
-
-        <FinalPoem />
 
       </div>
     );
