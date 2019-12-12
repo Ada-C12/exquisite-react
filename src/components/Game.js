@@ -10,6 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       recentSubmission: undefined,
+      currentPoem: [],
       finalPoem: []
     }
   }
@@ -25,7 +26,7 @@ class Game extends Component {
   }
 
   submitForm = (verse) => {
-    let fields = FIELDS
+    let fields = JSON.parse(JSON.stringify(FIELDS))
     let i = 0
     let j = 0
     while (i < fields.length) {
@@ -39,18 +40,24 @@ class Game extends Component {
     }
 
     const sentence = this.generateVerse(fields)
-    let updatePoem = this.state.finalPoem
+    let updatePoem = this.state.currentPoem
     updatePoem.push(sentence)
     this.setState({
       recentSubmission: sentence,
-      finalPoem: updatePoem
+      currentPoem: updatePoem
+    })
+  }
+
+  submitPoem = () => {
+    this.setState({
+      finalPoem: this.state.currentPoem
     })
   }
 
   render() {
 
     const exampleFormat = this.generateVerse(FIELDS)
-
+    
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -67,7 +74,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.submitForm}/>
 
-        <FinalPoem finalPoem={this.state.finalPoem}/>
+        <FinalPoem finalPoem={this.state.finalPoem} submitPoemCallback={this.submitPoem} />
 
       </div>
     );
