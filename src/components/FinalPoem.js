@@ -1,12 +1,19 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+const FinalPoem = ({allSubmissions}) => {
+
+  const finalPoem = allSubmissions.map((line) => {
+    return (
+      <p>{line}</p>
+    )
+  })
 
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
+        {finalPoem}
 
       </section>
 

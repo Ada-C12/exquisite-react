@@ -70,7 +70,9 @@ class Game extends Component {
           submitLine={this.addSubmission}
         />
 
-        <FinalPoem />
+        <FinalPoem 
+          allSubmissions={this.state.submissions}
+        />
 
       </div>
     );
