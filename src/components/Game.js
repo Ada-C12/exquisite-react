@@ -43,8 +43,6 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const mostRecentSubmission = this.state.submissions.last
-    
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -55,7 +53,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission submissions={mostRecentSubmission}/>
+        <RecentSubmission submissions={this.state.submissions.last}/>
         <PlayerSubmissionForm addSubmissionCallback={this.addSubmission}/>
 
         <FinalPoem 

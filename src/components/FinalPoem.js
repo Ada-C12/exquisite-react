@@ -1,7 +1,7 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+const FinalPoem = (props) => {  
   
   const poemContent = props.submissions.map((line,key) => {
     console.log(line)
