@@ -10,7 +10,8 @@ class Game extends Component {
     super(props);
     this.state = {
       currentSubmission: '',
-      finalPoem: []
+      finalPoem: [],
+      displayPoem: false,
     }
     // up here in state
     // we will add a property for Recent Submission
@@ -29,6 +30,11 @@ class Game extends Component {
     }) 
   }
 
+  revealPoem = () => {
+    this.setState({
+      displayPoem: true
+    })
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -55,7 +61,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm addRecentSubmission={(stanza) => { this.addRecentSubmission(stanza) }} />
 
-        <FinalPoem />
+        <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
 
       </div>
     );
