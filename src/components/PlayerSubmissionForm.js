@@ -46,10 +46,9 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    // console.log(this.state)
     const fieldsDisplay = this.props.fields.map((field, i) => {
       if (field.key) {
-        
+
         let fieldColor = 'PlayerSubmissionFormt__input--invalid'
         if (this.state[field.key] !== '') {
           fieldColor = 'PlayerSubmissionFormt__input'

@@ -9,8 +9,6 @@ const FinalPoem = (props) => {
     )
   })
 
-  // console.log(props.finalPoem)
-
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
