@@ -22,6 +22,10 @@ class Game extends Component {
     this.setState(poemLines);
   }
 
+  poemDone = () => {
+    this.setState({poemComplete: true})
+  }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -57,6 +61,7 @@ class Game extends Component {
 
         <FinalPoem 
           poemLines = {this.state.poemLines}
+          poemComplete = {this.state.poemComeplete}
         />
 
       </div>

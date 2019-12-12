@@ -1,25 +1,38 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = ({poemLines}) => {
+const FinalPoem = ({poemLines, poemComplete}) => {
 
-  const finalizePoem = poemLines.map((line, i) => {
+  const finalPoem = poemLines.map((line, i) => {
+    return (
+      <p key={i}>{line}</p>
+    )
+  });
+
+  finalizePoem = () => {
+    this.props.poemDone()
+  }
+
+  const display = () => {
+    if (poemComplete == true){
       return (
-        <p key={i}>{line}</p>
-      )
-    })
-
-
-  return (
-    <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-        {finalizePoem}
+        {finalPoem}
       </section>
-
+      )
+    } else {
+      return (
       <div className="FinalPoem__reveal-btn-container">
         <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={finalizePoem} />
       </div>
+      )
+    }
+  }
+
+  return (
+    <div className="FinalPoem">
+      {display}
     </div>
   );
 }
