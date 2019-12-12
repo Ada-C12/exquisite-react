@@ -10,8 +10,9 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      submissions: []
-    }    
+      submissions: [],
+      // currentLine: undefined,
+    };
   }
 
   addSubmission = (line) => {
@@ -32,6 +33,8 @@ class Game extends Component {
       }
     }).join(" ");
 
+    // const currentLine = this.state.submissions.slice(-1)
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -45,12 +48,18 @@ class Game extends Component {
         </p>
 
         <RecentSubmission />
+        {/* {currentLine ? <RecentSubmission 
+          currentLine={currentLine}
+        /> : ''} */}
 
         <PlayerSubmissionForm 
-        fieldFormat={FIELDS}
-        updatedSubmissionCallback={this.addSubmission} />
+          fieldFormat={FIELDS}
+          updatedSubmissionCallback={this.addSubmission} 
+        />
 
-        <FinalPoem />
+        <FinalPoem
+          allLines={this.state.submissions}
+        />
 
       </div>
     );
