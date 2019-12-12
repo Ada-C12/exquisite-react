@@ -14,6 +14,37 @@ class PlayerSubmissionForm extends Component {
       adjective2: '',
       noun2: '',
     }
+
+    this.validators = {
+      adjective1: /.+/,
+      noun1: /.+/,
+      adverb1: /.+/,
+      verb1: /.+/,
+      adjective2: /.+/,
+      noun2: /.+/,
+    };
+  }
+
+  renderField = (field) => {
+    return (
+      <div>
+        <input
+          type="text"
+          name={field}
+          placeholder={field.substring(0, field.length - 2)}
+          value={this.state[field]}
+          onChange={this.onFieldChange}
+          className={this.validate(field)}
+        />
+      </div>
+    ) 
+  } 
+
+  validate = (fieldName) => {
+    const value = this.state[fieldName];
+    const validation = this.validators[fieldName];
+
+    return (value.match(validation) ? "" : "PlayerSubmissionForm__input--invalid")
   }
 
   onFieldChange = (event) => {
@@ -27,23 +58,15 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    const newFormSub = {
-      adjective1: this.state.adjective1,
-      noun1: this.state.noun1,
-      adverb1: this.state.adverb1,
-      verb1: this.state.verb1,
-      adjective2: this.state.adjective2,
-      noun2: this.state.noun2,
-    }
+    const newFormSub = Object.keys(this.state).map((key, i) => {
+      return [key] = this.state[key]
+    })
 
-    this.setState({
-      adjective1: '',
-      noun1: '',
-      adverb1: '',
-      verb1: '',
-      adjective2: '',
-      noun2: '',
-    });
+    const newState = Object.keys(this.state).map((key, i)=> {
+      return [key] = ''
+    })
+
+    this.setState(newState);
     
     this.props.addSubCallback(`The ${newFormSub.adjective1 } ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
   }
@@ -58,68 +81,18 @@ class PlayerSubmissionForm extends Component {
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit} >
           <div className="PlayerSubmissionForm__poem-inputs">
-            <p>The:</p>
-            <div>
-              <input
-                type="text"
-                name="adjective1"
-                placeholder="adjective"
-                value={this.state.adjective1}
-                onChange={this.onFieldChange}
-                className="PlayerSubmissionForm__poem-inputs"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="noun1"
-                placeholder="noun"
-                value={this.state.noun1}
-                onChange={this.onFieldChange}
-                // className="PlayerSubmissionForm__input--invalid"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="adverb1"
-                placeholder="adverb"
-                value={this.state.adverb1}
-                onChange={this.onFieldChange}
-                // className="PlayerSubmissionForm__input--invalid"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="verb1"
-                placeholder="verb"
-                value={this.state.verb1}
-                onChange={this.onFieldChange}
-                // className="PlayerSubmissionForm__input--invalid"
-              />
-            </div>
+            <p>The</p>
+
+            {this.renderField("adjective1")}
+            {this.renderField("noun1")}
+            {this.renderField("adverb1")}
+            {this.renderField("verb1")}
+
             <p>the</p>
-            <div>
-              <input
-                type="text"
-                name="adjective2"
-                placeholder="adjective"
-                value={this.state.adjective2}
-                onChange={this.onFieldChange}
-                // className="PlayerSubmissionForm__input--invalid"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="noun2"
-                placeholder="noun"
-                value={this.state.noun2}
-                onChange={this.onFieldChange}
-                // className="PlayerSubmissionForm__input--invalid"
-              />
-            </div>
+
+            {this.renderField("adjective2")}
+            {this.renderField("noun2")}
+            
           </div>
 
           <div className="PlayerSubmissionForm__submit">
