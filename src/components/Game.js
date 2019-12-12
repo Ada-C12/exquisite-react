@@ -10,6 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       lines: [],
+      inplay: true,
     }
   }
 
@@ -21,6 +22,10 @@ class Game extends Component {
       console.log(lineString)
   }
 
+  finishPoem = () => {
+    console.log("blarg")
+      this.setState({inplay: false})
+  }
 
   render() {
 
@@ -51,9 +56,12 @@ class Game extends Component {
           addLineCallback = {(lineString) => this.addLine(lineString)}
           
         />
-        {console.log(this.state.lines)}
 
-        <FinalPoem />
+        <FinalPoem
+        lines = {this.state.lines}
+        inPlay = {this.state.inplay}
+        onFinishPoemCallback = {() => this.finishPoem()}
+        />
 
       </div>
     );
