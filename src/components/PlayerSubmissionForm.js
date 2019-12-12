@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -21,7 +20,6 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
 
     this.props.addPoemLineCallback(this.state);
-    this.props.recentPoemLineCallback(this.state);
 
     this.setState({
       adjective1: '',
