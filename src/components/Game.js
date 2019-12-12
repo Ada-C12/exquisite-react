@@ -12,21 +12,27 @@ class Game extends Component {
     this.state = {
       recentSubmission: '',
       allSubmissions: [],
+      showPoem: false,
     }
   }
 
   addLine = (newLine) => {
     const makeSentence = `The ${newLine.adjective} ${newLine.noun} ${newLine.adverb} ${newLine.verb} the ${newLine.adjective2} ${newLine.noun2}.`
 
-    const allPoemUpdate = this.state.allSubmissions;
-    allPoemUpdate.push(makeSentence);
+    this.state.allSubmissions.push(makeSentence);
 
     this.setState({
       recentSubmission: makeSentence,
-      allSubmissions: allPoemUpdate,
+      allSubmissions: this.state.allSubmissions,
     })
 
     console.log(this.state.allSubmissions)
+  }
+
+ onClickShowPoem = () => {
+    this.setState({
+      showPoem: true,
+    });
   }
 
   render() {
@@ -55,8 +61,9 @@ class Game extends Component {
 
         <PlayerSubmissionForm addLineCallback={this.addLine}/>
 
-        <FinalPoem />
+        <FinalPoem allLines={this.state.allSubmissions} showPoem={this.state.showPoem} onClickShowPoemCallback={this.onClickShowPoem}/>
 
+        {/* onClickShowPoemCallback={this.onClickShowPoem} */}
       </div>
     );
   }
