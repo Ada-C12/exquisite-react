@@ -72,8 +72,9 @@ class Game extends Component {
         
         {this.state.final ? null :
         <div>
+        {this.state.lines.length < 1 ? null: 
         <RecentSubmission lastSubmisionCallback={this.finalGame}/>
-
+        }
         <PlayerSubmissionForm addGameCallback={this.addGame} player={this.player} />
         </div>
         }
