@@ -13,7 +13,8 @@ class Game extends Component {
       isFormSubmitted: false,
       userInputs: ["The", "the"],
       userSubmission: "",
-      finalPoem: []
+      finalPoem: [],
+      shouldShowFinalPoem: false
     };
   }
 
@@ -32,6 +33,12 @@ class Game extends Component {
       playerNumber: this.state.playerNumber + 1,
       userSubmission: sentence,
       finalPoem: finalPoem
+    });
+  };
+
+  showFinalPoem = () => {
+    this.setState({
+      shouldShowFinalPoem: true
     });
   };
 
@@ -71,7 +78,11 @@ class Game extends Component {
           handleRecentSubmission={this.handleRecentSubmission}
         />
 
-        <FinalPoem finalPoem={this.state.finalPoem} />
+        <FinalPoem
+          shouldShowFinalPoem={this.state.shouldShowFinalPoem}
+          showFinalPoem={this.showFinalPoem}
+          finalPoem={this.state.finalPoem}
+        />
       </div>
     );
   }
