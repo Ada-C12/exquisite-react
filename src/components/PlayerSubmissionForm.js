@@ -13,6 +13,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adjective2: '',
       noun2: '',
+      
     }
   }
 
@@ -51,7 +52,6 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState)
   }
 
-
   onSubmitSentence = (event) => {
     event.preventDefault();
     const sentence = {
@@ -62,7 +62,6 @@ class PlayerSubmissionForm extends Component {
       adjective2: this.state.adjective2,
       noun2: this.state.noun2,
     }
-
     this.props.addSentenceCallback(sentence);
     this.setState({
       adjective: '',
@@ -73,11 +72,12 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     });
   }
+
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.player}</h3>
 
         <form onSubmit={this.onSubmitSentence} className="PlayerSubmissionForm__form" >
           <div className="PlayerSubmissionForm__poem-inputs">
@@ -135,7 +135,11 @@ class PlayerSubmissionForm extends Component {
           </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input 
+              type="submit" 
+              value="Submit Line" 
+              className="PlayerSubmissionForm__submit-btn" 
+            />
           </div>
         </form>
       </div>
@@ -145,6 +149,7 @@ class PlayerSubmissionForm extends Component {
 
 PlayerSubmissionForm.propTypes = {
   addSentenceCallback: PropTypes.func.isRequired,
+  player: PropTypes.number.isRequired,
 }
 
 export default PlayerSubmissionForm;

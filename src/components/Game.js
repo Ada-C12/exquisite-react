@@ -10,18 +10,23 @@ class Game extends Component {
     super(props);
     //in this state we can store the final poem 
     this.state = {
-      submittedPoem: []
+      submissions: [],
+      player: 1,
     }
   }
 
   addSentence = (newSentence) => {
     //Right now this is adding each submission object to the submitted Poems array. Maybe in here we could destructure it to only add the values that we want?
-    const {submittedPoem} = this.state;
-    submittedPoem.push(newSentence); 
+    //Take in new sentence, and loop through each key-value, and return a string 
+    let sentenceString =`the ${newSentence.adjective} ${newSentence.noun} ${newSentence.adverb} the ${newSentence.adjective2} ${newSentence.noun2}.`
+
+    const {submissions} = this.state;
+    submissions.push(sentenceString); 
     this.setState({
-      submittedPoem,
+      submissions,
+      player: this.state.player + 1
     })
-    console.log(submittedPoem)
+    console.log(submissions)
   }
 
   render() {
@@ -32,6 +37,14 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+
+    const displayRecent = () => {
+      if (this.state.submissions.length > 0 ){
+        return <RecentSubmission submission={this.state.submissions.slice(-1)[0]}/>
+      }
+    }
+
 
     return (
       <div className="Game">
@@ -45,11 +58,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {displayRecent()}
 
-        <PlayerSubmissionForm addSentenceCallback= {this.addSentence}/>
+        <PlayerSubmissionForm addSentenceCallback={this.addSentence} player={this.state.player}/>
 
-        <FinalPoem />
+        <FinalPoem submissions={this.state.submissions}/>
 
       </div>
     );
