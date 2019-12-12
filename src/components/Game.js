@@ -11,6 +11,7 @@ class Game extends Component {
     this.state = {
       submissions: [],
       isSubmitted: false,
+      count: 1,
     }
   }
 
@@ -20,7 +21,8 @@ class Game extends Component {
     
     // console.log(submissions)
     this.setState({
-      submissions
+      submissions,
+      count: this.state.count + 1
     })
   }
 
@@ -54,7 +56,7 @@ class Game extends Component {
         </p>
 
         <RecentSubmission newSubmission={this.state.submissions.slice(-1)[0]}/>
-        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission}/>
+        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} count={this.state.count}/>
 
         <FinalPoem 
           isSubmitted={this.state.isSubmitted}
