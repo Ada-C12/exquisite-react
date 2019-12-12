@@ -10,7 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       latestSentence: '',
-      wholePoem: '',
+      wholePoem: [],
       showPoem: false
     }
   }
@@ -25,11 +25,10 @@ class Game extends Component {
   }
 // Moved this out of makeOneSentence and made it a helper method for clarity
   addToPoem = (toAdd) => {
-    const updatedWholePoem = this.state.wholePoem + "\n" + toAdd;
+    this.state.wholePoem.push(toAdd);
     this.setState({
-      wholePoem: updatedWholePoem
+      wholePoem: this.state.wholePoem
     })
-    console.log(updatedWholePoem)
   }
 
   render() {
