@@ -14,10 +14,10 @@ const FinalPoem = (props) => {
   return (
     <div className="FinalPoem">
       { props.submitted ?
-      <section className="FinalPoem__poem">
-         <h3>Final Poem</h3>
-          {displayPoem() }
-      </section>
+        <section className="FinalPoem__poem">
+          <h3>Final Poem</h3>
+            { displayPoem() }
+        </section>
       : '' }
 
       <div className="FinalPoem__reveal-btn-container">

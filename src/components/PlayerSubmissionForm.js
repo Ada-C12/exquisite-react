@@ -14,15 +14,6 @@ class PlayerSubmissionForm extends Component {
       adjective2: '',
       noun2: '',
     }
-
-    this.validators = {
-      adjective1: /.+/,
-      noun1: /.+/,
-      adverb1: /.+/,
-      verb1: /.+/,
-      adjective2: /.+/,
-      noun2: /.+/,
-    };
   }
 
   renderField = (field) => {
@@ -31,7 +22,7 @@ class PlayerSubmissionForm extends Component {
         <input
           type="text"
           name={field}
-          placeholder={field.substring(0, field.length - 2)}
+          placeholder={field.substring(0, field.length - 1)}
           value={this.state[field]}
           onChange={this.onFieldChange}
           className={this.validate(field)}
@@ -42,9 +33,8 @@ class PlayerSubmissionForm extends Component {
 
   validate = (fieldName) => {
     const value = this.state[fieldName];
-    const validation = this.validators[fieldName];
 
-    return (value.match(validation) ? "" : "PlayerSubmissionForm__input--invalid")
+    return (value.match(/.+/) ? "" : "PlayerSubmissionForm__input--invalid")
   }
 
   onFieldChange = (event) => {
@@ -58,17 +48,21 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    const newFormSub = Object.keys(this.state).map((key, i) => {
-      return [key] = this.state[key]
-    })
+    // Saves current form data in new constant
+    const newFormSub = {}
+    for (const field of Object.keys(this.state)) {
+      newFormSub[field] = this.state[field]
+    }
 
-    const newState = Object.keys(this.state).map((key, i)=> {
-      return [key] = ''
-    })
+    // Resets all state values to equal empty strings
+    const newState = {}
+    for (const field of Object.keys(this.state)) {
+      newState[field] = ''
+    }
 
     this.setState(newState);
     
-    this.props.addSubCallback(`The ${newFormSub.adjective1 } ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
+    this.props.addSubCallback(`The ${newFormSub.adjective1} ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
   }
 
   render() {
@@ -92,7 +86,7 @@ class PlayerSubmissionForm extends Component {
 
             {this.renderField("adjective2")}
             {this.renderField("noun2")}
-            
+
           </div>
 
           <div className="PlayerSubmissionForm__submit">
