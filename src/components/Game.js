@@ -27,7 +27,6 @@ class Game extends Component {
       finalPoem: newFinalPoem,
       playerNum: playNum,
     })
-    // console.log(this.state.finalPoem);
   };
 
   onFinalPoem = () => {
@@ -39,8 +38,10 @@ class Game extends Component {
   }
 
   revealSubmission = () => {
-    if (!this.state.finalDisplay) {
-      return <RecentSubmission />
+    if (!this.state.finalDisplay && this.state.recentPoem !== '') {
+      return <RecentSubmission
+      recentPoem={this.state.recentPoem} 
+      />
     }
   }
 
@@ -78,8 +79,6 @@ class Game extends Component {
         
         {this.revealSubmission()}
         {this.revealForms()}
-        
-
         <FinalPoem 
           onFinalPoemCallback={this.onFinalPoem}
           finalPoem={this.state.finalPoem}

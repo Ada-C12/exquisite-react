@@ -3,7 +3,6 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
   const { onFinalPoemCallback, finalPoem, finalDisplay } = props;
-  console.log(finalPoem);
   const finalTotalPoem = finalPoem.map((line,i) => {
     return(
       <p key={i}>
