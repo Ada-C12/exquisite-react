@@ -1,13 +1,72 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import { placeholder } from '@babel/types';
 
 class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    };
+  }
+
+  onInputChange = (event) => {
+    const updatedSubmission = {};
+
+    const field = event.target.name;
+    const value = event.target.value;
+
+    updatedSubmission[field] = value;
+    this.setState(updatedSubmission);
+
+  }
+
+  onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    const thisFormat = this.props.fieldFormat.map((field) => {
+      if (field.key) {
+        return this.state[field.key];
+      } else {
+        return field;
+      }
+    });
+
+    this.props.updatedSubmissionCallback({thisFormat})
+
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    });
   }
 
   render() {
+    const lineFormat = this.props.fieldFormat.map((field) => {
+      if (field.key) {
+        return (
+          <input
+          name={field.key}
+          placeholder={field.placeholder}
+          type="text"
+          onChange={this.onInputChange}
+          value={this.state[field.key]}
+          />
+        )
+      } else {
+        return field;
+      }
+    });
 
     return (
       <div className="PlayerSubmissionForm">
@@ -16,18 +75,17 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
+            
+          {lineFormat}
 
           </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input
+            type="submit"
+            value="Submit Line"
+            className="PlayerSubmissionForm__submit-btn"
+            onClick={this.onSubmitHandler} />
           </div>
         </form>
       </div>
