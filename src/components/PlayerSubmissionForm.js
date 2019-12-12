@@ -47,7 +47,7 @@ class PlayerSubmissionForm extends Component {
 
       if(field.key){
         let wordType = field.key
-        allFields.push(<input name={wordType} value={this.state.wordType} placeholder={field.placeholder} type="text" onChange={this.onFieldChange} className={this.validate(wordType) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} />)
+        allFields.push(<input name={wordType} value={this.state[wordType]} placeholder={field.placeholder} type="text" onChange={this.onFieldChange} className={this.validate(wordType) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} />)
       } else {
         allFields.push(<span>{field}</span>)
       }
@@ -98,11 +98,8 @@ class PlayerSubmissionForm extends Component {
         <h3>Player Submission Form for Player #{ this.props.playerNum }</h3>
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
           <div className="PlayerSubmissionForm__poem-inputs">
-
             { this.makeFields() }
-
           </div>
-
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>
