@@ -26,8 +26,7 @@ class Game extends Component {
     this.setState({
       currentSubmission: stanza,
       finalPoem,
-    })
-    console.log(stanza);
+    }) 
   }
 
   render() {
@@ -52,7 +51,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={this.state.currentSubmission} />
 
         <PlayerSubmissionForm addRecentSubmission={(stanza) => { this.addRecentSubmission(stanza) }} />
 

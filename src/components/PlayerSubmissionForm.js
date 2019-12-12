@@ -6,6 +6,7 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);    
     this.addRecentSubmission = props.addRecentSubmission;
+    this.playerNum = 1;
     this.state = {
       // words live in state until submit is clicked
       prefix: 'The',
@@ -19,11 +20,11 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
-  updateWord = (word, event) => {
-    let value = event.target.value
+  updateWord = (event) => {
+    const value = event.target.value
     this.setState({
-      [word]: value
-    })    
+      [event.target.name]: value
+    })
   }
 
   onSubmitForm = (event) => {
@@ -31,8 +32,18 @@ class PlayerSubmissionForm extends Component {
     let submission = '';
     Object.keys(this.state).forEach((key) => {
       submission += ' ' + this.state[key];
+    });
+    this.setState({
+      adjectiveA: '',
+      nounA: '',
+      adverb: '',
+      verb: '',
+      adjectiveB: '',
+      nounB: ''
     })
+
     this.addRecentSubmission(submission);
+    this.playerNum += 1;
     // turn inputs into a string
     // pass string up to Game to store it
     // Game will pass it on down to Recent Submission & Final Poem
@@ -43,20 +54,23 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.playerNum }</h3>
 
         <form className="PlayerSubmissionForm__form"
-        onSubmit={this.onSubmitForm}>
+        >
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
             <input
-              onChange={(event) => { this.updateWord('adjectiveA', event) }}
+              name="adjectiveA"
+              onChange={this.updateWord}
               placeholder={this.state.adjectiveA === '' ? "adjective" : this.state.adjectiveA}
+              value={this.state.adjectiveA}
               type="text"
             />
             <input
-              onChange={(event) => { this.updateWord('nounA', event) }}
+              name="nounA"
+              onChange={this.updateWord}
               placeholder={this.state.nounA === '' ? "noun" : this.state.nounA}
               type="text"
             />
@@ -80,7 +94,7 @@ class PlayerSubmissionForm extends Component {
           </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input onClick={this.onSubmitForm} type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>
         </form>
       </div>

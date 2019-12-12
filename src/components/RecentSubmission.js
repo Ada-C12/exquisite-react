@@ -7,7 +7,7 @@ const RecentSubmission = (props) => {
       <h3>The Most Recent Submission</h3>
       {/* display the most recent submission */}
       {/* this comes from props passed from Game */}
-      <p className="RecentSubmission__submission">{  }</p>
+      <p className="RecentSubmission__submission">{ props.recentSubmission }</p>
     </div>
   );
 }
