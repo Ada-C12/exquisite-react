@@ -8,9 +8,36 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      playerNum: 1,
+      poem: [],
+      submitted: false,
+      fields: FIELDS,
+    }
+  }
+
+  addSubmission = (newLine) => {
+    const { poem, playerNum } = this.state
+
+    let newPoem = poem
+    newPoem.push(newLine)
+
+    this.setState({
+      playerNum: playerNum + 1,
+      poem: newPoem
+    })
+  }
+
+  finishPoem = () => {
+    this.setState({
+      submitted: true
+    })
   }
 
   render() {
+
+    const { poem, submitted, playerNum, fields } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -24,7 +51,7 @@ class Game extends Component {
       <div className="Game">
         <h2>Game</h2>
 
-        <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
+        <p> Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
 
         <p>Please follow the following format for your poetry submission:</p>
 
@@ -32,12 +59,12 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission lastSub={poem[poem.length - 1]} submitted={submitted}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm player={playerNum} addSubCallback={this.addSubmission} submitted={submitted} fields={fields}  />
 
-        <FinalPoem />
-
+        <FinalPoem poemArray={poem} onFinalSubmit={this.finishPoem} submitted={submitted}/>
+        
       </div>
     );
   }
