@@ -14,6 +14,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
+      count: 1,
     };
   }
 
@@ -37,7 +38,7 @@ class PlayerSubmissionForm extends Component {
       } else {
         return field;
       }
-    });
+    }).join(" ");
 
     this.props.updatedSubmissionCallback({thisFormat})
 
@@ -48,14 +49,16 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
+      count: this.state.count + 1
     });
   }
 
   render() {
-    const lineFormat = this.props.fieldFormat.map((field) => {
+    const lineFormat = this.props.fieldFormat.map((field, i) => {
       if (field.key) {
         return (
           <input
+          key={i}
           name={field.key}
           placeholder={field.placeholder}
           type="text"
@@ -70,7 +73,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.state.count }</h3>
 
         <form className="PlayerSubmissionForm__form" >
 
