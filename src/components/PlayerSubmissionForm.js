@@ -32,7 +32,7 @@ class PlayerSubmissionForm extends Component {
       }
     }).join(" ");
 
-    this.setState({ fields: this.props.format });
+    this.setState({ fields: this.props.format});
 
     this.props.submitFormCallback(newSubmission);
   }
@@ -42,7 +42,7 @@ class PlayerSubmissionForm extends Component {
     const formElements = this.props.format.map((field, i) => {
     if (field.key) {
       return (
-        <input key={i} placeholder={field.placeholder} name={field.key} value={this.state.fields[i]['entry']} type="text" onChange={(e) => this.onChange(e, i)} className={this.validate(i) ? '' : 'PlayerSubmissionForm__input--invalid'}/>
+        <input key={i} placeholder={field.placeholder} name={field.key} value={this.state.fields[i]["entry"]} type="text" onChange={(e) => this.onChange(e, i)} className={this.validate(i) ? '' : 'PlayerSubmissionForm__input--invalid'}/>
         )
       } else { 
         return (
