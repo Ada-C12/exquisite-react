@@ -12,7 +12,8 @@ class Game extends Component {
       recentSubmission: undefined,
       playerCount: 1,
       currentPoem: [],
-      finalPoem: []
+      finalPoem: [],
+      completed: false
     }
   }
 
@@ -53,7 +54,8 @@ class Game extends Component {
 
   submitPoem = () => {
     this.setState({
-      finalPoem: this.state.currentPoem
+      finalPoem: this.state.currentPoem,
+      completed: true
     })
   }
 
@@ -73,11 +75,23 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentSubmission={this.state.recentSubmission}/>
+        {!this.state.completed ?
+          <RecentSubmission
+            recentSubmission={this.state.recentSubmission}
+          /> : null}
 
-        <PlayerSubmissionForm fields={FIELDS} playerCount={ this.state.playerCount } addLineCallback={this.submitLine}/>
+        {!this.state.completed ?
+          <PlayerSubmissionForm
+            fields={FIELDS}
+            playerCount={this.state.playerCount}
+            addLineCallback={this.submitLine}
+          /> : null}
 
-        <FinalPoem finalPoem={this.state.finalPoem} submitPoemCallback={this.submitPoem} />
+        <FinalPoem
+          finalPoem={this.state.finalPoem}
+          submitPoemCallback={this.submitPoem}
+          completed={this.state.completed}
+        />
 
       </div>
     );
