@@ -36,7 +36,17 @@ class Game extends Component {
       }
     }).join(" ");
 
-    let player = this.state.poemLines.length + 1
+    const player = this.state.poemLines.length + 1
+
+    const displayRecentLine = () => {
+      if (this.state.poemLines.length > 0){
+        return (
+          <RecentSubmission 
+            recentLine = {this.state.poemLines[this.state.poemLines.length - 1]}
+          />
+        )
+      }
+    }
 
     return (
       <div className="Game">
@@ -50,9 +60,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission 
-          recentLine = {this.state.poemLines[this.state.poemLines.length - 1]}
-        />
+        {displayRecentLine()}
 
         <PlayerSubmissionForm 
           player = {player}
