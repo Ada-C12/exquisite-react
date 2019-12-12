@@ -5,9 +5,27 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
-
+  
   constructor(props) {
     super(props);
+    
+    this.state = {
+      submissions : [],
+      finalPoem: false,
+    };
+  }
+
+  addSubmission = (submission) => {
+    this.state.submissions.push(submission)
+    this.setState({
+      submissions: this.state.submissions,
+    });
+  }
+
+  onPoemSubmit = () => {
+    this.setState ({
+      finalPoem: true,
+    });
   }
 
   render() {
@@ -32,11 +50,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={this.state.submissions[this.state.submissions.length + 1]} finalPoem={this.state.finalPoem}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addSubmissionCallBack={this.addSubmission} player={this.state.submissions.length + 1} finalPoem={this.state.finalPoem} fields={FIELDS}/>
 
-        <FinalPoem />
+        <FinalPoem submissions={this.state.submissions} finalPoemCallBack={this.onPoemSubmit} finalPoem={this.state.finalPoem}/>
 
       </div>
     );
