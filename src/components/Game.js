@@ -12,6 +12,7 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
+      finished: false,
     }
   }
 
@@ -51,7 +52,12 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const lastSubmission = this.state.submissions[this.state.submissions.length - 1]
+    const lastSubmission = this.state.submissions[0] && this.state.finished === false ? 
+      <RecentSubmission
+        submissionLine={this.state.submissions[this.state.submissions.length - 1]}
+      />
+      : ''
+
 
     // console.log('fieldsAndPlaceholders', fieldsAndPlaceholders)
 
@@ -67,15 +73,15 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission
-          submissionLine={lastSubmission}
-        />
+        { lastSubmission }
 
-        <PlayerSubmissionForm 
-          playerNumber={currentPlayerNumber}  
-          formatFieldsPlaceholders={FIELDS}
-          submitLine={this.addSubmission}
-        />
+        { this.state.finished === true ? '' : 
+          <PlayerSubmissionForm 
+            playerNumber={currentPlayerNumber}  
+            formatFieldsPlaceholders={FIELDS}
+            submitLine={this.addSubmission}
+          />
+        }
 
         <FinalPoem 
           allSubmissions={this.state.submissions}
