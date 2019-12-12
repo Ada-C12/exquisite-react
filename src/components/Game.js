@@ -9,7 +9,8 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      lines: []
+      lines: [],
+      finalPoem: false
     };
   }
 
@@ -19,6 +20,12 @@ class Game extends Component {
 
     this.setState({
       lines
+    });
+  };
+
+  revealPoem = () => {
+    this.setState({
+      finalPoem: true
     });
   };
 
@@ -65,7 +72,11 @@ class Game extends Component {
           playerNum={this.state.lines.length + 1}
         />
 
-        <FinalPoem />
+        <FinalPoem
+          lines={this.state.lines}
+          showFinalPoem={this.state.finalPoem}
+          showFinalPoemCallback={this.revealPoem}
+        />
       </div>
     );
   }

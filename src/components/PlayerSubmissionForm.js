@@ -56,14 +56,15 @@ class PlayerSubmissionForm extends Component {
 
     newPoemLine = newPoemLine.join(" ");
 
-    this.setState({
-      adj1: "",
-      noun1: "",
-      adv: "",
-      verb: "",
-      adj2: "",
-      noun2: ""
+    const resetState = {};
+
+    this.props.fields.forEach(field => {
+      if (field.key) {
+        resetState[field.key] = "";
+      }
     });
+
+    this.setState(resetState);
 
     this.props.addPoemLineCallback(newPoemLine);
   };
