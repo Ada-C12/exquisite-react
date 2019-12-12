@@ -48,6 +48,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
+      error: '',
     });
   }
 
