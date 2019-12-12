@@ -53,9 +53,16 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
+        {
+        this.state.wholePoem !== [] &&
         <RecentSubmission sentence={this.state.latestSentence}/>
+        }
 
+        {
+        this.state.showPoem === false &&
         <PlayerSubmissionForm makeOneSentenceCallback={this.makeOneSentence}/>
+        }
+
 
         <FinalPoem poem={this.state.wholePoem}/>
 

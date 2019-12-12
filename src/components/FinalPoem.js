@@ -9,9 +9,12 @@ const formattedPoem = props.poem.map(line => {
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
+      {
+        this.state.showPoem === true &&
         <h3>Final Poem</h3>
            {formattedPoem}
-
+      }
+      
       </section>
 
       <div className="FinalPoem__reveal-btn-container">
