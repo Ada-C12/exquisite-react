@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
@@ -17,11 +18,23 @@ class Game extends Component {
   }
 
   addPoemLine = (poemLine) => {
-    // const recentLine = poemLine
-    const {poemLines} = this.state
-    poemLines.push(poemLine)
-    this.setState(poemLines)
+    const recentLine = poemLine;
+    const {poemLines} = this.state;
+    poemLines.push(poemLine);
+    
+    this.setState({
+      poemLines, 
+      recentLine,
+    });
   }
+
+  // recentPoemLine = (poemLine) => {
+  //   const {adjective1, noun1, adverb, verb, adjective2, noun2} = poemLine
+  //   const compiledLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}`
+  //   this.setState({
+  //     recentLine: compiledLine
+  //   })
+  // }
 
   render() {
 
@@ -46,7 +59,7 @@ class Game extends Component {
         </p>
 
         <RecentSubmission 
-          // {this.recentLine}
+          RecentSubmission = {this.state.recentLine} 
         />
 
         <PlayerSubmissionForm 
