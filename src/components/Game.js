@@ -75,7 +75,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        {!this.state.completed ?
+        {(!this.state.completed && this.state.playerCount > 1) ?
           <RecentSubmission
             recentSubmission={this.state.recentSubmission}
           /> : null}
