@@ -3,18 +3,19 @@ import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
   
-  
-  constructor(props) {
-    super(props);
-
+  resetState = () => {
     let stateKeys = {}
     this.props.fields.forEach((field) => {
       if (field.key) {
         stateKeys[field.key] = ''
       }
     });
-
-    this.state = stateKeys
+    return stateKeys
+  }
+  
+  constructor(props) {
+    super(props);
+    this.state = this.resetState()
   }
 
   onInputChange = (event) => {
@@ -25,11 +26,30 @@ class PlayerSubmissionForm extends Component {
 
     updatedState[field] = value;
     this.setState(updatedState);
-    console.log(event.target)
+    
+  }
+
+  canSubmit = () => {
+    let complete = true
+    Object.values(this.state).forEach((value) => {
+      if (value === '') {
+        complete = false
+      }
+    })
+    return complete
+  }
+
+  onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    if (this.canSubmit()) {
+      this.props.addSubmissionCallback(this.state);
+      this.setState(this.resetState());
+    }
   }
 
   render() {
-    
+    console.log(this.state)
     const fieldsDisplay = this.props.fields.map((field, i) => {
       if (field.key) {
         return (
@@ -46,6 +66,7 @@ class PlayerSubmissionForm extends Component {
         return field
       }
     })
+
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
