@@ -42,21 +42,16 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const mostRecentSubmission = () => {
-      if (!this.state.gameIsOver && this.state.mostRecentPoem !== undefined) {
-        return <RecentSubmission 
-        mostRecentPoem={this.state.mostRecentPoem} 
-        gameIsOver={this.state.gameIsOver} />
-      }
-    }
+    const mostRecentSubmission = (!this.state.gameIsOver && this.state.mostRecentPoem !== undefined) ?
+      (<RecentSubmission
+        mostRecentPoem={this.state.mostRecentPoem}
+        gameIsOver={this.state.gameIsOver} />) : null;
 
-    const submissionForm = () => {
-      if (!this.state.gameIsOver) {
-        return <PlayerSubmissionForm
-          addSubmissionCallBack={this.addSubmission}
-          player={this.state.submissions.length + 1} />;
-      }
-    }
+
+    const submissionForm = (!this.state.gameIsOver) ?
+      (<PlayerSubmissionForm
+        addSubmissionCallBack={this.addSubmission}
+        player={this.state.submissions.length + 1} />) : null;
 
     return (
       <div className="Game">
@@ -66,16 +61,15 @@ class Game extends Component {
 
         <p>Please follow the following format for your poetry submission:</p>
 
-        <p className="Game__format-example">
-          {exampleFormat}
-        </p>
-        {mostRecentSubmission()}
-        {submissionForm()}
+        <p className="Game__format-example">{exampleFormat}</p>
+        
+        {mostRecentSubmission}
+        {submissionForm}
 
-        <FinalPoem 
-        allSubmissions={this.state.submissions} 
-        gameIsOver={this.state.gameIsOver} 
-        onClickCallBack={this.onButtonClick} />
+        <FinalPoem
+          allSubmissions={this.state.submissions}
+          gameIsOver={this.state.gameIsOver}
+          onClickCallBack={this.onButtonClick} />
 
       </div>
     );
