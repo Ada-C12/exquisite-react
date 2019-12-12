@@ -24,8 +24,16 @@ class Game extends Component {
     })
   }
 
+  revealPoem = (event) => {
+    event.preventDefault();
+
+    this.setState({
+      isSubmitted: true
+    });
+  }
+
   render() {
-    console.log(this.state.submissions)
+    // console.log(this.state.submissions)
     
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
