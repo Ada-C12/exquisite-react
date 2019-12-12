@@ -19,7 +19,10 @@ class PlayerSubmissionForm extends Component {
   onSubmitPoem = (event) => {
     event.preventDefault();
 
-    this.props.addPoemLineCallback(this.state);
+    const {adjective1, noun1, adverb, verb, adjective2, noun2} = this.state;
+    const recentLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}`
+
+    this.props.addPoemLineCallback(recentLine);
 
     this.setState({
       adjective1: '',

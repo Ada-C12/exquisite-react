@@ -19,9 +19,7 @@ class Game extends Component {
     const {poemLines} = this.state;
     poemLines.push(poemLine);
     
-    this.setState({
-      poemLines, 
-    });
+    this.setState(poemLines);
   }
 
   render() {
@@ -33,6 +31,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    
 
     return (
       <div className="Game">
