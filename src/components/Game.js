@@ -11,7 +11,6 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
-      // currentLine: undefined,
     };
   }
 
@@ -21,6 +20,7 @@ class Game extends Component {
     this.setState(submissions);
 
   } 
+
 
   render() {
     console.log(this.state)
@@ -33,7 +33,7 @@ class Game extends Component {
       }
     }).join(" ");
 
-    // const currentLine = this.state.submissions.slice(-1)
+
 
     return (
       <div className="Game">
@@ -49,11 +49,7 @@ class Game extends Component {
 
         <RecentSubmission 
           allLines={this.state.submissions}
-        
         />
-        {/* {currentLine ? <RecentSubmission 
-          currentLine={currentLine}
-        /> : ''} */}
 
         <PlayerSubmissionForm 
           fieldFormat={FIELDS}
