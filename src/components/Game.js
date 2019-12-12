@@ -8,6 +8,17 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      playerInputs: [], // This will be an array of arrays
+    };
+  }
+
+  addPlayerInputWordsArray = (inputWordsArray) => {
+    this.setState((state, props) => ({
+      playerInputs: [...state.playerInputs, inputWordsArray]
+    }));
+    console.log(inputWordsArray);
   }
 
   render() {
@@ -34,7 +45,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addPlayerInputWordsArray={this.addPlayerInputWordsArray} />
 
         <FinalPoem />
 

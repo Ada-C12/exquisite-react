@@ -5,6 +5,26 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      [0]: "", // Initialize value for each input to empty string
+      [1]: "",
+      [2]: "",
+      [3]: "",
+      [4]: "",
+      [5]: "",
+    };
+  }
+
+  textInputChange(event, inputId) {
+    this.setState({[inputId]: event.target.value});
+  }
+
+  sendPlayerInputWordsArray = (e) => {
+    e.preventDefault();
+    console.log(this.state[0]);
+    console.log(this.state[1]);
+    //this.props.addPlayerInputWordsArray([this.state[0]])
   }
 
   render() {
@@ -13,16 +33,47 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
-
+        <form className="PlayerSubmissionForm__form" 
+            onSubmit={ this.sendPlayerInputWordsArray }
+            >
           <div className="PlayerSubmissionForm__poem-inputs">
 
             {
               // Put your form inputs here... We've put in one below as an example
             }
+            The
             <input
-              placeholder="hm..."
-              type="text" />
+              placeholder="adjective"
+              type="text"
+              onChange={(event) => {this.textInputChange(event, 0) }}
+              />
+
+            <input
+              placeholder="noun"
+              type="text"
+              />
+
+            <input
+              placeholder="adverb"
+              type="text"
+              />
+              
+              <input
+              placeholder="verb"
+              type="text"
+              />
+
+          the
+            <input
+              placeholder="adjective"
+              type="text"
+              />
+
+            <input
+              placeholder="noun"
+              type="text"
+             />
+            .
 
           </div>
 
