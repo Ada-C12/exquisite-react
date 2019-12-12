@@ -105,10 +105,10 @@ class PlayerSubmissionForm extends Component {
               />
             <p>.</p>
           </div>
-
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>
+          
         </form>
       </div>
     );

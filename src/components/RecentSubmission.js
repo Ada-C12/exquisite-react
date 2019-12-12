@@ -6,7 +6,7 @@ const RecentSubmission = (props) => {
     <div className="RecentSubmission">
       <h3>The Most Recent Submission</h3>
 
-      <p className="RecentSubmission__submission">{ props.lastSubmisionCallback() }</p>
+      <p className="RecentSubmission__submission">{ props.lastSubmisionCallback().pop() }</p>
     </div>
   );
 }

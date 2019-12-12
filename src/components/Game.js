@@ -11,7 +11,14 @@ class Game extends Component {
 
     this.state = {
       lines: [],
+      final: false,
     }
+  }
+
+  onClick = () => {
+    this.setState({
+      final: true
+    })
   }
 
   player = () => {
@@ -31,9 +38,6 @@ class Game extends Component {
     })
   }
 
-  //iterate over the array, iterate over each object to get all the words
-  // put all the words in a new array. Join the array and return it.
-
   finalGame = () => {
     let poem = []
     const lines = this.state.lines
@@ -43,14 +47,6 @@ class Game extends Component {
     return poem
   }
 
-  lastSubmision = () => {
-    let poem = []
-    const lines = this.state.lines
-    lines.forEach(line => {
-      poem.push(['The ' + line.adj1 + ' ' + line.noun1 + ' ' + line.adv + ' ' + line.verb + ' the ' + line.adj2 + ' ' + line.noun2 + '.'])
-    });
-    return poem.pop()
-  }
 
   render() {
 
@@ -74,11 +70,15 @@ class Game extends Component {
           { exampleFormat }
         </p>
         
-        <RecentSubmission lastSubmisionCallback={this.lastSubmision}/>
+        {this.state.final ? null :
+        <div>
+        <RecentSubmission lastSubmisionCallback={this.finalGame}/>
 
-        <PlayerSubmissionForm addGameCallback={this.addGame} player={this.player}/>
+        <PlayerSubmissionForm addGameCallback={this.addGame} player={this.player} />
+        </div>
+        }
 
-        <FinalPoem finalPoemCallback={this.finalGame} />
+        <FinalPoem finalPoemCallback={this.finalGame} onClickCallback={this.onClick} final={this.state.final}/>
 
       </div>
     );
