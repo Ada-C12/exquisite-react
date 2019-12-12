@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
+import { existsTypeAnnotation } from '@babel/types';
 
 class PlayerSubmissionForm extends Component {
 
@@ -14,6 +15,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
+      error: ''
     }
   }
 
@@ -29,7 +31,12 @@ class PlayerSubmissionForm extends Component {
 
   onPlayerSubmit = (event) => {
     event.preventDefault();
-    
+
+    if (this.state.adj1 === '' || this.state.noun1 === '' || this.state.adv === '' || this.state.verb === '' || this.state.adj2 === '' || this.state.noun2 === '') {
+      this.setState({error: "Fields can't be blank"});
+      return;
+    }
+
     const submission = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`;
     
     this.props.addSubmissionCallBack(submission);
@@ -45,7 +52,6 @@ class PlayerSubmissionForm extends Component {
   }
 
   isInputValid = (input) => {
-    console.log(input)
     if (input === ''){
       return "PlayerSubmissionForm__input--invalid"
     } 
@@ -76,7 +82,8 @@ class PlayerSubmissionForm extends Component {
           <form className="PlayerSubmissionForm__form" onSubmit={this.onPlayerSubmit} >
             <div className="PlayerSubmissionForm__poem-inputs">
               {fields}
-            </div>             
+            </div>        
+            <h4>{this.state.error}</h4>
             <div className="PlayerSubmissionForm__submit">
               <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
             </div>
