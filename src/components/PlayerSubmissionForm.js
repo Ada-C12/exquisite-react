@@ -22,7 +22,7 @@ class PlayerSubmissionForm extends Component {
         <input
           type="text"
           name={field}
-          placeholder={field.substring(0, field.length - 1)}
+          placeholder={field.substring(0,field.length - 1)}
           value={this.state[field]}
           onChange={this.onFieldChange}
           className={this.validate(field)}

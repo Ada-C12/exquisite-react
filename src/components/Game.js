@@ -27,11 +27,9 @@ class Game extends Component {
   }
 
   finishPoem = () => {
-    console.log("submitting")
     this.setState({
       submitted: true
     })
-
   }
 
   render() {
@@ -43,6 +41,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const { poem, submitted, player_num } = this.state;
 
     return (
       <div className="Game">
@@ -56,11 +56,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission lastSub={this.state.poem[this.state.poem.length - 1]} submitted={this.state.submitted}/>
+        <RecentSubmission lastSub={poem[poem.length - 1]} submitted={submitted}/>
 
-        <PlayerSubmissionForm player={this.state.player_num} addSubCallback={this.addSubmission} submitted={this.state.submitted} />
+        <PlayerSubmissionForm player={player_num} addSubCallback={this.addSubmission} submitted={submitted} />
 
-        <FinalPoem poemArray={this.state.poem} onFinalSubmit={this.finishPoem} submitted={this.state.submitted}/>
+        <FinalPoem poemArray={poem} onFinalSubmit={this.finishPoem} submitted={submitted}/>
 
       </div>
     );
