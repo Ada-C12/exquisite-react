@@ -10,11 +10,16 @@ class PlayerSubmissionForm extends Component {
 
     const blankFields = {}
 
-    for (let field in props.formatFieldsPlaceholders) {
+    console.log('props.formatFieldsPlaceholders',props.formatFieldsPlaceholders)
+
+    props.formatFieldsPlaceholders.forEach((field) => {
+      console.log('field',field)
       if (field.key) {
         blankFields[field.key] = '';
       }
-    }
+    });
+
+    console.log('blankfields',blankFields)
 
     this.state = blankFields;
   }

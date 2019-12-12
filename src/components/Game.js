@@ -12,8 +12,6 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
-      // submitted: false,
-      // showingFinal: false
     }
   }
 
@@ -29,6 +27,12 @@ class Game extends Component {
 
     this.setState({
       submissions: newSubmissions
+    })
+  }
+
+  finishGame = () => {
+    this.setState({
+      finished: true 
     })
   }
 
@@ -75,6 +79,8 @@ class Game extends Component {
 
         <FinalPoem 
           allSubmissions={this.state.submissions}
+          gameFinished={this.state.finished}
+          finishGame={this.finishGame}
         />
 
       </div>
