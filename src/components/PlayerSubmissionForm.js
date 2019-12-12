@@ -14,9 +14,8 @@ class PlayerSubmissionForm extends Component {
   }
 
   componentDidMount = () => {
-    this.initializeFields();
+    this.initializeFieldsAndPlaceholders();
     this.initializeValidators();
-    this.initializePlaceholders();
   }
 
   validate = (fieldName) => {
@@ -40,36 +39,22 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
-  initializeFields = () => {
-    let updatedState = {};
-    const formFields = this.props.formFields;
-
-    for (const field of formFields) {
-      if (field.key) {
-        const {key} = field;
-        updatedState[key] = '';
-      } else {
-        updatedState[field] = field;
-      }
-    }
-
-    this.setState({ fields: updatedState });
-  }
-
-  initializePlaceholders = () => {
-    let updatedState = {};
+  initializeFieldsAndPlaceholders = () => {
+    let fieldState = {};
+    let placeholderState = {};
     const formFields = this.props.formFields;
 
     for (const field of formFields) {
       if (field.key) {
         const {key, placeholder} = field;
-        updatedState[key] = placeholder;
+        fieldState[key] = '';
+        placeholderState[key] = placeholder;
       } else {
-        updatedState[field] = field;
+        fieldState[field] = field;
       }
     }
 
-    this.setState({ placeholders: updatedState })
+    this.setState({ fields: fieldState, placeholders: placeholderState });
   }
 
   onFieldChange = (event) => {
