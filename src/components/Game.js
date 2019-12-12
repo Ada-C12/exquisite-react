@@ -13,6 +13,7 @@ class Game extends Component {
       player_num: 1,
       poem: [],
       submitted: false,
+      fields: FIELDS,
     }
   }
 
@@ -42,13 +43,13 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const { poem, submitted, player_num } = this.state;
+    const { poem, submitted, player_num, fields } = this.state;
 
     return (
       <div className="Game">
         <h2>Game</h2>
 
-        <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
+        <p> Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
 
         <p>Please follow the following format for your poetry submission:</p>
 
@@ -58,10 +59,10 @@ class Game extends Component {
 
         <RecentSubmission lastSub={poem[poem.length - 1]} submitted={submitted}/>
 
-        <PlayerSubmissionForm player={player_num} addSubCallback={this.addSubmission} submitted={submitted} />
+        <PlayerSubmissionForm player={player_num} addSubCallback={this.addSubmission} submitted={submitted} fields={fields}  />
 
         <FinalPoem poemArray={poem} onFinalSubmit={this.finishPoem} submitted={submitted}/>
-
+        
       </div>
     );
   }

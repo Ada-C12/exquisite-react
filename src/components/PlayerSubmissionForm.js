@@ -6,30 +6,42 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      adjective1: '',
-      noun1: '',
-      adverb1: '',
-      verb1: '',
-      adjective2: '',
-      noun2: '',
-    }
+    this.state = {}
+
+    props.fields.forEach((element) => {
+      if (element.key){
+        this.state[element.key] = ''
+      } 
+    })
   }
 
-  renderField = (field) => {
-    return (
-      <div>
-        <input
-          type="text"
-          name={field}
-          placeholder={field.substring(0,field.length - 1)}
-          value={this.state[field]}
-          onChange={this.onFieldChange}
-          className={this.validate(field)}
-        />
-      </div>
-    ) 
-  } 
+  renderFields = (fields) => {
+    let allElements = []
+
+    this.props.fields.forEach((element) => {
+      if (element.key) {
+        allElements.push(
+          <div>
+            <input
+              type="text"
+              name={element.key}
+              placeholder={element.placeholder}
+              value={this.state[element.key]}
+              onChange={this.onFieldChange}
+              className={this.validate(element.key)}
+            />
+          </div>
+        )
+      } else {
+        allElements.push(
+          <div> {element} </div>
+        )
+      }
+    })
+
+
+    return allElements;
+  }
 
   validate = (fieldName) => {
     const value = this.state[fieldName];
@@ -43,6 +55,20 @@ class PlayerSubmissionForm extends Component {
     const updatedState = {};
     updatedState[name] = value;
     this.setState(updatedState);
+  }
+
+  generateSentence = () => {
+    let newLine = ''
+
+    this.props.fields.forEach((element) => {
+      if (element.key){
+        newLine += `${this.state[element.key]} `
+      } else {
+        newLine += `${element} `
+      }
+    })
+
+    return newLine
   }
 
   onFormSubmit = (event) => {
@@ -61,8 +87,10 @@ class PlayerSubmissionForm extends Component {
     }
 
     this.setState(newState);
+
+    this.props.addSubCallback(this.generateSentence());
     
-    this.props.addSubCallback(`The ${newFormSub.adjective1} ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
+    //this.props.addSubCallback(`The ${newFormSub.adjective1} ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
   }
 
   render() {
@@ -75,17 +103,8 @@ class PlayerSubmissionForm extends Component {
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit} >
           <div className="PlayerSubmissionForm__poem-inputs">
-            <p>The</p>
 
-            {this.renderField("adjective1")}
-            {this.renderField("noun1")}
-            {this.renderField("adverb1")}
-            {this.renderField("verb1")}
-
-            <p>the</p>
-
-            {this.renderField("adjective2")}
-            {this.renderField("noun2")}
+            {this.renderFields(this.props.fields)}
 
           </div>
 
