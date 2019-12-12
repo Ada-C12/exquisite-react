@@ -20,13 +20,11 @@ class PlayerSubmissionForm extends Component {
 
   onInputChange = (event) => {
     const updatedState = {};
-
     const field = event.target.name;
     const value = event.target.value;
 
     updatedState[field] = value;
     this.setState(updatedState);
-    
   }
 
   canSubmit = () => {
@@ -41,15 +39,14 @@ class PlayerSubmissionForm extends Component {
 
   onSubmitHandler = (event) => {
     event.preventDefault();
-
     if (this.canSubmit()) {
-      this.props.addSubmissionCallback(this.state);
+      this.props.addLineCallback(this.state);
       this.setState(this.resetState());
     }
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     const fieldsDisplay = this.props.fields.map((field, i) => {
       if (field.key) {
         return (
@@ -71,13 +68,9 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmitHandler} 
-        >
-
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmitHandler} >
           <div className="PlayerSubmissionForm__poem-inputs">
-
             {fieldsDisplay}
-
           </div>
 
           <div className="PlayerSubmissionForm__submit">

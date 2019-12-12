@@ -16,7 +16,6 @@ const FinalPoem = (props) => {
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
         <div>{finalPoem}</div>
-
       </section>
 
       <div className="FinalPoem__reveal-btn-container">

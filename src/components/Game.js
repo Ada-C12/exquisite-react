@@ -15,7 +15,7 @@ class Game extends Component {
     }
   }
 
-  generateVerse = (fields) => {
+  generateLine = (fields) => {
     return fields.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -25,13 +25,13 @@ class Game extends Component {
     }).join(" ");
   }
 
-  submitForm = (verse) => {
+  submitLine = (line) => {
     let fields = JSON.parse(JSON.stringify(FIELDS))
     let i = 0
     let j = 0
     while (i < fields.length) {
       if (fields[i]['key']) {
-        fields[i]['placeholder'] = Object.values(verse)[j]
+        fields[i]['placeholder'] = Object.values(line)[j]
         i++
         j++
       } else {
@@ -39,9 +39,10 @@ class Game extends Component {
       }
     }
 
-    const sentence = this.generateVerse(fields)
+    const sentence = this.generateLine(fields)
     let updatePoem = this.state.currentPoem
     updatePoem.push(sentence)
+
     this.setState({
       recentSubmission: sentence,
       currentPoem: updatePoem
@@ -56,7 +57,7 @@ class Game extends Component {
 
   render() {
 
-    const exampleFormat = this.generateVerse(FIELDS)
+    const exampleFormat = this.generateLine(FIELDS)
     
     return (
       <div className="Game">
@@ -72,7 +73,7 @@ class Game extends Component {
 
         <RecentSubmission recentSubmission={this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.submitForm}/>
+        <PlayerSubmissionForm fields={FIELDS} addLineCallback={this.submitLine}/>
 
         <FinalPoem finalPoem={this.state.finalPoem} submitPoemCallback={this.submitPoem} />
 
