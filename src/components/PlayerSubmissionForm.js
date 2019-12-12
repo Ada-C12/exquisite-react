@@ -9,12 +9,14 @@ class PlayerSubmissionForm extends Component {
 
     this.state = {
       fields: {},
+      placeholders: {},
     }
   }
 
   componentDidMount = () => {
     this.initializeFields();
     this.initializeValidators();
+    this.initializePlaceholders();
   }
 
   validate = (fieldName) => {
@@ -54,6 +56,22 @@ class PlayerSubmissionForm extends Component {
     this.setState({ fields: updatedState });
   }
 
+  initializePlaceholders = () => {
+    let updatedState = {};
+    const formFields = this.props.formFields;
+
+    for (const field of formFields) {
+      if (field.key) {
+        const {key, placeholder} = field;
+        updatedState[key] = placeholder;
+      } else {
+        updatedState[field] = field;
+      }
+    }
+
+    this.setState({ placeholders: updatedState })
+  }
+
   onFieldChange = (event) => {
     const { name, value } = event.target;
 
@@ -91,17 +109,19 @@ class PlayerSubmissionForm extends Component {
     this.clearState();
   }
 
-  makeInputCollection = (fields) => {
-    const inputCollection = Object.keys(fields).map((field, i) => {
-      if ( !/the/i.test(field) 
-      && !/[.?,!]/.test(field) 
-      && !/^a$/i.test(field) ) {
-        const fieldValid = this.validate(String( field ));
+  makeInputCollection = (stateFields, placeholders) => {
+    // const { placeholders } = this.state;
+    const inputCollection = Object.keys(stateFields).map((field, i) => {
+      if ( !/the/i.test(field)
+      && !/[.,?!]/.test(field)
+      && !/^a$/.test(field) ) {
+        const fieldName = field;
+        const fieldValid = this.validate(String( fieldName ));
         return <input 
           key={ i }
-          name={ field }
-          value={ this.state.fields[field] }
-          placeholder={ field }
+          name={ fieldName }
+          value={ this.state.fields[fieldName] }
+          placeholder={ placeholders[field] }
           onChange={ this.onFieldChange }
           className={ fieldValid ? 'valid' : 'PlayerSubmissionForm__input--invalid' }
           type="text"
@@ -114,8 +134,8 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    const inputs = this.makeInputCollection(this.state.fields);
-
+    const inputs = this.makeInputCollection(this.state.fields, this.state.placeholders);
+    
     return (
       <div className="PlayerSubmissionForm" onSubmit={this.onFormSubmit}>
         <h3>Player Submission Form for Player #{ this.props.playerNumber }</h3>
