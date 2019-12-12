@@ -30,6 +30,7 @@ class Game extends Component {
       recentSubmission: updatedRecentSubmission,
       submissionList: updatedSubmissionList,
     })
+    console.log(FIELDS)
   }
 
   onEndGame = () => {

@@ -22,9 +22,7 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    const completedLine = this.state.fields;
-
-    const newSubmission = completedLine.map((field) => {
+    const newSubmission = this.state.fields.map((field) => {
       if (field.key) {
         return field.entry;
       } else {
@@ -32,7 +30,15 @@ class PlayerSubmissionForm extends Component {
       }
     }).join(" ");
 
-    this.setState({ fields: this.props.format});
+    const newFields = this.state.fields;
+    
+    newFields.forEach(field => {
+      if (field.entry) { 
+        field.entry = "" 
+      } 
+    });
+
+    this.setState({ fields: newFields });
 
     this.props.submitFormCallback(newSubmission);
   }
