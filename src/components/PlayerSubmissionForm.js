@@ -10,7 +10,7 @@ class PlayerSubmissionForm extends Component {
     this.state = {
       adj1: "",
       noun1: "",
-      adverb: "",
+      adv: "",
       verb: "",
       adj2: "",
       noun2: "",
@@ -46,24 +46,13 @@ class PlayerSubmissionForm extends Component {
     this.props.fields.forEach(field => {
 
       if(field.key){
-
-        allFields.push(<input name={field.key} value={this.state[field.key]} placeholder={field.placeholder} type="text" onChange={this.onFieldChange} />)
-
-            // <input
-            //   name="adj1"
-            //   value={this.state.adj1}
-            //   placeholder="adjective"
-            //   type="text" 
-            //   onChange={this.onFieldChange}
-            //   className={this.validate("adj1") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-            //   />
-
+        let wordType = field.key
+        allFields.push(<input name={wordType} value={this.state.wordType} placeholder={field.placeholder} type="text" onChange={this.onFieldChange} className={this.validate(wordType) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"} />)
       } else {
         allFields.push(<span>{field}</span>)
-        
       }
-
     });
+
     return allFields
   }
       
@@ -85,7 +74,7 @@ class PlayerSubmissionForm extends Component {
     const newLine = {
       adj1: this.state.adj1,
       noun1: this.state.noun1,
-      adverb: this.state.adverb,
+      adv: this.state.adv,
       verb: this.state.verb,
       adj2: this.state.adj2,
       noun2: this.state.noun2
@@ -94,7 +83,7 @@ class PlayerSubmissionForm extends Component {
     this.setState({
       adj1: "",
       noun1: "",
-      adverb: "",
+      adv: "",
       verb: "",
       adj2: "",
       noun2: "",
@@ -105,75 +94,12 @@ class PlayerSubmissionForm extends Component {
 
   render() {
     return (
-      <div className="PlayerSubmissionForm" onSubmit={this.onFormSubmit}>
+      <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{ this.props.playerNum }</h3>
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
           <div className="PlayerSubmissionForm__poem-inputs">
 
             { this.makeFields() }
-
-
-
-
-            {/* <span>The</span> */}
-
-            {/* <input
-              name="adj1"
-              value={this.state.adj1}
-              placeholder="adjective"
-              type="text" 
-              onChange={this.onFieldChange}
-              className={this.validate("adj1") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-              />
-            
-            <input
-              name="noun1"
-              value={this.state.noun1}
-              placeholder="noun"
-              type="text"
-              onChange={this.onFieldChange}
-              className={this.validate("noun1") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-              />
-
-            <input
-              name="adverb"
-              value={this.state.adverb}
-              placeholder="adverb"
-              type="text" 
-              onChange={this.onFieldChange}
-              className={this.validate("adverb") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-              />
-            
-            <input
-              name="verb"
-              value={this.state.verb}
-              placeholder="verb"
-              type="text" 
-              onChange={this.onFieldChange}
-              className={this.validate("verb") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-              />
-
-            <span>the</span>
-
-            <input
-              name="adj2"
-              value={this.state.adj2}
-              placeholder="adjective"
-              type="text"
-              onChange={this.onFieldChange}
-              className={this.validate("adj2") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-              />
-
-            <input
-              name="noun2"
-              value={this.state.noun2}
-              placeholder="noun"
-              type="text"
-              onChange={this.onFieldChange}
-              className={this.validate("noun2") ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
-              />
-
-            <span>.</span> */}
 
           </div>
 
