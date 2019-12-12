@@ -15,7 +15,9 @@ class PlayerSubmissionForm extends Component {
     })
   }
 
-  renderFields = (fields) => {
+  renderFields = () => {
+    const { state, onFieldChange, validate } = this
+
     let allElements = []
 
     this.props.fields.forEach((element) => {
@@ -26,9 +28,9 @@ class PlayerSubmissionForm extends Component {
               type="text"
               name={element.key}
               placeholder={element.placeholder}
-              value={this.state[element.key]}
-              onChange={this.onFieldChange}
-              className={this.validate(element.key)}
+              value={state[element.key]}
+              onChange={onFieldChange}
+              className={validate(element.key)}
             />
           </div>
         )
@@ -39,7 +41,6 @@ class PlayerSubmissionForm extends Component {
       }
     })
 
-
     return allElements;
   }
 
@@ -47,14 +48,6 @@ class PlayerSubmissionForm extends Component {
     const value = this.state[fieldName];
 
     return (value.match(/.+/) ? "" : "PlayerSubmissionForm__input--invalid")
-  }
-
-  onFieldChange = (event) => {
-    const { name, value } = event.target;
-
-    const updatedState = {};
-    updatedState[name] = value;
-    this.setState(updatedState);
   }
 
   generateSentence = () => {
@@ -71,40 +64,49 @@ class PlayerSubmissionForm extends Component {
     return newLine
   }
 
+  onFieldChange = (event) => {
+    const { name, value } = event.target;
+
+    const updatedState = {};
+    updatedState[name] = value;
+    this.setState(updatedState);
+  }
+
   onFormSubmit = (event) => {
+    const { state, generateSentence } = this
+
     event.preventDefault();
 
     // Saves current form data in new constant
     const newFormSub = {}
-    for (const field of Object.keys(this.state)) {
-      newFormSub[field] = this.state[field]
+    for (const field of Object.keys(state)) {
+      newFormSub[field] = state[field]
     }
 
     // Resets all state values to equal empty strings
     const newState = {}
-    for (const field of Object.keys(this.state)) {
+    for (const field of Object.keys(state)) {
       newState[field] = ''
     }
 
     this.setState(newState);
-
-    this.props.addSubCallback(this.generateSentence());
-    
-    //this.props.addSubCallback(`The ${newFormSub.adjective1} ${newFormSub.noun1} ${newFormSub.adverb1} ${newFormSub.verb1} the ${newFormSub.adjective2} ${newFormSub.noun2}.`);
+    this.props.addSubCallback(generateSentence());
   }
 
   render() {
 
-    if (this.props.submitted) return '';
+    const { submitted, player } = this.props
+
+    if (submitted) return '';
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.props.player }</h3>
+        <h3>Player Submission Form for Player #{ player }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit} >
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {this.renderFields(this.props.fields)}
+            {this.renderFields()}
 
           </div>
 

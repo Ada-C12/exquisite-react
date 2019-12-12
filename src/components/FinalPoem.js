@@ -1,10 +1,10 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+const FinalPoem = ({ poemArray, submitted, onFinalSubmit }) => {
 
   const displayPoem = () => {
-    const lineCollection = props.poemArray.map((line, i) => {
+    const lineCollection = poemArray.map((line, i) => {
       return <p key={i}> {line} </p>
     })
 
@@ -13,7 +13,7 @@ const FinalPoem = (props) => {
 
   return (
     <div className="FinalPoem">
-      { props.submitted ?
+      { submitted ?
         <section className="FinalPoem__poem">
           <h3>Final Poem</h3>
             { displayPoem() }
@@ -21,7 +21,7 @@ const FinalPoem = (props) => {
       : '' }
 
       <div className="FinalPoem__reveal-btn-container">
-        { props.submitted ? '' : <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={() => props.onFinalSubmit()} /> }
+        { submitted ? '' : <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={() => onFinalSubmit()} /> }
         
       </div>
     </div>

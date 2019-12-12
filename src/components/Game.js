@@ -10,7 +10,7 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      player_num: 1,
+      playerNum: 1,
       poem: [],
       submitted: false,
       fields: FIELDS,
@@ -18,11 +18,13 @@ class Game extends Component {
   }
 
   addSubmission = (newLine) => {
-    let newPoem = this.state.poem
+    const { poem, playerNum } = this.state
+
+    let newPoem = poem
     newPoem.push(newLine)
 
     this.setState({
-      player_num: this.state.player_num + 1,
+      playerNum: playerNum + 1,
       poem: newPoem
     })
   }
@@ -35,6 +37,8 @@ class Game extends Component {
 
   render() {
 
+    const { poem, submitted, playerNum, fields } = this.state;
+
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -42,8 +46,6 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
-
-    const { poem, submitted, player_num, fields } = this.state;
 
     return (
       <div className="Game">
@@ -59,7 +61,7 @@ class Game extends Component {
 
         <RecentSubmission lastSub={poem[poem.length - 1]} submitted={submitted}/>
 
-        <PlayerSubmissionForm player={player_num} addSubCallback={this.addSubmission} submitted={submitted} fields={fields}  />
+        <PlayerSubmissionForm player={playerNum} addSubCallback={this.addSubmission} submitted={submitted} fields={fields}  />
 
         <FinalPoem poemArray={poem} onFinalSubmit={this.finishPoem} submitted={submitted}/>
         
