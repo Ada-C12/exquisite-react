@@ -3,7 +3,6 @@ import './FinalPoem.css';
 import PropTypes from 'prop-types';
 
 const FinalPoem = ({ poemData, onRevealPoemCallback, poemRevealed }) => {
-  console.log(poemData)
   const poemLines = poemData.map ((line, i) => {
     return <p key={i}>
       {line}

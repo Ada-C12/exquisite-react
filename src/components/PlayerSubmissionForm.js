@@ -35,7 +35,6 @@ class PlayerSubmissionForm extends Component {
     const updatedState = {};
     updatedState[field] = value;
     this.setState(updatedState);
-    console.log(this.state.adj1)
   }
 
   inputFields = () => {
@@ -73,7 +72,6 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    // console.log(this.state.adj1);
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{this.props.playerNumber}</h3>

@@ -37,7 +37,7 @@ class Game extends Component {
 
   displayRecentSubmission = () => {
     if (!this.state.revealFinalPoem && this.state.recentSubmission !== '') {
-      return <RecentSubmission />
+      return <RecentSubmission recentSubmission={this.state.recentSubmission}/>
     }
   }
 
@@ -71,10 +71,6 @@ class Game extends Component {
 
         {this.displayRecentSubmission()}
         {this.displayForm()}
-
-        {/* // <RecentSubmission />
-
-        // <PlayerSubmissionForm onSubmitFormCallback={this.onSubmitForm} fields={FIELDS} playerNumber={this.state.playerNumber}/> */}
 
         <FinalPoem poemData={this.state.finalPoem} onRevealPoemCallback={this.onRevealPoem} poemRevealed={this.state.revealFinalPoem}/>
 
