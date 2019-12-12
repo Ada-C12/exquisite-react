@@ -8,6 +8,10 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissions: [],
+      isSubmitted: false,
+    }
   }
 
   render() {
@@ -20,6 +24,10 @@ class Game extends Component {
       }
     }).join(" ");
 
+    let submissionLength = this.state.submissions.length
+
+    const recentSubmission = submissionLength > 0 && !this.state.isSubmitted ? <RecentSubmission submission={ this.state.submissions[submissionLength - 1] }/> : '';
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -31,6 +39,8 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+
+        { recentSubmission }
 
         <RecentSubmission />
 
