@@ -38,7 +38,7 @@ class Game extends Component {
     let poem = []
     const lines = this.state.lines
     lines.forEach(line => {
-      poem.push(['The ' + line.adj1 + ' ' + line.noun1 + ' ' + line.adv + ' ' + line.verb + ' the ' + line.adj2 + ' ' + line.noun2 + '.'])
+      poem.push('The ' + line.adj1 + ' ' + line.noun1 + ' ' + line.adv + ' ' + line.verb + ' the ' + line.adj2 + ' ' + line.noun2 + '.')
     });
     return poem
   }
