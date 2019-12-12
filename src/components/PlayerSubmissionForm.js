@@ -5,51 +5,49 @@ class PlayerSubmissionForm extends Component {
   
   constructor(props) {
     super(props);
-
-    this.state = this.props.format 
+    this.state = { fields: this.props.format }
   }
 
-  onChange = (event) => {
-    const { name, value } = event.target;
-    const newState = {};
-    newState[name] = value;
-    this.setState(newState);
+  onChange = (event, i) => {
+    const { value } = event.target;
+    const newState = this.state.fields;
+    newState[i]["entry"] = value;
+    this.setState({fields: newState});
   }
 
-  // validate = (i) => {
-  //   return this.state[i][entry].match(/.+/);
-  // }
+  validate = (i) => {
+    return this.state.fields[i]["entry"].match(/.+/);
+  }
 
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    //validate
+    const completedLine = this.state.fields;
 
-    const newSubmission = this.state.map((field) => {
+    const newSubmission = completedLine.map((field) => {
       if (field.key) {
-        return field.placeholder;
+        return field.entry;
       } else {
         return field;
       }
     }).join(" ");
 
-    this.setState({ ...this.props.format });
+    this.setState({ fields: this.props.format });
 
     this.props.submitFormCallback(newSubmission);
   }
 
-  formElements = this.props.format.map((field, i) => {
+  render() {
+
+    const formElements = this.props.format.map((field, i) => {
     if (field.key) {
       return (
-        <input key={i} placeholder={field.placeholder} name={field.key}  type="text" onChange={this.onChange} 
-        // 
-        />
+        <input key={i} placeholder={field.placeholder} name={field.key} value={this.state.fields[i]['entry']} type="text" onChange={(e) => this.onChange(e, i)} className={this.validate(i) ? '' : 'PlayerSubmissionForm__input--invalid'}/>
         )
       } else { 
-        return ( <span key={i}>{field}</span>) }
-  })
-
-  render() {
+        return (
+        <span key={i}>{field}</span>) }
+    })
 
     return (
       <div className="PlayerSubmissionForm">
@@ -58,9 +56,7 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {formElements()}
-            
+            {formElements}
           </div>
 
           <div className="PlayerSubmissionForm__submit">
