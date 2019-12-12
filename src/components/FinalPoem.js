@@ -1,20 +1,20 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = ({poemLines, poemComplete}) => {
-
+const FinalPoem = (props) => {
+  const {poemLines, poemComplete} = props;
   const finalPoem = poemLines.map((line, i) => {
     return (
       <p key={i}>{line}</p>
     )
   });
 
-  finalizePoem = () => {
-    this.props.poemDone()
+  const finalizePoem = () => {
+    props.poemCompleteCallBack();
   }
 
   const display = () => {
-    if (poemComplete == true){
+    if (poemComplete){
       return (
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
@@ -32,7 +32,7 @@ const FinalPoem = ({poemLines, poemComplete}) => {
 
   return (
     <div className="FinalPoem">
-      {display}
+      {display()}
     </div>
   );
 }

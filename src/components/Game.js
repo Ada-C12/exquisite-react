@@ -22,7 +22,7 @@ class Game extends Component {
     this.setState(poemLines);
   }
 
-  poemDone = () => {
+  finalizePoem = () => {
     this.setState({poemComplete: true})
   }
 
@@ -61,7 +61,8 @@ class Game extends Component {
 
         <FinalPoem 
           poemLines = {this.state.poemLines}
-          poemComplete = {this.state.poemComeplete}
+          poemCompleteCallBack = {this.finalizePoem}
+          poemComplete={this.state.poemComplete}
         />
 
       </div>
