@@ -14,6 +14,8 @@ class PlayerSubmissionForm extends Component {
       adj2: '',
       noun2: '',
     }
+
+
   }
 
   resetState = () => {
@@ -60,14 +62,15 @@ class PlayerSubmissionForm extends Component {
 
 
   render() {
-    let count = 0 
+  
+
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{count}</h3>
-        {console.log(count)}
+        <h3>Player Submission Form for Player #{this.props.playerNumber}</h3>
+
 
         <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
-
+          
           <div className="PlayerSubmissionForm__poem-inputs">
             <div>The</div>
             <input 

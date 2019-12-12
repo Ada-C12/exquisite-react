@@ -2,6 +2,8 @@ import React from 'react';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
+  
+  console.log(props)
 
   return (
     <div className="FinalPoem">

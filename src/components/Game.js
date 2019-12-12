@@ -12,13 +12,11 @@ class Game extends Component {
     this.state = {
       playerInput: [],
     }
-    
   }
-
 
   addPlayerInput = (newInput) => {
     const {playerInput} = this.state
-    console.log(playerInput)
+
 
     playerInput.push(newInput);
 
@@ -51,10 +49,10 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}/>
+        <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}
+        playerNumber={this.state.playerInput.length}/>
 
         <FinalPoem />
-
       </div>
     );
   }
