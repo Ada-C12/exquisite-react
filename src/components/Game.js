@@ -48,6 +48,20 @@ class Game extends Component {
       );
     }
 
+    let submissionForm = "";
+
+    if (!this.state.finalPoem) {
+      submissionForm = (
+        <div>
+          {recentSub}
+          <PlayerSubmissionForm
+            addPoemLineCallback={this.addLine}
+            fields={FIELDS}
+            playerNum={this.state.lines.length + 1}
+          />
+        </div>
+      );
+    }
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -64,13 +78,7 @@ class Game extends Component {
 
         <p className="Game__format-example">{exampleFormat}</p>
 
-        {recentSub}
-
-        <PlayerSubmissionForm
-          addPoemLineCallback={this.addLine}
-          fields={FIELDS}
-          playerNum={this.state.lines.length + 1}
-        />
+        {submissionForm}
 
         <FinalPoem
           lines={this.state.lines}
