@@ -43,7 +43,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmissionWordsArray={this.state.playerInputs.slice(-1).pop()}  />
 
         <PlayerSubmissionForm addPlayerInputWordsArray={this.addPlayerInputWordsArray} />
 
