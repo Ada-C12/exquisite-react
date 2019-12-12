@@ -66,7 +66,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.playerCount }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmitHandler} >
           <div className="PlayerSubmissionForm__poem-inputs">

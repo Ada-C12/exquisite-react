@@ -10,6 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       recentSubmission: undefined,
+      playerCount: 1,
       currentPoem: [],
       finalPoem: []
     }
@@ -42,10 +43,11 @@ class Game extends Component {
     const sentence = this.generateLine(fields)
     let updatePoem = this.state.currentPoem
     updatePoem.push(sentence)
-
+    
     this.setState({
       recentSubmission: sentence,
-      currentPoem: updatePoem
+      playerCount: this.state.playerCount + 1,
+      currentPoem: updatePoem,
     })
   }
 
@@ -73,7 +75,7 @@ class Game extends Component {
 
         <RecentSubmission recentSubmission={this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm fields={FIELDS} addLineCallback={this.submitLine}/>
+        <PlayerSubmissionForm fields={FIELDS} playerCount={ this.state.playerCount } addLineCallback={this.submitLine}/>
 
         <FinalPoem finalPoem={this.state.finalPoem} submitPoemCallback={this.submitPoem} />
 
