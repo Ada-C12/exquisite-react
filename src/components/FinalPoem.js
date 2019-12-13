@@ -10,31 +10,26 @@ class FinalPoem extends React.Component {
     const allPoems = this.props.allSubmissions.map((poem, i) => {
       return (
         <section key={i}>
-          <p>{`The ${poem.adj1} ${poem.noun1} ${poem.adv} ${poem.verb} the ${poem.adj2} ${poem.noun2} .`}</p>
+          <p>{poem}</p>
         </section>);
     });
 
-    const gameResult = () => {
-      if (this.props.gameIsOver) {
-        return (
-          <section className="FinalPoem__poem">
-            <h3>Final Poem</h3>
-            {allPoems}
-          </section>);
-      } else {
-        return (<div className="FinalPoem__reveal-btn-container">
-          <input 
-          onClick={this.onButtonClick} 
-          type="button" 
-          value="We are finished: Reveal the Poem" 
+    const gameResult = (this.props.gameIsOver) ?
+      (<section className="FinalPoem__poem">
+        <h3>Final Poem</h3>
+        {allPoems}
+      </section>) :
+      (<div className="FinalPoem__reveal-btn-container">
+        <input
+          onClick={this.onButtonClick}
+          type="button"
+          value="We are finished: Reveal the Poem"
           className="FinalPoem__reveal-btn" />
-        </div>);
-      }
-    };
+      </div>);
 
     return (
       <div className="FinalPoem">
-        {gameResult()}
+        {gameResult}
       </div>
     );
   }

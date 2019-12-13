@@ -33,7 +33,6 @@ class Game extends Component {
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -45,13 +44,15 @@ class Game extends Component {
     const mostRecentSubmission = (!this.state.gameIsOver && this.state.mostRecentPoem !== undefined) ?
       (<RecentSubmission
         mostRecentPoem={this.state.mostRecentPoem}
-        gameIsOver={this.state.gameIsOver} />) : null;
+        gameIsOver={this.state.gameIsOver}
+      />) : null;
 
 
     const submissionForm = (!this.state.gameIsOver) ?
       (<PlayerSubmissionForm
         addSubmissionCallBack={this.addSubmission}
-        player={this.state.submissions.length + 1} />) : null;
+        player={this.state.submissions.length + 1}
+        fields={FIELDS} />) : null;
 
     return (
       <div className="Game">
@@ -62,7 +63,7 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">{exampleFormat}</p>
-        
+
         {mostRecentSubmission}
         {submissionForm}
 
