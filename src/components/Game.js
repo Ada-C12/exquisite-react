@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
@@ -98,5 +99,9 @@ const FIELDS = [
   },
   ".",
 ];
+
+Game.propTypes = {
+  newLine: PropTypes.object.isRequired,
+}
 
 export default Game;

@@ -1,12 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import './FinalPoem.css';
 
 const FinalPoem = ({allLines, showPoem, onClickShowPoemCallback}) => {
 
-
-const fullPoem = () => (
-    allLines.map(line => <p>{line}</p>)
-);
+  const fullPoem = () => (
+      allLines.map(line => <p>{line}</p>)
+  );
 
   return (
     <div className="FinalPoem">
@@ -17,11 +17,16 @@ const fullPoem = () => (
       </section>) : 
       (<div className="FinalPoem__reveal-btn-container">
       <input onClick={() => { onClickShowPoemCallback() }} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-    </div>)
-}
-</div>
+      </div>)
+      }
+    </div>
   )
 }
 
+FinalPoem.propTypes = {
+  allLines: PropTypes.array.isRequired,
+  showPoem: PropTypes.bool.isRequired, 
+  onClickShowPoemCallback: PropTypes.func.isRequired,
+}
 
 export default FinalPoem;

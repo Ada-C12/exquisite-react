@@ -64,7 +64,6 @@ class PlayerSubmissionForm extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-
     let allValid = true;
 
     Object.keys(this.validators).forEach((key) => {
@@ -76,8 +75,6 @@ class PlayerSubmissionForm extends Component {
     if (!allValid) {
       return;
     }
-
-    
     console.log(event);
 
     this.props.addLineCallback(this.state);
