@@ -37,6 +37,7 @@ class PlayerSubmissionForm extends Component {
   onFieldChange = (event) => {
     const {placeholder, value} = event.target;
     const updatedState = {};
+  
     updatedState[placeholder] = value;
 
     this.setState(updatedState);
@@ -80,7 +81,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.props.count}</h3>
+        <h3>Player Submission Form for Player #{this.props.playerCount}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.sendSubmission}>
           <div className="PlayerSubmissionForm__poem-inputs">

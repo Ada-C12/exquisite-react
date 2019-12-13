@@ -21,7 +21,7 @@ const FinalPoem = (props) => {
 
   return (
     <div className="FinalPoem">
-      {props.isSubmitted ? revealPoem : revealPoemButton}
+      {props.completed ? revealPoem : revealPoemButton}
     </div>
   );
 }

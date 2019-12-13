@@ -10,8 +10,8 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
-      isSubmitted: false,
-      count: 1,
+      completed: false,
+      playerCount: 1,
     }
   }
 
@@ -22,7 +22,7 @@ class Game extends Component {
     // console.log(submissions)
     this.setState({
       submissions,
-      count: this.state.count + 1
+      playerCount: (this.state.playerCount + 1)
     })
   }
 
@@ -30,7 +30,7 @@ class Game extends Component {
     event.preventDefault();
 
     this.setState({
-      isSubmitted: true
+      completed: true
     });
   }
 
@@ -56,10 +56,10 @@ class Game extends Component {
         </p>
 
         <RecentSubmission newSubmission={this.state.submissions.slice(-1)[0]}/>
-        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} count={this.state.count}/>
+        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} playerCount={this.state.playerCount}/>
 
         <FinalPoem 
-          isSubmitted={this.state.isSubmitted}
+          completed={this.state.completed}
           revealPoem={this.revealPoem}
           submissions={this.state.submissions}/>
       </div>
