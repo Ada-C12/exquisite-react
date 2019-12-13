@@ -62,6 +62,7 @@ class Game extends Component {
         </p>
 
         {this.renderRecentSubmission()}
+        
 
         <PlayerSubmissionForm addLineCallback={this.addLine} render={this.state.finalPoem} player={this.state.submissions.length + 1}/>
 

@@ -106,7 +106,7 @@ class PlayerSubmissionForm extends Component {
             </div>
             <div>
               <input
-                className={this.isInputInvalid(this.state.noun1)}
+                className={this.isInputInvalid(this.state.noun2)}
                 placeholder="noun"
                 name="noun2"
                 type="text"
