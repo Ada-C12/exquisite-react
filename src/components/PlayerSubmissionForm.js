@@ -17,41 +17,13 @@ class PlayerSubmissionForm extends Component {
     };
   }
 
-  onAdjectiveChange = (event) => {
-    // console.log(event.target.value)
-    this.setState({
-      adjective: event.target.value
-    });
-  };
+  onFieldChange = (event) => {
+    const { placeholder, value } = event.target;
 
-  onNounChange = (event) => {
-    this.setState({
-      noun: event.target.value
-    })
-  };
+    const updatedState = {};
+    updatedState[placeholder] = value;
 
-  onAdverbChange = (event) => {
-    this.setState({
-      adverb: event.target.value
-    })
-  };
-
-  onVerbChange = (event) => {
-    this.setState({
-      verb: event.target.value
-    })
-  };
-
-  onAdjective2Change = (event) => {
-    this.setState({
-      adjective2: event.target.value
-    })
-  };
-
-  onNoun2Change = (event) => {
-    this.setState({
-      noun2: event.target.value
-    })
+    this.setState(updatedState);
   };
 
   onSubmit = (event) => {
@@ -89,12 +61,13 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
             The
-              <input placeholder="Adjective" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.adjective} onChange={this.onAdjectiveChange}/>              
-              <input placeholder="Noun" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.noun} onChange={this.onNounChange}/>
-              <input placeholder="Adverb" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.adverb} onChange={this.onAdverbChange}/>
-              <input placeholder="Verb" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.Verb} onChange={this.onVerbChange}/>
-              <input placeholder="Adjective" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.adjective2} onChange={this.onAdjective2Change}/>
-              <input placeholder="Noun" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.noun2} onChange={this.onNoun2Change}/>
+              <input placeholder="adjective" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.adjective} onChange={this.onFieldChange}/>              
+              <input placeholder="noun" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.noun} onChange={this.onFieldChange}/>
+              <input placeholder="adverb" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.adverb} onChange={this.onFieldChange}/>
+            the  
+              <input placeholder="verb" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.verb} onChange={this.onFieldChange}/>
+              <input placeholder="adjective2" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.adjective2} onChange={this.onFieldChange}/>
+              <input placeholder="noun2" type="text" className="PlayerSubmissionFormt__input--invalid" value={this.state.noun2} onChange={this.onFieldChange}/>
             .
           </div>
 
