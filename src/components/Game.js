@@ -8,8 +8,27 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentSubmission: '',
+      finalPoem: [],
+      displayPoem: false,
+    }
+  }
+  addRecentSubmission = (stanza) => {
+    // add stanza to Game state
+    const {finalPoem} = this.state;
+    finalPoem.push(stanza);
+    this.setState({
+      currentSubmission: stanza,
+      finalPoem,
+    }) 
   }
 
+  revealPoem = () => {
+    this.setState({
+      displayPoem: true
+    })
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -19,6 +38,14 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    if (this.state.displayPoem === true) {
+      return (
+        <div>
+          <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
+        </div>
+      )
+    } else {
 
     return (
       <div className="Game">
@@ -32,14 +59,16 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={this.state.currentSubmission} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addRecentSubmission={(stanza) => { this.addRecentSubmission(stanza) }} />
 
-        <FinalPoem />
+        <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
 
       </div>
-    );
+    )
+  }
+
   }
 }
 
