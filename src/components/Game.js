@@ -8,10 +8,25 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentSubmission: '',
+      finalPoem: [],
+      reveal: false, 
+    }
   }
 
-  render() {
+  addRecentSubmission = (line) => {
+    const {finalPoem} = this.state;
+    finalPoem.push(line)
+    this.setState({
+      currentSubmission: line, 
+      finalPoem, 
+    })
+  }
 
+
+
+  render() {
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -31,12 +46,12 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        
+        { this.state.reveal ? ' ' : <RecentSubmission submission={this.state.currentSubmission}/> }
+  
+        { this.state.reveal ? ' ' : <PlayerSubmissionForm addRecentSubmission={(line) => { this.addRecentSubmission(line) }} playerNumber={this.state.finalPoem.length + 1}/> }
 
-        <RecentSubmission />
-
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        <FinalPoem poem={this.state.finalPoem} button={this.onButtonClick} buttonCheck={this.state.reveal} />
 
       </div>
     );
