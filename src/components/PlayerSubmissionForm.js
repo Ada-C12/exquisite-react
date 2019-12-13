@@ -12,15 +12,18 @@ class PlayerSubmissionForm extends Component {
       prefix: 'The',
       adjectiveA: '',
       nounA: '',
-      adverb: '',
-      verb: '',
+      adverbA: '',
+      verbA: '',
       midfix: 'the',
       adjectiveB: '',
       nounB: ''
-    }
+    };
+    this.inputs = Object.keys(this.state);
+
   }
 
   updateWord = (event) => {
+    console.log(this.inputs);
     const value = event.target.value
     this.setState({
       [event.target.name]: value
@@ -36,18 +39,14 @@ class PlayerSubmissionForm extends Component {
     this.setState({
       adjectiveA: '',
       nounA: '',
-      adverb: '',
-      verb: '',
+      adverbA: '',
+      verbA: '',
       adjectiveB: '',
       nounB: ''
     })
 
     this.addRecentSubmission(submission);
     this.playerNum += 1;
-    // turn inputs into a string
-    // pass string up to Game to store it
-    // Game will pass it on down to Recent Submission & Final Poem
-    // then clear out the state
   }
 
   render() {
@@ -60,37 +59,17 @@ class PlayerSubmissionForm extends Component {
         >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            <input
-              name="adjectiveA"
-              onChange={this.updateWord}
-              placeholder={this.state.adjectiveA === '' ? "adjective" : this.state.adjectiveA}
-              value={this.state.adjectiveA}
-              type="text"
-            />
-            <input
-              name="nounA"
-              onChange={this.updateWord}
-              placeholder={this.state.nounA === '' ? "noun" : this.state.nounA}
-              type="text"
-            />
-            <input
-              placeholder={this.state.adverb === '' ? "adverb" : this.state.adverb}
-              type="text"
-            />
-            <input
-              placeholder={this.state.verb === '' ? "verb" : this.state.verb}
-              type="text"
-            />
-            <input className="PlayerSubmissionForm__input--invalid"
-              placeholder={this.state.adjectiveB === '' ? "adjective" : this.state.adjective}
-              type="text"
-            />
-            <input
-              placeholder={this.state.nounA === '' ? "noun" : this.state.nounB}
-              type="text"
-            />
-
+            {this.inputs.map((wordInput, i) => {
+              return (
+                <input
+                  key={i}
+                  name={wordInput}
+                  onChange={this.updateWord}
+                  placeholder={this.state[wordInput] === '' ? wordInput.slice('A', -1).slice('B') : this.state[wordInput]}
+                  className={this.state[wordInput] === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input'}
+                />
+            )
+          })}
           </div>
 
           <div className="PlayerSubmissionForm__submit">
