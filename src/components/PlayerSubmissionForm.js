@@ -43,6 +43,7 @@ class PlayerSubmissionForm extends Component {
         return field
       } else {
         return <input name={field.key}
+          className={this.state[field.key] === '' ? 'PlayerSubmissionFormt__input--invalid' : 'PlayerSubmissionFormt__input'}
           key={i}
           placeholder={field.placeholder}
           onChange={this.onInputChange}
