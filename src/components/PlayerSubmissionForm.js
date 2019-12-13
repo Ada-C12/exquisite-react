@@ -46,39 +46,50 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
             The
-            <input 
+            <input
+              className={this.state.words[0].length > 0 ? "": "PlayerSubmissionFormt__input--invalid"}
               value={this.state.words[0]}
               placeholder="Adjective"
               type="text"
               onChange={this.onInputChange}
               name="0" />
 
-            <input value={this.state.words[1]}
+            <input 
+              className={this.state.words[1].length > 0 ? "": "PlayerSubmissionFormt__input--invalid"}
+              value={this.state.words[1]}
               placeholder="Noun"
               type="text"
               onChange={this.onInputChange}
               name="1" />
 
-            <input value={this.state.words[2]}
+            <input
+              className={this.state.words[2].length > 0 ? "": "PlayerSubmissionFormt__input--invalid"} 
+              value={this.state.words[2]}
               placeholder="Adverb"
               type="text"
               onChange={this.onInputChange}
               name="2" />
 
-            <input value={this.state.words[3]}
+            <input
+              className={this.state.words[3].length > 0 ? "": "PlayerSubmissionFormt__input--invalid"} 
+              value={this.state.words[3]}
               placeholder="Verb"
               type="text"
               onChange={this.onInputChange}
               name="3" />
 
             the 
-            <input value={this.state.words[4]}
+            <input
+              className={this.state.words[4].length > 0 ? "": "PlayerSubmissionFormt__input--invalid"} 
+              value={this.state.words[4]}
               placeholder="Adjective"
               type="text"
               onChange={this.onInputChange}
               name="4" />
 
-            <input value={this.state.words[5]}
+            <input 
+              className={this.state.words[5].length > 0 ? "": "PlayerSubmissionFormt__input--invalid"}
+              value={this.state.words[5]}
               placeholder="Noun"
               type="text"
               onChange={this.onInputChange}
