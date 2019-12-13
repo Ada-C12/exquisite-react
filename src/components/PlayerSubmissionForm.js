@@ -61,7 +61,6 @@ class PlayerSubmissionForm extends Component {
   
   
   render() {
-        
     const formInputs = this.props.formatFieldsPlaceholders.map((field,i) => {
       if (field.key) {
         return (
@@ -72,6 +71,7 @@ class PlayerSubmissionForm extends Component {
             type="text"
             onChange={this.onInputChange}
             value={this.state[field.key]}
+            className={this.state[field.key] ? "" : "PlayerSubmissionForm__input--invalid"}
           />
         )}
       else {
