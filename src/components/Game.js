@@ -5,13 +5,36 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
+  
 
   constructor(props) {
     super(props);
+      this.state = {
+        submissions: [],
+        lastSubmission: '',
+        gameOver: false,
+      }
+  }
+
+  addSubmission = (submission) => {
+    const string = `The ${submission.adj1} ${submission.noun1} ${submission.adv} ${submission.verb} the ${submission.adj2} ${submission.noun2}`
+
+    const subs = this.state.submissions;
+    subs.push(string)
+
+    this.setState({
+      submissions: subs,
+      lastSubmission: string,
+    })
+  }
+
+  onFinalButtonClick = () => {
+    this.setState({
+      gameOver: true,
+    })
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -19,6 +42,13 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    console.log(this.state.submissions)
+
+    const mostRecentSubmission = (!this.state.gameOver && this.state.submissions.length !== 0) ? (<RecentSubmission lastSubmission={this.state.lastSubmission} />) : null;
+
+
+    const submissionForm = (!this.state.gameOver) ? (<PlayerSubmissionForm playerNumber={this.state.submissions.length + 1} addSubmissionCallback={this.addSubmission}/>) : null;
 
     return (
       <div className="Game">
@@ -32,11 +62,12 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        {mostRecentSubmission}
 
-        <FinalPoem />
+        {submissionForm}
+
+        <FinalPoem lines={this.state.submissions} gameOver={this.state.gameOver} onFinalButtonClickCallback={this.onFinalButtonClick}/>
 
       </div>
     );
