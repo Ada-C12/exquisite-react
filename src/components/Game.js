@@ -21,7 +21,10 @@ class Game extends Component {
   };
 
   showPoem = (event) => {
-
+    event.preventDefault();
+    this.setState({
+      isSubmitted: true
+    });
   };
 
   render() {
