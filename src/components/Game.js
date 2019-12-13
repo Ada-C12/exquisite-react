@@ -15,8 +15,7 @@ class Game extends Component {
   }
 
   addLine = (lineString) => {
-      const addingLine = []
-      addingLine.push(this.state.lines)
+      let addingLine = this.state.lines
       addingLine.push(lineString)
       this.setState({lines: addingLine})
   }
