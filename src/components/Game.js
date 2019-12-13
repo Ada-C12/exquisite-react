@@ -27,7 +27,9 @@ class Game extends Component {
 
   }
 
-
+  finishGame = () => {
+    this.setState({inProgress: false})
+  }
 
   render() {
 
@@ -56,7 +58,7 @@ class Game extends Component {
 
         {this.state.inProgress ? <PlayerSubmissionForm addLineCallback={formText => this.addLine(formText)}/> : ""}
 
-        {this.state.inProgress ?  <FinalPoem /> : <FinalPoem text={this.state.playSubmissions}/>}
+        <FinalPoem inProgress={this.state.inProgress} finishGameCallback={this.finishGame} text={this.state.playSubmissions}/>
 
       </div>
     );

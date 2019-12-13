@@ -47,7 +47,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.state.player  }</h3>
+        <h3>Player Submission Form for Player #{ this.state.player  }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.addLineCallback} >
           <div className="PlayerSubmissionForm__poem-inputs">
