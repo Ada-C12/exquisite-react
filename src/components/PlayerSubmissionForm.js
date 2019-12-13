@@ -23,6 +23,10 @@ class PlayerSubmissionForm extends Component {
       if (!field.key) {
         return field
       } else {
+        let status ="PlayerSubmissionFormt__input--invalid"
+        if (this.state[field.key] !== '') {
+          status = "fun stuff"
+        }
         return (
           <input
             key={i}
@@ -31,6 +35,7 @@ class PlayerSubmissionForm extends Component {
             type='text'
             onChange={this.onInputChange}
             value={this.state[field.key]}
+            className={status}
           />
         )
       }
