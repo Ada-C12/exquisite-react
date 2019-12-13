@@ -13,6 +13,7 @@ class Game extends Component {
       submissions: [],
       lastSubmission: {},
       player: 1,
+      showPoem: false, 
     }
   };
 
@@ -23,7 +24,8 @@ class Game extends Component {
     submissions.push(submission);
     this.setState({
       submissions,
-      player: this.state.player + 1
+      player: this.state.player + 1,
+      showSubmission: true,
     })
   };
 
@@ -35,9 +37,16 @@ class Game extends Component {
     this.setState({
       lastSubmission,
     });
-
-    console.log(this.state.lastSubmission)
   }
+
+  revealPoem = (event) => {
+    event.preventDefault();
+    if (this.state.submissions.length > 0) {
+      this.setState({
+        showPoem: true
+      });
+    };
+  };
 
 
   render() {
@@ -62,11 +71,21 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission submission={this.state.lastSubmission}/>
+        <RecentSubmission 
+          submission={this.state.lastSubmission} 
+          showSubm={this.state.showSubmission} />
 
-        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} lastSubmissionCallback={this.lastSubmission} player={this.state.player} fields={FIELDS}/>
+        <PlayerSubmissionForm 
+          addSubmissionCallback={this.addSubmission} 
+          lastSubmissionCallback={this.lastSubmission} 
+          player={this.state.player} 
+          fields={FIELDS}/>
 
-        <FinalPoem poems={this.state.submissions}/>
+        <FinalPoem 
+          poems={this.state.submissions} 
+          revealPoem={this.revealPoem} 
+          showPoem={this.state.showPoem}
+          />
 
       </div>
     );
