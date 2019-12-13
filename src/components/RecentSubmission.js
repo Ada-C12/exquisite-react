@@ -12,7 +12,7 @@ const RecentSubmission = (props) => {
 }
 
 RecentSubmission.propTypes = {
-  recentSubmission: PropTypes.string
+  recentSubmission: PropTypes.string.isRequired
 };
 
 export default RecentSubmission;
