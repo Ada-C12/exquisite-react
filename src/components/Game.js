@@ -8,6 +8,22 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      lines: [],
+      ready: false,
+    }
+  }
+
+  addLine = (line) =>{
+    const lines = this.state.lines;
+    lines.push(line);
+
+    this.setState({ lines });
+  }
+
+  finalSubmit = () => {
+    this.setState({ ready: true })
   }
 
   render() {
@@ -32,11 +48,19 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { this.state.lines.length > 0 && !this.state.ready ?
+          <RecentSubmission recentLine={ this.state.lines[this.state.lines.length - 1] } />
+          :
+          ''
+        }
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        { this.state.ready?
+          ''
+          :
+          <PlayerSubmissionForm addLineCallback={this.addLine} id={ (this.state.lines.length + 1) }/>
+        }
+        
+        <FinalPoem poem={ this.state.lines } ready={ this.state.ready } onFinalSubmit={ this.finalSubmit }/>
 
       </div>
     );
@@ -71,6 +95,6 @@ const FIELDS = [
     placeholder: 'noun',
   },
   ".",
-];
+]
 
 export default Game;
