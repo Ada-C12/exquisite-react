@@ -47,7 +47,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm onFormSubmit={this.onPlayerSubmit}/>
 
-        <FinalPoem />
+        <FinalPoem sentences={this.state.sentences}/>
 
       </div>
     );
