@@ -1,36 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
-  
-  const submissions = props.finalPlayerInput;
-  // console.log(finalPoem);
-  // why does this show in the console when I hit "submit" button?
+class FinalPoem extends Component {
 
-  
-  const poemContent = submissions.map((line, i) => {
-    return <p key={ i }>{ line }</p>;
-    // why can I use tags here?
-  });
+  constructor(props) {
+    super(props);
 
-  const onFinalClick = (event) => {
-    return submissions
-    // can't render an object, only components which render itself. YOu can't render an array. 
-  };
+    this.state = {
+      isClicked: false
+    }
+  }
 
-  return (
-    <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+  render () {
+    const poemContent = this.props.finalPlayerInput.map((line, i) => {
+      return <p key={ i }>{ line }</p>;
+      // why can I use tags here?
+    });
 
-      </section>
+    return (
+      <div className="FinalPoem">
+        <section className="FinalPoem__poem">
+          <h3>Final Poem</h3>
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={onFinalClick}/>
-        <ul>{poemContent}</ul>
+        </section>
+
+        <div className="FinalPoem__reveal-btn-container">
+          {this.props.isPoemSubmitted ? <ul>{poemContent}</ul>: <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={this.props.onPoemSubmittedCallback}/>}
+          
+          {/* <ul>{poemContent}</ul> */}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FinalPoem;

@@ -11,8 +11,17 @@ class Game extends Component {
 
     this.state = {
       playerInput: [],
+      isPoemSubmitted: false,
     }
   }
+
+
+  onPoemSubmittedCallback = () => {
+    this.setState({
+      isPoemSubmitted: true,
+    })
+  }
+
 
   addPlayerInput = (newInput) => {
     const {playerInput} = this.state
@@ -37,6 +46,12 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const recentSubmission = <RecentSubmission
+    latestSubmission={this.state.playerInput[this.state.playerInput.length-1]}/>
+
+    const playerSubmissionForm = <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}
+    playerNumber={this.state.playerInput.length}/>
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -48,15 +63,13 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        
+        {this.state.isPoemSubmitted ? <div/>: recentSubmission}
+        {this.state.isPoemSubmitted ? <div/>: playerSubmissionForm}
 
-        <RecentSubmission />
-
-        <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}
-        playerNumber={this.state.playerInput.length}/>
-
-
-        <FinalPoem finalPlayerInput={this.state.playerInput}/>
-
+        <FinalPoem onPoemSubmittedCallback={this.onPoemSubmittedCallback}
+        isPoemSubmitted={this.state.isPoemSubmitted}
+        finalPlayerInput={this.state.playerInput}/>
       </div>
     );
   }

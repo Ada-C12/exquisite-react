@@ -57,7 +57,7 @@ class PlayerSubmissionForm extends Component {
   
     // what is this saying exactly?
 
-    const newSubmission = `The ${adj1} ${adv} ${verb} the ${adj2} ${noun2}`
+    const newSubmission = `The ${adj1} ${noun1} ${adv} ${verb} the ${adj2} ${noun2} .`
     
     this.props.addPlayerInputCallback(newSubmission);
     this.resetState();
