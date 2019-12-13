@@ -2,51 +2,58 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-
+  
   constructor(props) {
     super(props);
-
-    this.state = {
-      adjectiveOne: '',
-      nounOne: '',
-      adverb: '',
-      verb: '',
-      adjectiveTwo: '',
-      nounTwo: ''
-    }
+    this.state = { fields: this.props.format }
   }
 
-  onChange = (event) => {
-    const { name, value } = event.target;
-    const newState = {};
-    newState[name] = value;
-    this.setState(newState);
+  onChange = (event, i) => {
+    const { value } = event.target;
+    const newState = this.state.fields;
+    newState[i]["entry"] = value;
+    this.setState({fields: newState});
   }
 
-  validate = (name) => {
-    return this.state[name].match(/.+/);
+  validate = (i) => {
+    return this.state.fields[i]["entry"].match(/.+/);
   }
 
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    //validate
+    const newSubmission = this.state.fields.map((field) => {
+      if (field.key) {
+        return field.entry;
+      } else {
+        return field;
+      }
+    }).join(" ");
 
-    const newSubmission = `The ${this.state.adjectiveOne} ${this.state.nounOne} ${this.state.adverb} ${this.state.verb} the ${this.state.adjectiveTwo} ${this.state.nounTwo}.`
+    const newFields = this.state.fields;
+    
+    newFields.forEach(field => {
+      if (field.entry) { 
+        field.entry = "" 
+      } 
+    });
 
-    this.setState({
-      adjectiveOne: '',
-      nounOne: '',
-      adverb: '',
-      verb: '',
-      adjectiveTwo: '',
-      nounTwo: ''
-    })
+    this.setState({ fields: newFields });
 
-    this.props.submitFormCallback(newSubmission)
+    this.props.submitFormCallback(newSubmission);
   }
 
   render() {
+
+    const formElements = this.props.format.map((field, i) => {
+    if (field.key) {
+      return (
+        <input key={i} placeholder={field.placeholder} name={field.key} value={this.state.fields[i]["entry"]} type="text" onChange={(e) => this.onChange(e, i)} className={this.validate(i) ? '' : 'PlayerSubmissionForm__input--invalid'}/>
+        )
+      } else { 
+        return (
+        <span key={i}>{field}</span>) }
+    })
 
     return (
       <div className="PlayerSubmissionForm">
@@ -55,27 +62,7 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            <span>The</span>
-
-            <input placeholder="adjective" name="adjectiveOne" value={this.state.adjectiveOne} type="text" onChange={this.onChange} 
-            className={this.validate("adjectiveOne") ? "" : "PlayerSubmissionForm__input--invalid"}
-            />
-
-            <input placeholder="noun" name="nounOne" value={this.state.nounOne} type="text" onChange={this.onChange} className={this.validate("nounOne") ? "" : "PlayerSubmissionForm__input--invalid"} />
-
-            <input placeholder="adverb" type="text" name="adverb" value={this.state.adverb}onChange={this.onChange} className={this.validate("adverb") ? "" : "PlayerSubmissionForm__input--invalid"} />
-
-            <input placeholder="verb" type="text" name="verb" value={this.state.verb} onChange={this.onChange} className={this.validate("verb") ? "" : "PlayerSubmissionForm__input--invalid"} />
-
-            <span>the</span>
-
-            <input placeholder="adjective" type="text" name="adjectiveTwo" value={this.state.adjectiveTwo} onChange={this.onChange} className={this.validate("adjectiveTwo") ? "" : "PlayerSubmissionForm__input--invalid"} /> 
-
-            <input placeholder="noun" type="text" name="nounTwo" value={this.state.nounTwo}onChange={this.onChange} className={this.validate("nounTwo") ? "" : "PlayerSubmissionForm__input--invalid"} />
-
-            <span>.</span>
-
+            {formElements}
           </div>
 
           <div className="PlayerSubmissionForm__submit">
