@@ -24,9 +24,15 @@ class Game extends Component {
       }
     }).join(" ");
 
+    addSubmission = (submission) => {
+
+    };
+
     let submissionLength = this.state.submissions.length
 
     const recentSubmission = submissionLength > 0 && !this.state.isSubmitted ? <RecentSubmission submission={ this.state.submissions[submissionLength - 1] }/> : '';
+
+    const submissionForm = this.state.isSubmitted ? '' : <PlayerSubmissionForm submissionIndex={ submissionLength + 1 } sendSubmission={ this.addSubmission} fields={ FIELDS} />;
 
     return (
       <div className="Game">
@@ -42,9 +48,11 @@ class Game extends Component {
 
         { recentSubmission }
 
-        <RecentSubmission />
+        { submissionForm }
 
-        <PlayerSubmissionForm />
+        {/* <RecentSubmission /> */}
+
+        {/* <PlayerSubmissionForm /> */}
 
         <FinalPoem />
 
