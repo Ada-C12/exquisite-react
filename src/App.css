@@ -1,5 +1,6 @@
 .App {
   flex: .8;
+  background-color:rgb(255, 195, 184);
 }
 
 .App__header {
@@ -10,5 +11,5 @@
 
 .App__intro-text {
   font-size: 0.85rem;
-  color: gray;
+  color: tomato;
 }
