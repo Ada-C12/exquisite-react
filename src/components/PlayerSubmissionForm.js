@@ -14,7 +14,6 @@ class PlayerSubmissionForm extends Component {
       input4: '',
       input5: '',
       input6: '',
-      player: 1,
     }
   }
 
@@ -31,9 +30,7 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
     let line = ""
     //DRY up!
-    line = line.concat(`The ${this.state.input1} ${this.state.input2} ${this.state.input3} ${this.state.input4} the ${this.state.input5} ${this.state.input6}.`)
-    
-    const player = this.state.player + 1
+    line = line.concat(`The ${this.state.input1} ${this.state.input2} ${this.state.input3} ${this.state.input4} the ${this.state.input5} ${this.state.input6} .`)
     
     this.props.addLineCallback(line);
     this.setState({
@@ -43,16 +40,14 @@ class PlayerSubmissionForm extends Component {
       input4: '',
       input5: '',
       input6: '',
-      player: player,
     });
-    console.log(line)
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.state.player}</h3>
+        <h3>Player Submission Form for Player #{this.props.playerCount}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmitLine}>
           <div className="PlayerSubmissionForm__poem-inputs">
@@ -120,6 +115,7 @@ class PlayerSubmissionForm extends Component {
 
 PlayerSubmissionForm.propTypes = {
   addLineCallback: PropTypes.func.isRequired,
+  playerCount: PropTypes.number.isRequired,
 };
 
 export default PlayerSubmissionForm;
