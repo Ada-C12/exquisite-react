@@ -10,9 +10,10 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      inProgress: true,
+      poemComplete: false,
       recentSub: '',
       poem: [],
+      player: 1,
     }
   }
 
@@ -20,9 +21,14 @@ class Game extends Component {
     const poem = this.state.poem;
     const newLine = line;
     const recentSub = newLine;
+    const player = this.state.player + 1;
 
     poem.push(newLine)
-    this.setState({recentSub, poem,})
+    this.setState({recentSub, poem, player})
+  }
+
+  finishPoem = () => {
+    this.setState({poemComplete: true});
   }
 
 
@@ -48,11 +54,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        { this.state.recentSub ? <RecentSubmission recentSubText={this.state.recentSub}/> : "" }
+        { this.state.recentSub && !this.state.poemComplete ? <RecentSubmission recentSubText={this.state.recentSub}/> : "" }
 
-        <PlayerSubmissionForm addLineCallback={line => this.addLine(line)}/>
+        { this.state.poemComplete ? "" : <PlayerSubmissionForm addLineCallback={line => this.addLine(line)} playerCount={this.state.player}/> }
 
-        <FinalPoem />
+        <FinalPoem poemComplete={this.state.poemComplete} finishPoemCallback={this.finishPoem} poem={this.state.poem} />
 
       </div>
     );
