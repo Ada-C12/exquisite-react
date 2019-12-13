@@ -26,7 +26,7 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   }
 
-  onSubmitLine = (event) => {
+  sendSubmission = (event) => {
     event.preventDefault();
 
     const submission = {
@@ -49,7 +49,7 @@ class PlayerSubmissionForm extends Component {
         <h3>Player Submission Form for Player #{  }</h3>
 
         <form className='PlayerSubmissionForm__form'
-          onSubmit={this.onSubmitLine}>
+          onSubmit={this.sendSubmission}>
 
           <div className='PlayerSubmissionForm__poem-inputs'>
 
