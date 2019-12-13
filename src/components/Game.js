@@ -8,7 +8,6 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
-    // Added by me
     this.state = {
       submissions:[], 
       finalPoem: false

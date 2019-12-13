@@ -43,7 +43,6 @@ class PlayerSubmissionForm extends Component {
     }
   }    
 
-
   render() {
     if (this.props.render === true) {
       return <div></div>
