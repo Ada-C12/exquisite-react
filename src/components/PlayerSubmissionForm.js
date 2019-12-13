@@ -6,14 +6,14 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      adj1: "",
-      noun1: "",
-      adv: "",
-      verb: "",
-      adj2: "",
-      noun2: "",
-    };
+    let newFields = {};
+
+    props.fields.forEach((element) => {
+      if (element.key)
+        newFields[element.key] = ""
+    })
+
+    this.state = newFields;
 
     this.validator = {
       text: /.+/,
