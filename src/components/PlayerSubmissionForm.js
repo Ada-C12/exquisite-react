@@ -7,6 +7,7 @@ class PlayerSubmissionForm extends Component {
     super(props);
 
     this.state = {
+      
       adj1: '',
       noun1: '',
       adv: '',
@@ -55,8 +56,10 @@ class PlayerSubmissionForm extends Component {
     const {adj1, noun1, adv, verb, adj2, noun2} = this.state;
   
     // what is this saying exactly?
+
+    const newSubmission = `The ${adj1} ${adv} ${verb} the ${adj2} ${noun2}`
     
-    this.props.addPlayerInputCallback(this.state);
+    this.props.addPlayerInputCallback(newSubmission);
     this.resetState();
   }
 

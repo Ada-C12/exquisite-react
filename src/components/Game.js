@@ -17,10 +17,12 @@ class Game extends Component {
   addPlayerInput = (newInput) => {
     const {playerInput} = this.state
 
-
     playerInput.push(newInput);
 
     this.setState({
+      // always change state through set state
+      // if I didn't have this, the state wouldn't be change, it would only
+      // change the local variable 
       playerInput
     })
   }
@@ -52,7 +54,9 @@ class Game extends Component {
         <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}
         playerNumber={this.state.playerInput.length}/>
 
-        <FinalPoem />
+
+        <FinalPoem finalPlayerInput={this.state.playerInput}/>
+
       </div>
     );
   }
