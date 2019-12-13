@@ -4,14 +4,68 @@ import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
+const FIELDS = [
+  "The",
+  {
+    key: 'adj1',
+    placeholder: 'adjective',
+    name: 'adjectiveFirst',
+  },
+  {
+    key: 'noun1',
+    placeholder: 'noun',
+    name: 'nounFirst'
+  },
+  {
+    key: 'adv',
+    placeholder: 'adverb',
+    name: 'adverb'
+  },
+  {
+    key: 'verb',
+    placeholder: 'verb',
+    name: 'verb'
+  },
+  "the",
+  {
+    key: 'adj2',
+    placeholder: 'adjective',
+    name: 'adjectiveSecond'
+  },
+  {
+    key: 'noun2',
+    placeholder: 'noun',
+    name: 'nounSecond'
+  },
+  ".",
+];
+
 class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      poem: [],
+      showPoem: false
+    };
   }
 
-  render() {
-
+  addLineToPoem = (poemLine) => {
+    this.setState((prevState) => ({
+      poem: [
+        ...prevState.poem,
+        poemLine
+      ]
+    }));
+  }
+ // ... is saying: in this spot on the code, take all the elements on the array and add them one by one
+ // prevState(variable name) will always give you the most current version of state
+  handleDisplayPoem = () => {
+    this.setState({ showPoem: true });
+  } 
+ 
+ render() {
+    console.log(this.state.poem)
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -32,45 +86,23 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {!this.state.showPoem && (
+          <>
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        <RecentSubmission lastLine={this.state.poem[this.state.poem.length -1]}/>
+      
+        <PlayerSubmissionForm fields={FIELDS} onSubmitLine={this.addLineToPoem} currentPlayer={this.state.poem.length + 1} />
+        </>
+        )}
+        <FinalPoem 
+        poem={this.state.poem}
+        showPoem={this.state.showPoem}
+        onDisplayPoem={this.handleDisplayPoem}
+        />
 
       </div>
     );
   }
 }
-
-const FIELDS = [
-  "The",
-  {
-    key: 'adj1',
-    placeholder: 'adjective',
-  },
-  {
-    key: 'noun1',
-    placeholder: 'noun',
-  },
-  {
-    key: 'adv',
-    placeholder: 'adverb',
-  },
-  {
-    key: 'verb',
-    placeholder: 'verb',
-  },
-  "the",
-  {
-    key: 'adj2',
-    placeholder: 'adjective',
-  },
-  {
-    key: 'noun2',
-    placeholder: 'noun',
-  },
-  ".",
-];
 
 export default Game;
