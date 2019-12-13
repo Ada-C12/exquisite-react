@@ -8,10 +8,31 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissions: [],
+      mostRecentPoem: undefined,
+      gameIsOver: false,
+    }
+  }
+
+  addSubmission = (submission) => {
+    const mostRecentPoem = submission;
+    const submissions = this.state.submissions;
+    submissions.push(submission);
+
+    this.setState({
+      submissions,
+      mostRecentPoem,
+    });
+  }
+
+  onButtonClick = () => {
+    this.setState({
+      gameIsOver: true,
+    })
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -19,6 +40,19 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const mostRecentSubmission = (!this.state.gameIsOver && this.state.mostRecentPoem !== undefined) ?
+      (<RecentSubmission
+        mostRecentPoem={this.state.mostRecentPoem}
+        gameIsOver={this.state.gameIsOver}
+      />) : null;
+
+
+    const submissionForm = (!this.state.gameIsOver) ?
+      (<PlayerSubmissionForm
+        addSubmissionCallBack={this.addSubmission}
+        player={this.state.submissions.length + 1}
+        fields={FIELDS} />) : null;
 
     return (
       <div className="Game">
@@ -28,15 +62,15 @@ class Game extends Component {
 
         <p>Please follow the following format for your poetry submission:</p>
 
-        <p className="Game__format-example">
-          { exampleFormat }
-        </p>
+        <p className="Game__format-example">{exampleFormat}</p>
 
-        <RecentSubmission />
+        {mostRecentSubmission}
+        {submissionForm}
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        <FinalPoem
+          allSubmissions={this.state.submissions}
+          gameIsOver={this.state.gameIsOver}
+          onClickCallBack={this.onButtonClick} />
 
       </div>
     );
