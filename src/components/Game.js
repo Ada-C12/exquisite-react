@@ -48,10 +48,18 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { this.state.lines.length > 0 && !this.state.ready ?
+          <RecentSubmission recentLine={ this.state.lines[this.state.lines.length - 1] } />
+          :
+          ''
+        }
 
-        <PlayerSubmissionForm addLineCallback={this.addLine} id={ (this.state.lines.length + 1) }/>
-
+        { this.state.ready?
+          ''
+          :
+          <PlayerSubmissionForm addLineCallback={this.addLine} id={ (this.state.lines.length + 1) }/>
+        }
+        
         <FinalPoem poem={ this.state.lines } ready={ this.state.ready } onFinalSubmit={ this.finalSubmit }/>
 
       </div>
