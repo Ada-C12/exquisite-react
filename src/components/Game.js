@@ -8,9 +8,27 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [],
+      allPoemLines: false,
+    };
   }
 
+  addSubmission = (line) => {
+    const {submissions} = this.state;
+    submissions.push(line);
+    this.setState(submissions);
+
+  } 
+
+  revealPoem = () => {
+    this.setState({allPoemLines: true})
+  }
+
+
   render() {
+    console.log(this.state)
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -19,6 +37,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+
 
     return (
       <div className="Game">
@@ -32,11 +52,24 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          allLines={this.state.submissions}
+          allPoemLines={this.state.allPoemLines}
 
-        <PlayerSubmissionForm />
+        />
 
-        <FinalPoem />
+        <PlayerSubmissionForm 
+          fieldFormat={FIELDS}
+          updatedSubmissionCallback={this.addSubmission}
+          allPoemLines={this.state.allPoemLines}
+
+        />
+
+        <FinalPoem
+          allLines={this.state.submissions}
+          revealPoemCallback={this.revealPoem}
+          allPoemLines={this.state.allPoemLines}
+        />
 
       </div>
     );

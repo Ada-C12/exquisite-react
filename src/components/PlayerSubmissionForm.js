@@ -1,38 +1,103 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import { placeholder } from '@babel/types';
 
 class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+      count: 1,
+    };
+  }
+
+  onInputChange = (event) => {
+    const updatedSubmission = {};
+
+    const field = event.target.name;
+    const value = event.target.value;
+
+    updatedSubmission[field] = value;
+    this.setState(updatedSubmission);
+
+  }
+
+  onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    const thisFormat = this.props.fieldFormat.map((field) => {
+      if (field.key) {
+        return this.state[field.key];
+      } else {
+        return field;
+      }
+    }).join(" ");
+
+    this.props.updatedSubmissionCallback({thisFormat})
+
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+      count: this.state.count + 1
+    });
   }
 
   render() {
+    const lineFormat = this.props.fieldFormat.map((field, i) => {
+      if (field.key) {
+        return (
+          <input
+          key={i}
+          name={field.key}
+          placeholder={field.placeholder}
+          type="text"
+          onChange={this.onInputChange}
+          value={this.state[field.key]}
+          className={this.state[field.key].length<1 ? "PlayerSubmissionForm__poem-invalid" : "PlayerSubmissionFormt__input--valid"}
+          />
+        )
+      } else {
+        return field;
+      }
+    });
 
-    return (
-      <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+    if(this.props.allPoemLines) {
+      return '';
+    } else {
+      return (
+        <div className="PlayerSubmissionForm">
+          <h3>Player Submission Form for Player #{ this.state.count }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+          <form className="PlayerSubmissionForm__form" >
 
-          <div className="PlayerSubmissionForm__poem-inputs">
+            <div className="PlayerSubmissionForm__poem-inputs">
+              
+            {lineFormat}
 
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
+            </div>
 
-          </div>
-
-          <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
-          </div>
-        </form>
-      </div>
+            <div className="PlayerSubmissionForm__submit">
+              <input
+              type="submit"
+              value="Submit Line"
+              className="PlayerSubmissionForm__submit-btn"
+              onClick={this.onSubmitHandler} />
+            </div>
+          </form>
+        </div>
     );
-  }
+  }}
 }
 
 export default PlayerSubmissionForm;
