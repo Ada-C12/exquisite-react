@@ -5,7 +5,7 @@ import './RecentSubmission.css';
 function showLine(props) {
   if (props.recentSubmissionWordsArray) {
     return (
-      <div>
+      <span>
       The&nbsp;
         {props.recentSubmissionWordsArray[0]}&nbsp;
         {props.recentSubmissionWordsArray[1]}&nbsp;
@@ -15,7 +15,7 @@ function showLine(props) {
         {props.recentSubmissionWordsArray[5]}
         .
         {/*magical spaces: https://stackoverflow.com/questions/46656476/rendering-empty-space-in-react */}
-        </div> 
+        </span> 
     );
   } else {
     return null;
@@ -28,8 +28,6 @@ const RecentSubmission = (props) => {
       <h3>The Most Recent Submission</h3>
       <p className="RecentSubmission__submission">
         {showLine(props)}
-      
-      
       </p>
     </div>
   );

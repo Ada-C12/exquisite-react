@@ -18,7 +18,6 @@ class Game extends Component {
     this.setState((state, props) => ({
       playerInputs: [...state.playerInputs, inputWordsArray]
     }));
-    console.log(inputWordsArray);
   }
 
   render() {
@@ -47,7 +46,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm playerNumber={this.state.playerInputs.length + 1} addPlayerInputWordsArray={this.addPlayerInputWordsArray} />
 
-        <FinalPoem />
+        <FinalPoem finalPoemLines= {this.state.playerInputs}/>
 
       </div>
     );
