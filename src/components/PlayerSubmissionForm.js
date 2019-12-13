@@ -13,8 +13,7 @@ class PlayerSubmissionForm extends Component {
       adjectiveSecond: '',
       nounSecond: ''
     };
-  }	 
-
+  }
 
   handleChange = (event) => {
     const newState = {};
