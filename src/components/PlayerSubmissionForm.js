@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
 
@@ -14,9 +15,9 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-    }
+    };
 
-
+    this.isValid = false
   }
 
   resetState = () => {
@@ -45,6 +46,9 @@ class PlayerSubmissionForm extends Component {
     updatedState[field] = value;
 
     this.setState(updatedState); 
+    this.isValid = true
+
+    
   }
 
   onSubmit = (event) => {
@@ -79,7 +83,7 @@ class PlayerSubmissionForm extends Component {
             <input 
               placeholder="adjective"
               type="text" 
-              className="PlaySubmissionForm_input--invalid"
+              className={this.isValid ? "PlaySubmissionForm__input" : "PlayerSubmissionFormt__input--invalid"}
               onChange={this.onFormChange}
               id="adj1"
               value={this.state.adj1}
@@ -88,7 +92,7 @@ class PlayerSubmissionForm extends Component {
             <input 
               placeholder="noun"
               type="text" 
-              className="PlaySubmissionForm_input--invalid"
+              className={this.isValid ? "PlaySubmissionForm__input" : "PlayerSubmissionFormt__input--invalid"}
               onChange={this.onFormChange}
               id="noun1"
               value={this.state.noun1}
@@ -96,7 +100,7 @@ class PlayerSubmissionForm extends Component {
             <input 
               placeholder="adverb"
               type="text" 
-              className="PlaySubmissionForm_input--invalid"
+              className={this.isValid ? "PlaySubmissionForm__input" : "PlayerSubmissionFormt__input--invalid"}
               onChange={this.onFormChange}
               id="adv"
               value={this.state.adv}
@@ -104,7 +108,7 @@ class PlayerSubmissionForm extends Component {
             <input 
               placeholder="verb"
               type="text" 
-              className="PlaySubmissionForm_input--invalid"
+              className={this.isValid ? "PlaySubmissionForm__input" : "PlayerSubmissionFormt__input--invalid"}
               onChange={this.onFormChange}
               id="verb"
               value={this.state.verb}
@@ -112,7 +116,7 @@ class PlayerSubmissionForm extends Component {
             <input 
               placeholder="adjective"
               type="text" 
-              className="PlaySubmissionForm_input--invalid"
+              className={this.isValid ? "PlaySubmissionForm__input" : "PlayerSubmissionFormt__input--invalid"}
               onChange={this.onFormChange}
               id="adj2"
               value={this.state.adj2}
@@ -121,7 +125,7 @@ class PlayerSubmissionForm extends Component {
             <input 
               placeholder="noun"
               type="text" 
-              className="PlaySubmissionForm_input--invalid"
+              className={this.isValid ? "PlaySubmissionForm__input" : "PlayerSubmissionFormt__input--invalid"}
               onChange={this.onFormChange}
               id="noun2"
               value={this.state.noun}
@@ -135,6 +139,11 @@ class PlayerSubmissionForm extends Component {
       </div>
     );
   }
+}
+
+PlayerSubmissionForm.propTypes = {
+  addPlayerInputCallback: PropTypes.isRequired,
+  playerNumber: PropTypes.number 
 }
 
 export default PlayerSubmissionForm;
