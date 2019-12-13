@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
 
@@ -20,6 +21,10 @@ class PlayerSubmissionForm extends Component {
     this.setState({ 
       [event.target.name]: event.target.value,
     });
+  }
+
+  fieldValid = (fieldName) => {
+    return this.state[fieldName] !== '';
   }
 
   onFormSubmit = (event) => {
@@ -56,6 +61,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.adj1}
               type="text"
               placeholder="adjective"
+              className={this.fieldValid("adj1")? "" : "PlayerSubmissionFormt__input--invalid"}
             />
             <input
               onChange={this.onFieldChange}
@@ -63,6 +69,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.noun1}
               type="text"
               placeholder="noun"
+              className={this.fieldValid("noun1")? "" : "PlayerSubmissionFormt__input--invalid"}
             />
             <input
               onChange={this.onFieldChange}
@@ -70,6 +77,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.adv}
               type="text"
               placeholder="adverb"
+              className={this.fieldValid("adv")? "" : "PlayerSubmissionFormt__input--invalid"}
             />
             <input
               onChange={this.onFieldChange}
@@ -77,6 +85,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.verb}
               type="text"
               placeholder="verb"
+              className={this.fieldValid("verb")? "" : "PlayerSubmissionFormt__input--invalid"}
             />
             the
             <input
@@ -85,6 +94,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.adj2}
               type="text"
               placeholder="adjective"
+              className={this.fieldValid("adj2")? "" : "PlayerSubmissionFormt__input--invalid"}
             />
             <input
               onChange={this.onFieldChange}
@@ -92,6 +102,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.noun2}
               type="text"
               placeholder="noun"
+              className={this.fieldValid("noun2")? "" : "PlayerSubmissionFormt__input--invalid"}
             />.
           </div>
 
@@ -102,6 +113,11 @@ class PlayerSubmissionForm extends Component {
       </div>
     );
   }
+}
+
+PlayerSubmissionForm.propTypes = {
+  addLineCallback: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 }
 
 export default PlayerSubmissionForm;

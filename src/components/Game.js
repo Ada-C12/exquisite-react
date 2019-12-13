@@ -95,6 +95,6 @@ const FIELDS = [
     placeholder: 'noun',
   },
   ".",
-];
+]
 
 export default Game;
