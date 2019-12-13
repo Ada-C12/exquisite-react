@@ -13,7 +13,7 @@ class PlayerSubmissionForm extends Component {
       adjectiveSecond: '',
       nounSecond: ''
     };
-  }	  
+  }	 
 
 
   handleChange = (event) => {
@@ -30,7 +30,7 @@ class PlayerSubmissionForm extends Component {
         return `${acc} ${this.state[field.name].trim()}`;
       }
       else {
-        if (i > 0 && i < (this.props.fields.length - 1)) 
+        if (i > 0 && i < (this.props.fields.length - 1)) {
           return `${acc} ${field}`;
         }
         return `${acc}${field}`;
@@ -48,60 +48,6 @@ class PlayerSubmissionForm extends Component {
       nounSecond: ''
     });
   };
-
-
-
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       adjective1: "",
-//       noun1: "", 
-//       adverb: "", 
-//       verb: "", 
-//       adjective2: "",
-//       noun2: ""
-//     };
-//   }
-
-//   handleChange = (event) => {
-//     this.setState({ [event.target.name]: event.target.value });
-//   }
-
-//   handleClick = (event) => {
-//     event.preventDefault();
-
-//     const sentence = this.props.fields.reduce((acc, field, i) => {
-//       if (field.key) {
-//         return `${acc} $this.state[field.name].trim()]`;
-//       } 
-//       else {
-//         if (i > 0 && i < (this.props.fields.length - 1))
-
-//         return `${acc} ${field}`;
-//       } 
-//       return `${acc}${field}`;
-//     }
-//   }, '');
-
-//     //   adjective1,
-//     //   noun1, 
-//     //   adverb, 
-//     //   verb, 
-//     //   adjective2,
-//     //   noun2
-//     // } = this.state;
-//     // const poemLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}.`;
-    
-//     this.props.onSubmitLine(poemLine);
-//     this.setState({
-//       adjective1: "",
-//       noun1: "", 
-//       adverb: "", 
-//       verb: "", 
-//       adjective2: "",
-//       noun2: ""
-//     });
-//   
 
   render() {
 

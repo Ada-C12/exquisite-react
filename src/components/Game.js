@@ -9,27 +9,33 @@ const FIELDS = [
   {
     key: 'adj1',
     placeholder: 'adjective',
+    name: 'adjectiveFirst',
   },
   {
     key: 'noun1',
     placeholder: 'noun',
+    name: 'nounFirst'
   },
   {
     key: 'adv',
     placeholder: 'adverb',
+    name: 'adverb'
   },
   {
     key: 'verb',
     placeholder: 'verb',
+    name: 'verb'
   },
   "the",
   {
     key: 'adj2',
     placeholder: 'adjective',
+    name: 'adjectiveSecond'
   },
   {
     key: 'noun2',
     placeholder: 'noun',
+    name: 'nounSecond'
   },
   ".",
 ];
@@ -83,7 +89,7 @@ class Game extends Component {
         {!this.state.showPoem && (
           <>
 
-        <RecentSubmission onSubmitLine={this.state.poem[this.state.poem.length -1]}/>
+        <RecentSubmission lastLine={this.state.poem[this.state.poem.length -1]}/>
       
         <PlayerSubmissionForm fields={FIELDS} onSubmitLine={this.addLineToPoem} currentPlayer={this.state.poem.length + 1} />
         </>
