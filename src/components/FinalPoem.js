@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = (props) => {
 
@@ -25,6 +26,13 @@ const FinalPoem = (props) => {
       {buttonOrPoem}
     </div>
   );
-}
+};
+
+FinalPoem.propTypes = {
+  isSubmitted: PropTypes.func.isRequired,
+  showPoem: PropTypes.func.isRequired,
+  submissions: PropTypes.array,
+
+};
 
 export default FinalPoem;
