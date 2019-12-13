@@ -39,7 +39,8 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      poem: []
+      poem: [],
+      showPoem: false
     };
   }
 
@@ -53,7 +54,11 @@ class Game extends Component {
   }
  // ... is saying: in this spot on the code, take all the elements on the array and add them one by one
  // prevState(variable name) will always give you the most current version of state
-  render() {
+  handleDisplayPoem = () => {
+    this.setState({ showPoem: true });
+  } 
+ 
+ render() {
     console.log(this.state.poem)
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -75,11 +80,19 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission onSubmitLine={this.state.poem}/>
+        {!this.state.showPoem && (
+          <>
 
-        <PlayerSubmissionForm onSubmitLine={this.addLineToPoem} currentPlayer={this.state.poem.length + 1} />
-
-        <FinalPoem />
+        <RecentSubmission onSubmitLine={this.state.poem[this.state.poem.length -1]}/>
+      
+        <PlayerSubmissionForm fields={FIELDS} onSubmitLine={this.addLineToPoem} currentPlayer={this.state.poem.length + 1} />
+        </>
+        )}
+        <FinalPoem 
+        poem={this.state.poem}
+        showPoem={this.state.showPoem}
+        onDisplayPoem={this.handleDisplayPoem}
+        />
 
       </div>
     );

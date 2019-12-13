@@ -4,44 +4,104 @@ import './PlayerSubmissionForm.css';
 class PlayerSubmissionForm extends Component {
 
   constructor(props) {
-    super(props);
+    super(props);	    super(props);
     this.state = {
-      adjective1: "",
-      noun1: "", 
-      adverb: "", 
-      verb: "", 
-      adjective2: "",
-      noun2: ""
+      adjectiveFirst: '',
+      nounFirst: '',
+      adverb: '',
+      verb: '',
+      adjectiveSecond: '',
+      nounSecond: ''
     };
-  }
+  }	  
+
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+    const newState = {};
+    newState[event.target.name] = event.target.value;
+    this.setState(newState);
+    console.log(this.state);
+  };
 
   handleClick = (event) => {
-    const {
-      adjective1,
-      noun1, 
-      adverb, 
-      verb, 
-      adjective2,
-      noun2
-    } = this.state;
-    const poemLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}.`;
-    
     event.preventDefault();
+    const sentence = this.props.fields.reduce((acc, field, i) => {
+      if (field.key) {
+        return `${acc} ${this.state[field.name].trim()}`;
+      }
+      else {
+        if (i > 0 && i < (this.props.fields.length - 1)) 
+          return `${acc} ${field}`;
+        }
+        return `${acc}${field}`;
+      }
+    }, '');
 
-    this.props.onSubmitLine(poemLine);
+    this.props.onSubmitLine(sentence);
+
     this.setState({
-      adjective1: "",
-      noun1: "", 
-      adverb: "", 
-      verb: "", 
-      adjective2: "",
-      noun2: ""
+      adjectiveFirst: '',
+      nounFirst: '',
+      adverb: '',
+      verb: '',
+      adjectiveSecond: '',
+      nounSecond: ''
     });
-  }
+  };
+
+
+
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       adjective1: "",
+//       noun1: "", 
+//       adverb: "", 
+//       verb: "", 
+//       adjective2: "",
+//       noun2: ""
+//     };
+//   }
+
+//   handleChange = (event) => {
+//     this.setState({ [event.target.name]: event.target.value });
+//   }
+
+//   handleClick = (event) => {
+//     event.preventDefault();
+
+//     const sentence = this.props.fields.reduce((acc, field, i) => {
+//       if (field.key) {
+//         return `${acc} $this.state[field.name].trim()]`;
+//       } 
+//       else {
+//         if (i > 0 && i < (this.props.fields.length - 1))
+
+//         return `${acc} ${field}`;
+//       } 
+//       return `${acc}${field}`;
+//     }
+//   }, '');
+
+//     //   adjective1,
+//     //   noun1, 
+//     //   adverb, 
+//     //   verb, 
+//     //   adjective2,
+//     //   noun2
+//     // } = this.state;
+//     // const poemLine = `The ${adjective1} ${noun1} ${adverb} ${verb} the ${adjective2} ${noun2}.`;
+    
+//     this.props.onSubmitLine(poemLine);
+//     this.setState({
+//       adjective1: "",
+//       noun1: "", 
+//       adverb: "", 
+//       verb: "", 
+//       adjective2: "",
+//       noun2: ""
+//     });
+//   
 
   render() {
 
@@ -55,14 +115,34 @@ class PlayerSubmissionForm extends Component {
 
             {
               // Put your form inputs here... We've put in one below as an example
-            }
-            <span>The</span>
+          this.props.fields.map((field, i) => {
+            	if (field.key) {
+            	  return (
+                  <input
+              	  placeholder={field.placeholder}
+                  value={this.state[field.name]}
+                  type="text"
+                  name={field.name}
+                  onChange={this.handleChange}
+                  className={this.state[field.name] ? "" : "red"}
+                  key={field.name} 
+                      />
+                ); 
+                } 
+                else {
+                    return <span key={i}>{field}</span>;}
+                })
+              }    
+          </div>	         
+
+            {/* /* <span>The</span>
             <input
               name="adjective1"
               placeholder="adjective"
               type="text"
               value={this.state.adjective1}
               onChange={this.handleChange}
+              className={this.state[]}
             />
             <input
               name="noun1"
@@ -70,6 +150,7 @@ class PlayerSubmissionForm extends Component {
               type="text"
               value={this.state.noun1}
               onChange={this.handleChange}
+              className={this.state["noun1"]}
             />
             <input
               name="adverb"
@@ -77,6 +158,7 @@ class PlayerSubmissionForm extends Component {
               type="text"
               value={this.state.adverb}
               onChange={this.handleChange}
+              className={this.state["adverb1"]}
             />
             <input
               name="verb"
@@ -84,6 +166,7 @@ class PlayerSubmissionForm extends Component {
               type="text"
               value={this.state.verb}
               onChange={this.handleChange}
+              className={this.state["verb"]}
             /> 
             <span>the</span>
             <input
@@ -92,6 +175,7 @@ class PlayerSubmissionForm extends Component {
               type="text"
               value={this.state.adjective2}
               onChange={this.handleChange}
+              className={this.state["adjective2"]}
             />
             <input
               name="noun2"
@@ -99,11 +183,12 @@ class PlayerSubmissionForm extends Component {
               type="text"
               value={this.state.noun2}
               onChange={this.handleChange}
+              className={this.state["noun2"]}
             />
-            <span>.</span>
+            <span>.</span> */}
             
 
-          </div>
+          {/* </div> */} 
 
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" onClick={this.handleClick} />
