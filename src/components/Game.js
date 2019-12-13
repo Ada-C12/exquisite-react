@@ -13,12 +13,6 @@ class Game extends Component {
       finalPoem: [],
       displayPoem: false,
     }
-    // up here in state
-    // we will add a property for Recent Submission
-    // (which will be filled with the result of the submitted PlayerSubmissionForm)
-    // and a property for Final Poem
-    // (which will contain all the Recent Submissions)
-    // ((which will be pushed in everytime they're updated))
   }
   addRecentSubmission = (stanza) => {
     // add stanza to Game state
@@ -45,6 +39,14 @@ class Game extends Component {
       }
     }).join(" ");
 
+    if (this.state.displayPoem === true) {
+      return (
+        <div>
+          <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
+        </div>
+      )
+    } else {
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -64,7 +66,9 @@ class Game extends Component {
         <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
 
       </div>
-    );
+    )
+  }
+
   }
 }
 

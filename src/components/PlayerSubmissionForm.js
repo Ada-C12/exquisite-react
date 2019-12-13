@@ -66,6 +66,7 @@ class PlayerSubmissionForm extends Component {
                   name={wordInput}
                   onChange={this.updateWord}
                   placeholder={this.state[wordInput] === '' ? wordInput.slice('A', -1).slice('B') : this.state[wordInput]}
+                  value={this.state[wordInput]}
                   className={this.state[wordInput] === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input'}
                 />
             )

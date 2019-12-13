@@ -6,14 +6,12 @@ const FinalPoem = (props) => {
     props.revealPoemCallback();
   }
   const poemDisplay = props.finalPoem.map((stanza, i) => {
-    console.log(stanza);
     return (
       <p key={i}>
         {stanza}
       </p>
     )  
   })
-  console.log(props.displayPoem);
   
   if (props.displayPoem === true) {
     return (
