@@ -45,7 +45,7 @@ class Game extends Component {
 
         <RecentSubmission recentSubmissionWordsArray={this.state.playerInputs.slice(-1).pop()}  />
 
-        <PlayerSubmissionForm addPlayerInputWordsArray={this.addPlayerInputWordsArray} />
+        <PlayerSubmissionForm playerNumber={this.state.playerInputs.length + 1} addPlayerInputWordsArray={this.addPlayerInputWordsArray} />
 
         <FinalPoem />
 
