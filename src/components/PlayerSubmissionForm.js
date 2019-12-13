@@ -64,6 +64,7 @@ class PlayerSubmissionForm extends Component {
           type="text"
           onChange={this.onInputChange}
           value={this.state[field.key]}
+          className={this.state[field.key].length<1 ? "PlayerSubmissionForm__poem-invalid" : "PlayerSubmissionFormt__input--valid"}
           />
         )
       } else {
