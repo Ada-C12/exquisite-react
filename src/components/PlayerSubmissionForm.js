@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -120,8 +120,8 @@ class PlayerSubmissionForm extends Component {
   }
 }
 
-// PlayerSubmissionForm.propTypes = {
-//   makeOneSentenceCallback: PropTypes.func.isRequired,
-// };
+PlayerSubmissionForm.propTypes = {
+  makeOneSentenceCallback: PropTypes.func.isRequired,
+};
 
 export default PlayerSubmissionForm;

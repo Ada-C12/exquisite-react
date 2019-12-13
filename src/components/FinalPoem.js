@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
@@ -24,6 +25,12 @@ const FinalPoem = (props) => {
     </div>)
     )
   )
+}
+
+FinalPoem.propTypes = {
+  poem: PropTypes.arrayOf(PropTypes.string),
+  showPoem: PropTypes.func.isRequired,
+  togglePoemCallback: PropTypes.func.isRequired,
 }
 
 export default FinalPoem;
