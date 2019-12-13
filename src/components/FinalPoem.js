@@ -33,9 +33,7 @@ const FinalPoem = ({allSubmissions, gameFinished, finishGame}) => {
 
   return (
     <div className="FinalPoem">
-      {gameFinished ? poemBlock : ''}
-      {gameFinished ? '' : revealFinalBlock}
-
+      {gameFinished ? poemBlock : revealFinalBlock}
       
     </div>
   );
