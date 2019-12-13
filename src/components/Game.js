@@ -37,18 +37,6 @@ class Game extends Component {
 
   render() {
     const showPoem = this.state.showPoem;
-    const recentSubmission = this.state.allSubmissions
-    
-    let recentSub;
-    let form;
-
-    if (!showPoem) {
-      form = <PlayerSubmissionForm addLineCallback={this.addLine}/>
-      };
-
-    if (this.state.allSubmissions.length > 0 && !showPoem) {
-      recentSub = <RecentSubmission newLine={recentSubmission.slice(-1)[0]}/> 
-      }
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -70,9 +58,10 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
-        {recentSub}
 
-        {form}
+        { (this.state.allSubmissions.length > 0 && !showPoem) ? <RecentSubmission newLine={this.state.recentSubmission}/> : ''}
+
+        { (!showPoem ? <PlayerSubmissionForm addLineCallback={this.addLine}/> : '') }
 
         <FinalPoem allLines={this.state.allSubmissions} showPoem={this.state.showPoem} onClickShowPoemCallback={this.onClickShowPoem}/>
       </div>

@@ -93,7 +93,7 @@ class PlayerSubmissionForm extends Component {
         <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-            <div>The
+            <div>{"The "}
               <label htmlFor="adjective"></label>
               <input name="adjective" placeholder="adjective" onChange={this.onFormChange} 
               value={this.state.adjective} className={this.validate("adjective") ? "PlayerSubmissionForm__input--valid": "PlayerSubmissionForm__input--invalid"}
@@ -124,7 +124,7 @@ class PlayerSubmissionForm extends Component {
               />
             </div>
 
-            <div>the
+            <div>{"the "}
               <label htmlFor="adjective2"></label>
               <input name="adjective2" placeholder="adjective" 
               onChange={this.onFormChange} value={this.state.adjective2}
