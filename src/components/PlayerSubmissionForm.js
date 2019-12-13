@@ -16,6 +16,7 @@ class PlayerSubmissionForm extends Component {
       verb: '', 
       adj2: '', 
       noun2: '',
+      // the classes below are used to get the faint pink for blank displays
       adj1Class: 'invalid',
       noun1Class: 'invalid',
       adverbClass: 'invalid',
@@ -37,6 +38,7 @@ class PlayerSubmissionForm extends Component {
     //updated the state with the updatedState object
     this.setState(updatedState)
 
+    
     switch(field) {
       case "adj1":
         this.setState({adj1Class: 'valid'});
@@ -65,15 +67,13 @@ class PlayerSubmissionForm extends Component {
 
     event.preventDefault();
 
-    // this concatenates the line together
-    
+    // this concatenates the line together into a string
     let line = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adverb} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`
 
     //then, it uses the line to pass into the addLineCallback function, which will go back to Game
-
     this.props.addLineCallback(line);
 
-    //this resets the form for use next time
+    //this resets the form for use next time, including reseting the classes to their original, invalid values
     this.setState({
       adj1: '',
       noun1: '', 
@@ -89,9 +89,10 @@ class PlayerSubmissionForm extends Component {
       noun2Class: 'invalid',
     })
 
-    let inc = this.state.player
-    inc = inc + 1
-    this.setState({player: inc})
+    // this increments the player count
+    let increment = this.state.player
+    increment = increment + 1
+    this.setState({player: increment})
   }
 
   render() {
@@ -126,12 +127,6 @@ class PlayerSubmissionForm extends Component {
 
 PlayerSubmissionForm.propTypes = {
   addLineCallback: PropTypes.func.isRequired,
-  adj1: PropTypes.string.isRequired,
-  noun1: PropTypes.string.isRequired,
-  adverb: PropTypes.string.isRequired,
-  verb: PropTypes.string.isRequired,
-  adj2: PropTypes.string.isRequired,
-  noun2: PropTypes.string.isRequired,
 }
 
 export default PlayerSubmissionForm;
