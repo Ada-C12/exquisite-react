@@ -8,6 +8,36 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      latestSentence: '',
+      wholePoem: [],
+      showPoem: false
+    }
+  }
+
+  makeOneSentence = (words) => {
+    const sentence = `The ${words.adj1} ${words.noun1} ${words.adv} ${words.verb} the ${words.adj2} ${words.noun2}.`;
+    this.addToPoem(sentence);
+    this.setState({
+      latestSentence: sentence,
+    });
+    console.log(sentence);
+  }
+// Moved this out of makeOneSentence and made it a helper method for clarity
+  addToPoem = (toAdd) => {
+    this.state.wholePoem.push(toAdd);
+    this.setState({
+      wholePoem: this.state.wholePoem
+    })
+  }
+
+  togglePoem = () => {
+    let curStatus = this.state.showPoem
+    curStatus = !curStatus
+    this.setState({
+      showPoem: curStatus,
+    })
+    console.log(`showPoem changed to ${curStatus}`)
   }
 
   render() {
@@ -29,15 +59,20 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+        { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {
+        this.state.wholePoem.length > 0 &&
+        <RecentSubmission sentence={this.state.latestSentence}/>
+        }
 
-        <PlayerSubmissionForm />
+        {
+        this.state.showPoem === false &&
+        <PlayerSubmissionForm makeOneSentenceCallback={this.makeOneSentence}/>
+        }
 
-        <FinalPoem />
-
+        <FinalPoem poem={this.state.wholePoem} showPoem={this.state.showPoem} togglePoemCallback={this.togglePoem}/>
       </div>
     );
   }
