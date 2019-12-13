@@ -18,8 +18,6 @@ class Game extends Component {
   }
 
   onFormSubmission = (newSubmission) => {
-    console.log('received new submission in Game')
-
     const updatedSubmissionList = this.state.submissionList;
     updatedSubmissionList.push(newSubmission)
 
@@ -30,7 +28,6 @@ class Game extends Component {
       recentSubmission: updatedRecentSubmission,
       submissionList: updatedSubmissionList,
     })
-    console.log(FIELDS)
   }
 
   onEndGame = () => {
@@ -39,7 +36,6 @@ class Game extends Component {
       gameComplete: gameCompleteUpdate,
       recentSubmission: '',
     })
-    console.log('game is complete')
   }
 
   render() {
