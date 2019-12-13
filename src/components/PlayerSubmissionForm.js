@@ -81,10 +81,6 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
 
             { input }
-            
-            <input
-              placeholder="hm..."
-              type="text" />
 
           </div>
 

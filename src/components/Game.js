@@ -20,6 +20,10 @@ class Game extends Component {
     });
   };
 
+  showPoem = (event) => {
+
+  };
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -57,7 +61,11 @@ class Game extends Component {
 
         {/* <PlayerSubmissionForm /> */}
 
-        <FinalPoem />
+        <FinalPoem
+          isSubmitted={ this.state.isSubmitted }
+          showPoem={ this.showPoem } 
+          submissions={ this.state.submissions }
+          />
 
       </div>
     );
