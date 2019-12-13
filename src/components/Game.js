@@ -8,7 +8,24 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissions: [],
+      isSubmitted: false,
+    }
   }
+
+  addSubmission = (submission) => {
+    this.setState({
+      submissions: [ ...this.state.submissions, submission],
+    });
+  };
+
+  showPoem = (event) => {
+    event.preventDefault();
+    this.setState({
+      isSubmitted: true
+    });
+  };
 
   render() {
 
@@ -19,6 +36,13 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+
+    let submissionLength = this.state.submissions.length
+
+    const recentSubmission = submissionLength > 0 && !this.state.isSubmitted ? <RecentSubmission submission={ this.state.submissions[submissionLength - 1] }/> : '';
+
+    const submissionForm = this.state.isSubmitted ? '' : <PlayerSubmissionForm submissionIndex={ submissionLength + 1 } submitSubmission={ this.addSubmission} fields={ FIELDS} />;
 
     return (
       <div className="Game">
@@ -32,11 +56,19 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { recentSubmission }
 
-        <PlayerSubmissionForm />
+        { submissionForm }
 
-        <FinalPoem />
+        {/* <RecentSubmission /> */}
+
+        {/* <PlayerSubmissionForm /> */}
+
+        <FinalPoem
+          isSubmitted={ this.state.isSubmitted }
+          showPoem={ this.showPoem } 
+          submissions={ this.state.submissions }
+          />
 
       </div>
     );
