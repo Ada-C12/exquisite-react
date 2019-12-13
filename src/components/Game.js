@@ -16,14 +16,13 @@ class Game extends Component {
   }
 
   addVerse = (singlePoemVerse) => {
-    let poem = [ ...this.state.poem]
+    let lines = this.state.completedPoem;
     
-    poem.push(singlePoemVerse)
+    lines.push(singlePoemVerse);
     this.setState({
-      completedPoem: poem
+      lines
     });
-
-    }
+   }
 
   render() {
 
@@ -51,8 +50,8 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
-
+        <PlayerSubmissionForm addVerseCallBack={this.addVerse}
+        player={this.state.completedPoem.length} />
         <FinalPoem />
 
       </div>
