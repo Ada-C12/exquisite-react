@@ -54,6 +54,8 @@ class Game extends Component {
 
         <RecentSubmission 
           allLines={this.state.submissions}
+          allPoemLines={this.state.allPoemLines}
+
         />
 
         <PlayerSubmissionForm 

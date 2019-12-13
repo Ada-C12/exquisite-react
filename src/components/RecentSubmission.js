@@ -9,14 +9,16 @@ const RecentSubmission = (props) => {
     )
   })
   
-  if (recentLine.length < 1) {
+  if(props.allPoemLines) {
     return '';
+  } else if (recentLine.length < 1) {
+     return '';
   } else {
-  return (
-    <div className="RecentSubmission">
-      <h3>The Most Recent Submission</h3>
-      <p className="RecentSubmission__submission">{ recentLine.slice(-1) }</p>
-    </div>
+     return (
+      <div className="RecentSubmission">
+        <h3>The Most Recent Submission</h3>
+        <p className="RecentSubmission__submission">{ recentLine.slice(-1) }</p>
+      </div>
   )};
 }
 
