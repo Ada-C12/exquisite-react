@@ -19,11 +19,9 @@ class Game extends Component {
       addingLine.push(this.state.lines)
       addingLine.push(lineString)
       this.setState({lines: addingLine})
-      console.log(lineString)
   }
 
   finishPoem = () => {
-    console.log("blarg")
       this.setState({inplay: false})
   }
 
@@ -50,11 +48,13 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+        inplay = {this.state.inplay}
+        lines = {this.state.lines}
+        />
 
         <PlayerSubmissionForm 
           addLineCallback = {(lineString) => this.addLine(lineString)}
-          
         />
 
         <FinalPoem

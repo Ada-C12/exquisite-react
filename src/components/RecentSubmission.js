@@ -2,12 +2,24 @@ import React from 'react';
 import './RecentSubmission.css';
 
 const RecentSubmission = (props) => {
-  return (
-    <div className="RecentSubmission">
-      <h3>The Most Recent Submission</h3>
-      <p className="RecentSubmission__submission">{  }</p>
-    </div>
-  );
+
+  const lines = props.lines
+  const inplay = props.inplay
+  
+  if (inplay === false || lines.length === 0) {
+    return ( <div> </div> )
+  }
+
+  else {
+    return (
+      <div>
+        <div className="RecentSubmission">
+          <h3>The Most Recent Submission</h3>
+          <p className="RecentSubmission__submission">{lines[lines.length -1]}</p>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default RecentSubmission;
