@@ -8,6 +8,24 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      sentences: [],
+      completed: false
+    }
+  }
+
+  onPlayerSubmit = (submissionData) => {
+    this.setState({
+      sentences: this.state.sentences.concat(submissionData)
+    })
+
+  }
+
+  completePoem = () => {
+    this.setState({
+      completed: true
+    })
   }
 
   render() {
@@ -19,6 +37,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const lastIndex= this.state.sentences.length - 1
 
     return (
       <div className="Game">
@@ -32,11 +52,15 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={this.state.sentences[lastIndex]} />
+        {
+          !this.state.completed && 
+          <PlayerSubmissionForm onFormSubmit={this.onPlayerSubmit}/>
+        }
 
-        <PlayerSubmissionForm />
+        
 
-        <FinalPoem />
+        <FinalPoem sentences={this.state.sentences} completedGame={this.state.completed} onPoemComplete={this.completePoem}/>
 
       </div>
     );
