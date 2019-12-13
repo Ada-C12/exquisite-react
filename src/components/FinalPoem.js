@@ -1,6 +1,8 @@
 import React from 'react';
 import './FinalPoem.css';
 
+// state, props, any callbacks, event handlers, or helper functions (with the exception of Game component). However, not every render function may need to look like that in the end result. In fact, it is expected that the render functions change in order to accommodate the requirements (namely the ones about conditional rendering).
+
 const FinalPoem = (props) => {
 
   return (

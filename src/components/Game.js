@@ -8,7 +8,22 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      completedPoem: [],
+      poemSubmitted: false,
+    }
   }
+
+  addVerse = (singlePoemVerse) => {
+    let poem = [ ...this.state.poem]
+    
+    poem.push(singlePoemVerse)
+    this.setState({
+      completedPoem: poem
+    });
+
+    }
 
   render() {
 
@@ -19,6 +34,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+
 
     return (
       <div className="Game">
