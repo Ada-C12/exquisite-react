@@ -51,7 +51,6 @@ class PlayerSubmissionForm extends Component {
       playerCount: newPlayerCount
     })
     this.props.makeOneSentenceCallback(words);
-    console.log(words);
   }
 
   render() {
@@ -64,9 +63,6 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
             The
             <input
               className = {this.state.adj1 === '' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--invalid::placeholder'}

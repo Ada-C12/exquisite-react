@@ -2,12 +2,9 @@ import React from 'react';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
-  let formattedPoem = props.poem.map(line => {
-    return <p>{line}</p>;
+  let formattedPoem = props.poem.map((line, i) => {
+    return <p key={i}> {line} </p>;
   })
-  // if (props.showPoem === false) {
-  //   formattedPoem = []
-  // }
 
   const onClickTogglePoem = () => {
     props.togglePoemCallback();
