@@ -33,7 +33,6 @@ class Game extends Component {
 
 
   render() {
-    console.log(this.state.poem)
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -56,7 +55,7 @@ class Game extends Component {
 
         { this.state.recentSub && !this.state.poemComplete ? <RecentSubmission recentSubText={this.state.recentSub}/> : "" }
 
-        { this.state.poemComplete ? "" : <PlayerSubmissionForm addLineCallback={line => this.addLine(line)} playerCount={this.state.player}/> }
+        { this.state.poemComplete ? "" : <PlayerSubmissionForm addLineCallback={line => this.addLine(line)} playerCount={this.state.player} formFields={FIELDS}/> }
 
         <FinalPoem poemComplete={this.state.poemComplete} finishPoemCallback={this.finishPoem} poem={this.state.poem} />
 
