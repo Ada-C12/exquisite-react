@@ -8,9 +8,32 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [],
+      finished: false,
+    }
+  }
+
+  addSubmission = (submissionString) => {
+    const newSubmissions = this.state.submissions
+
+    newSubmissions.push(submissionString)
+
+    this.setState({
+      submissions: newSubmissions
+    })
+  }
+
+  finishGame = () => {
+    this.setState({
+      finished: true 
+    })
   }
 
   render() {
+
+    const currentPlayerNumber = this.state.submissions.length + 1
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -19,6 +42,12 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const lastSubmission = this.state.submissions[0] && this.state.finished === false ? 
+      <RecentSubmission
+        submissionLine={this.state.submissions[this.state.submissions.length - 1]}
+      />
+      : ''
 
     return (
       <div className="Game">
@@ -32,11 +61,21 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { lastSubmission }
 
-        <PlayerSubmissionForm />
+        { this.state.finished === true ? '' : 
+          <PlayerSubmissionForm 
+            playerNumber={currentPlayerNumber}  
+            formatFieldsPlaceholders={FIELDS}
+            submitLine={this.addSubmission}
+          />
+        }
 
-        <FinalPoem />
+        <FinalPoem 
+          allSubmissions={this.state.submissions}
+          gameFinished={this.state.finished}
+          finishGame={this.finishGame}
+        />
 
       </div>
     );
