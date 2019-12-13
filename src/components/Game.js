@@ -47,7 +47,7 @@ class Game extends Component {
     }
 
     const displayForm = () => {
-      return <PlayerSubmissionForm addSentenceCallback={this.addSentence} player={this.state.player}/>
+      return <PlayerSubmissionForm addSentenceCallback={this.addSentence} player={this.state.player} fields={FIELDS}/>
     }
 
     const onFinalPoemSubmit = () => { 
