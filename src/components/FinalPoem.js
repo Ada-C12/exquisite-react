@@ -8,7 +8,6 @@ const fullPoem = () => {
     return allLines.map(line => <p>{line}</p>)
   };
 } 
-
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
