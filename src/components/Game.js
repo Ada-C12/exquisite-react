@@ -8,6 +8,51 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentPoem: '',
+      finalPoem: [],
+      finalDisplay: false,
+      playerNum: 1,
+    }
+  }
+
+  onSubmitPoem = (submission) => {
+    let newFinalPoem = this.state.finalPoem;
+    newFinalPoem.push(submission);
+    let playNum = this.state.playerNum
+    playNum += 1
+    this.setState({
+      recentPoem: submission,
+      finalPoem: newFinalPoem,
+      playerNum: playNum,
+    })
+  };
+
+  onFinalPoem = () => {
+    let poemState = this.state.poemState
+    poemState = true;
+    this.setState({
+      finalDisplay: poemState,
+    })
+  }
+
+  revealSubmission = () => {
+    if (!this.state.finalDisplay && this.state.recentPoem !== '') {
+      return <RecentSubmission
+      recentPoem={this.state.recentPoem} 
+      />
+    }
+  }
+
+  revealForms = () => {
+    if (!this.state.finalDisplay) {
+      return <PlayerSubmissionForm 
+      onSumbitPoemCallback={this.onSubmitPoem}
+      fields={FIELDS} 
+      playerNum={this.state.playerNum}
+      />
+    }
   }
 
   render() {
@@ -31,12 +76,14 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
-
-        <RecentSubmission />
-
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        
+        {this.revealSubmission()}
+        {this.revealForms()}
+        <FinalPoem 
+          onFinalPoemCallback={this.onFinalPoem}
+          finalPoem={this.state.finalPoem}
+          finalDisplay={this.state.finalDisplay}
+        />
 
       </div>
     );
