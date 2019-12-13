@@ -5,7 +5,7 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    // 
+    //
     this.state = {
       // playerNumber: 1,
       adj1: "",
@@ -22,7 +22,14 @@ class PlayerSubmissionForm extends Component {
     // this.setState({
     //
     // });
+
     this.props.handleRecentSubmission(this.state);
+    const keys = Object.keys(this.state);
+    keys.map(key => {
+      this.setState({
+        [key]: ""
+      });
+    });
   };
 
   handleChange = event => {
@@ -47,7 +54,9 @@ class PlayerSubmissionForm extends Component {
             {
               // Put your form inputs here... We've put in one below as an example
             }
+            <span>The </span>
             <input
+              className="PlayerSubmissionForm__input--invalid"
               placeholder="adjective"
               type="text"
               name="adj1"
@@ -55,6 +64,7 @@ class PlayerSubmissionForm extends Component {
               onChange={this.handleChange}
             />
             <input
+              className="PlayerSubmissionForm__input--invalid"
               placeholder="noun"
               type="text"
               name="noun1"
@@ -63,6 +73,7 @@ class PlayerSubmissionForm extends Component {
             />
 
             <input
+              className="PlayerSubmissionForm__input--invalid"
               placeholder="adverb"
               type="text"
               name="adv"
@@ -70,13 +81,16 @@ class PlayerSubmissionForm extends Component {
               onChange={this.handleChange}
             />
             <input
+              className="PlayerSubmissionForm__input--invalid"
               placeholder="verb"
               type="text"
               name="verb"
               value={this.state.verb}
               onChange={this.handleChange}
             />
+            <span>the </span>
             <input
+              className="PlayerSubmissionForm__input--invalid"
               placeholder="adjective"
               type="text"
               name="adj2"
@@ -85,6 +99,7 @@ class PlayerSubmissionForm extends Component {
             />
 
             <input
+              className="PlayerSubmissionForm__input--invalid"
               placeholder="noun"
               type="text"
               name="noun2"
@@ -95,6 +110,7 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__submit">
             <input
+              className="PlayerSubmissionForm__input--invalid"
               type="submit"
               value="Submit Line"
               className="PlayerSubmissionForm__submit-btn"
