@@ -63,8 +63,9 @@ class Game extends Component {
         </p>
 
         {
-        this.state.wholePoem !== [] &&
+        this.state.wholePoem !== '' && (
         <RecentSubmission sentence={this.state.latestSentence}/>
+        )
         }
 
         {
@@ -72,10 +73,7 @@ class Game extends Component {
         <PlayerSubmissionForm makeOneSentenceCallback={this.makeOneSentence}/>
         }
 
-        {
-          this.state.showPoem === true &&
         <FinalPoem poem={this.state.wholePoem} showPoem={this.state.showPoem} togglePoemCallback={this.togglePoem}/>
-        }
       </div>
     );
   }

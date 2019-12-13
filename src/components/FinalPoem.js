@@ -14,23 +14,19 @@ const FinalPoem = (props) => {
   }
 
   return (
-    (props.showPoem === true)
-    ?
+    (props.showPoem ?
     (<div className="FinalPoem">
       <section className="FinalPoem__poem">
-      {/* {
-        props.showPoem === true && ( */}
         <h3>Final Poem</h3>
           {formattedPoem}
-        {/* ) */}
-      {/* } */}
       </section>
     </div>)
     :
     (<div className="FinalPoem__reveal-btn-container">
       <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={onClickTogglePoem}/>
     </div>)
-  );
+    )
+  )
 }
 
 export default FinalPoem;
