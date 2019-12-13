@@ -8,6 +8,34 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissionCount: 0,
+      recentSubmission: '',
+      submissionList: [],
+      gameComplete: '',
+    };
+  }
+
+  onFormSubmission = (newSubmission) => {
+    const updatedSubmissionList = this.state.submissionList;
+    updatedSubmissionList.push(newSubmission)
+
+    const updatedRecentSubmission = updatedSubmissionList[updatedSubmissionList.length - 1]
+    const updatedSubmissionCount = this.state.submissionCount + 1
+    this.setState({
+      submissionCount: updatedSubmissionCount,
+      recentSubmission: updatedRecentSubmission,
+      submissionList: updatedSubmissionList,
+    })
+  }
+
+  onEndGame = () => {
+    const gameCompleteUpdate = true;
+    this.setState({
+      gameComplete: gameCompleteUpdate,
+      recentSubmission: '',
+    })
   }
 
   render() {
@@ -32,11 +60,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.state.recentSubmission ? <RecentSubmission recentSub={this.state.recentSubmission}/> : ""}
 
-        <PlayerSubmissionForm />
+        {this.state.gameComplete ? "" : <PlayerSubmissionForm playerNumber={this.state.submissionCount + 1} submitFormCallback={newSubmission => this.onFormSubmission(newSubmission)} format={FIELDS} /> }
 
-        <FinalPoem />
+        <FinalPoem lines={this.state.submissionList} endGameCallback={this.onEndGame} gameEnded={this.state.gameComplete}/>
 
       </div>
     );
@@ -48,27 +76,33 @@ const FIELDS = [
   {
     key: 'adj1',
     placeholder: 'adjective',
+    entry: '',
   },
   {
     key: 'noun1',
     placeholder: 'noun',
+    entry: '',
   },
   {
     key: 'adv',
     placeholder: 'adverb',
+    entry: '',
   },
   {
     key: 'verb',
     placeholder: 'verb',
+    entry: '',
   },
   "the",
   {
     key: 'adj2',
     placeholder: 'adjective',
+    entry: '',
   },
   {
     key: 'noun2',
     placeholder: 'noun',
+    entry: '',
   },
   ".",
 ];
