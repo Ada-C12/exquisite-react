@@ -11,6 +11,7 @@ const getPoemLines = (poem) => {
 const FinalPoem = (props) => {
   console.log(props.buttonCheck);
   
+  if (props.buttonCheck) {
     return (
       <div className="FinalPoem">
         <section className="FinalPoem__poem">
@@ -19,6 +20,16 @@ const FinalPoem = (props) => {
         </section>
       </div>
     )
+  } else {
+      return (
+        <div className="FinalPoem">
+          <div className="FinalPoem__reveal-btn-container">
+            <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.button}/>
+          </div>
+        </div>
+
+      )
+  }
 }
 
 export default FinalPoem;
