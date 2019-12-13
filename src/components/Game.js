@@ -8,17 +8,51 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [],
+      currentPlayer: 1,
+      lastsubmission: undefined,
+      poemCompleted: false,
+    }
+  }
+
+  mapToString = (arrayOfStrings) => {
+    const newString = arrayOfStrings.map((string) => {
+      if (string.key) {
+        return string.placeholder;
+      } else {
+        return string;
+      }
+    }).join(" ");
+    return newString;
+  }
+
+  onFormSubmit = (submissionComponents) => {
+    const newSubmission = this.mapToString(submissionComponents);
+
+    let { submissions, currentPlayer, lastsubmission } = this.state;
+    
+    // add submissionComponents to submissions array
+    submissions.push(newSubmission);
+    // add one to currentPlayer
+    currentPlayer += 1;
+    // replace current last submission with this submission
+    lastsubmission = newSubmission;
+    
+    this.setState( {submissions, currentPlayer, lastsubmission} );
+  }
+
+  onRevealPoem = () => {
+    // change poemCompleted to true
+    let { poemCompleted } = this.state;
+    poemCompleted = true;
+    this.setState({ poemCompleted });
   }
 
   render() {
-
-    const exampleFormat = FIELDS.map((field) => {
-      if (field.key) {
-        return field.placeholder;
-      } else {
-        return field;
-      }
-    }).join(" ");
+    const exampleFormat = this.mapToString(FIELDS);
+    const { submissions, lastsubmission, currentPlayer, poemCompleted } = this.state;
 
     return (
       <div className="Game">
@@ -32,11 +66,18 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { poemCompleted 
+          ? '' 
+          : <div>
+              { lastsubmission 
+                ? <RecentSubmission submission={lastsubmission} /> 
+                : ''
+              } 
+              <PlayerSubmissionForm formFields={FIELDS} playerNumber={currentPlayer} onFormSubmit={this.onFormSubmit} />
+            </div>
+        }
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        <FinalPoem poemLines={submissions} revealPoem={poemCompleted} onRevealPoem={this.onRevealPoem} />
 
       </div>
     );
@@ -60,6 +101,10 @@ const FIELDS = [
   {
     key: 'verb',
     placeholder: 'verb',
+  },
+  {
+    key: 'preposition',
+    placeholder: 'preposition',
   },
   "the",
   {
