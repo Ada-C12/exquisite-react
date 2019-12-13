@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
@@ -8,9 +9,35 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSubmission: '',
+      allSubmissions: [],
+      showPoem: false,
+    }
+  }
+
+  addLine = (newLine) => {
+    const makeSentence = `The ${newLine.adjective} ${newLine.noun} ${newLine.adverb} ${newLine.verb} the ${newLine.adjective2} ${newLine.noun2}.`
+
+    this.state.allSubmissions.push(makeSentence);
+
+    this.setState({
+      recentSubmission: makeSentence,
+      allSubmissions: this.state.allSubmissions,
+    })
+
+    console.log(this.state.allSubmissions)
+  }
+
+ onClickShowPoem = () => {
+    this.setState({
+      showPoem: true,
+    });
   }
 
   render() {
+    const showPoem = this.state.showPoem;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -21,6 +48,7 @@ class Game extends Component {
     }).join(" ");
 
     return (
+
       <div className="Game">
         <h2>Game</h2>
 
@@ -32,12 +60,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { (this.state.allSubmissions.length > 0 && !showPoem) ? <RecentSubmission newLine={this.state.recentSubmission}/> : ''}
 
-        <PlayerSubmissionForm />
+        { (!showPoem ? <PlayerSubmissionForm addLineCallback={this.addLine}/> : '') }
 
-        <FinalPoem />
-
+        <FinalPoem allLines={this.state.allSubmissions} showPoem={this.state.showPoem} onClickShowPoemCallback={this.onClickShowPoem}/>
       </div>
     );
   }
@@ -72,5 +99,9 @@ const FIELDS = [
   },
   ".",
 ];
+
+Game.propTypes = {
+  newLine: PropTypes.object.isRequired,
+}
 
 export default Game;
