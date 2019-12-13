@@ -14,6 +14,12 @@ class Game extends Component {
     }
   }
 
+  addSubmission = (submission) => {
+    this.setState({
+      submissions: [ ...this.state.submissions, submission],
+    });
+  };
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -24,15 +30,12 @@ class Game extends Component {
       }
     }).join(" ");
 
-    addSubmission = (submission) => {
-
-    };
 
     let submissionLength = this.state.submissions.length
 
     const recentSubmission = submissionLength > 0 && !this.state.isSubmitted ? <RecentSubmission submission={ this.state.submissions[submissionLength - 1] }/> : '';
 
-    const submissionForm = this.state.isSubmitted ? '' : <PlayerSubmissionForm submissionIndex={ submissionLength + 1 } sendSubmission={ this.addSubmission} fields={ FIELDS} />;
+    const submissionForm = this.state.isSubmitted ? '' : <PlayerSubmissionForm submissionIndex={ submissionLength + 1 } submitSubmission={ this.addSubmission} fields={ FIELDS} />;
 
     return (
       <div className="Game">
