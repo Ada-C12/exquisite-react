@@ -12,7 +12,16 @@ class Game extends Component {
     this.state = {
       completedPoem: [],
       poemSubmitted: false,
+      showForm: true
     }
+  }
+
+  showCompletedPoem = () => {
+    const itShows = this.state.showForm
+    this.setState({
+      poemSubmitted: true,
+      showForm: !itShows
+    })
   }
 
   addVerse = (singlePoemVerse) => {
@@ -48,13 +57,18 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
+      { this.state.showForm ? 
+         <div>
         <RecentSubmission lastVerse={this.state.completedPoem[this.state.completedPoem.length -1]}/> 
 
         <PlayerSubmissionForm addVerseCallBack={this.addVerse}
         player={this.state.completedPoem.length} />
-        
-        <FinalPoem fullPoem={this.state.completedPoem}/>
 
+      </div> : null
+      }
+        <FinalPoem fullPoem={this.state.completedPoem}
+        showPoemStatus={this.state.poemSubmitted}
+        showCompletedPoemCallBack={this.showCompletedPoem}/>
       </div>
     );
   }
