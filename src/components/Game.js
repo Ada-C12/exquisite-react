@@ -8,6 +8,27 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recent: '',
+      playSubmissions: [],
+      inProgress: true
+    }
+  }
+
+  addLine = (formText) => {
+    
+    const newSubs = this.state.playSubmissions
+    newSubs.push(formText)
+    this.setState({
+      playSubmissions: newSubs,
+      recent: formText
+    })
+
+  }
+
+  finishGame = () => {
+    this.setState({inProgress: false})
   }
 
   render() {
@@ -19,6 +40,7 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
 
     return (
       <div className="Game">
@@ -32,11 +54,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.state.inProgress && this.state.recent ? <RecentSubmission text={this.state.recent}/> : ""}
 
-        <PlayerSubmissionForm />
+        {this.state.inProgress ? <PlayerSubmissionForm addLineCallback={formText => this.addLine(formText)}/> : ""}
 
-        <FinalPoem />
+        <FinalPoem inProgress={this.state.inProgress} finishGameCallback={this.finishGame} text={this.state.playSubmissions}/>
 
       </div>
     );
