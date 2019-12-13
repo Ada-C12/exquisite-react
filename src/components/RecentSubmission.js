@@ -4,9 +4,8 @@ import './RecentSubmission.css';
 const RecentSubmission = (props) => {
 
   const lines = props.lines
-  const inplay = props.inplay
   
-  if (inplay === false || lines.length === 0) {
+  if (lines.length === 0) {
     return ( <div> </div> )
   }
 

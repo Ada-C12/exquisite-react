@@ -4,16 +4,11 @@ import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
 
-  // state can possibly hold the default words so that way they can be reset properly? 
-
-  // props will include be the callback function
-
-  // props is probably also the next available ID number because Game knows how many players it has already and will call the next one over. Yea, that makes the most sense. 
-
   // Starting with the tags in the state so that upon reset, it'll always start with this text in it. 
   constructor(props) {
     super(props);
     this.state = {
+      inPlay: props.inPlay,
       player: 1,
       adj1: 'adjective',
       noun1: 'noun', 
@@ -62,9 +57,7 @@ class PlayerSubmissionForm extends Component {
     let inc = this.state.player
     inc = inc + 1
     this.setState({player: inc})
-
   }
-
 
   render() {
 

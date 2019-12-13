@@ -48,14 +48,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission 
-        inplay = {this.state.inplay}
-        lines = {this.state.lines}
-        />
+        {this.state.inplay ? <RecentSubmission lines = {this.state.lines}/> : '' }
 
-        <PlayerSubmissionForm 
-          addLineCallback = {(lineString) => this.addLine(lineString)}
-        />
+   
+        {this.state.inplay ? <PlayerSubmissionForm addLineCallback = {(lineString) => this.addLine(lineString)}/> : '' }
+        
 
         <FinalPoem
         lines = {this.state.lines}
