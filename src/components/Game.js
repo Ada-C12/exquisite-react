@@ -24,7 +24,9 @@ class Game extends Component {
     })
   }
 
-
+  onButtonClick = () => {
+    this.setState({reveal: true})
+  }
 
   render() {
     const exampleFormat = FIELDS.map((field) => {
