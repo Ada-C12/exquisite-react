@@ -72,7 +72,7 @@ class PlayerSubmissionForm extends Component {
     fields = {};
     
     this.setState({ fields });
-    this.initializeFields();
+    this.initializeFieldsAndPlaceholders();
   }
 
   onFormSubmit = (event) => {
