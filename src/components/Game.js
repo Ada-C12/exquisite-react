@@ -11,6 +11,7 @@ class Game extends Component {
 
     this.state = {
       lines: [],
+      ready: false,
     }
   }
 
@@ -19,6 +20,10 @@ class Game extends Component {
     lines.push(line);
 
     this.setState({ lines });
+  }
+
+  finalSubmit = () => {
+    this.setState({ ready: true })
   }
 
   render() {
@@ -47,7 +52,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm addLineCallback={this.addLine} id={ (this.state.lines.length + 1) }/>
 
-        <FinalPoem />
+        <FinalPoem poem={ this.state.lines } ready={ this.state.ready } onFinalSubmit={ this.finalSubmit }/>
 
       </div>
     );

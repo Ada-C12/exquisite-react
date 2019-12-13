@@ -25,15 +25,9 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    const newLine = {
-      adj1: this.state.adj1,
-      noun1: this.state.noun1,
-      adv: this.state.adv,
-      verb: this.state.verb,
-      adj2: this.state.adj2,
-      noun2: this.state.noun2,
-    };
-
+    // React won't render Object. Making the line a string or array to render successfully in FinalPoem's map function (line#9)
+    const newLine = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} ${this.state.adj2} ${this.state.noun2}.`
+    
     this.setState({
       adj1: '',
       noun1: '',
