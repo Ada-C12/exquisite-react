@@ -59,13 +59,12 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+        { exampleFormat }
         </p>
 
         {
-        this.state.wholePoem !== '' && (
+        this.state.wholePoem.length > 0 &&
         <RecentSubmission sentence={this.state.latestSentence}/>
-        )
         }
 
         {
