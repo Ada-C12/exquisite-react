@@ -37,7 +37,6 @@ class Game extends Component {
     });
 
     console.log(this.state.lastSubmission)
-
   }
 
 
@@ -65,7 +64,7 @@ class Game extends Component {
 
         <RecentSubmission submission={this.state.lastSubmission}/>
 
-        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} lastSubmissionCallback={this.lastSubmission} player={this.state.player}/>
+        <PlayerSubmissionForm addSubmissionCallback={this.addSubmission} lastSubmissionCallback={this.lastSubmission} player={this.state.player} fields={FIELDS}/>
 
         <FinalPoem poems={this.state.submissions}/>
 
