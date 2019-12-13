@@ -52,7 +52,8 @@ class Game extends Component {
 
         <PlayerSubmissionForm addVerseCallBack={this.addVerse}
         player={this.state.completedPoem.length} />
-        <FinalPoem />
+        
+        <FinalPoem fullPoem={this.state.completedPoem}/>
 
       </div>
     );
