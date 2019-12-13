@@ -8,6 +8,32 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      playerInput: [],
+      isPoemSubmitted: false,
+    }
+  }
+
+
+  onPoemSubmittedCallback = () => {
+    this.setState({
+      isPoemSubmitted: true,
+    })
+  }
+
+
+  addPlayerInput = (newInput) => {
+    const {playerInput} = this.state
+
+    playerInput.push(newInput);
+
+    this.setState({
+      // always change state through set state
+      // if I didn't have this, the state wouldn't be change, it would only
+      // change the local variable 
+      playerInput
+    })
   }
 
   render() {
@@ -20,6 +46,12 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const recentSubmission = <RecentSubmission
+    latestSubmission={this.state.playerInput[this.state.playerInput.length-1]}/>
+
+    const playerSubmissionForm = <PlayerSubmissionForm addPlayerInputCallback={this.addPlayerInput}
+    playerNumber={this.state.playerInput.length}/>
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -31,19 +63,20 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        
+        {this.state.isPoemSubmitted ? <div/>: recentSubmission}
+        {this.state.isPoemSubmitted ? <div/>: playerSubmissionForm}
 
-        <RecentSubmission />
-
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
-
+        <FinalPoem onPoemSubmittedCallback={this.onPoemSubmittedCallback}
+        isPoemSubmitted={this.state.isPoemSubmitted}
+        finalPlayerInput={this.state.playerInput}/>
       </div>
     );
   }
 }
 
 const FIELDS = [
+  // Can I use this FIELDS globally? Like can I use it in the state of PlayerSubmissionForm?
   "The",
   {
     key: 'adj1',
