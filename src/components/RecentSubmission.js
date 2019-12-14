@@ -2,10 +2,11 @@ import React from 'react';
 import './RecentSubmission.css';
 
 const RecentSubmission = (props) => {
+  const { adjective, noun, adverb, verb, adjective2, noun2 } = props.submission;
 
-  const lastSubmission = `The ${props.submission.adjective} ${props.submission.noun} 
-  ${props.submission.adverb} ${props.submission.verb} the ${props.submission.adjective2} 
-  ${props.submission.noun2}.`;
+  const lastSubmission = `The ${adjective} ${noun} 
+  ${adverb} ${verb} the ${adjective2} 
+  ${noun2}.`;
   
   const showSubmission =
     <div className="RecentSubmission">
