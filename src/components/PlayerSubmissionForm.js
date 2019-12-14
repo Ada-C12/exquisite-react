@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
-import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      adjective: '',
-      noun: '', 
-      adverb: '', 
-      verb: '', 
-      adjective2: '', 
-      noun2: '',
-    };
+    this.state = STATE
 
     this.validators = {
       adjective: /.+/,
@@ -28,7 +20,7 @@ class PlayerSubmissionForm extends Component {
 
   onFieldChange = (event) => {
     const { placeholder, value } = event.target;
-
+    
     const updatedState = {};
     updatedState[placeholder] = value;
 
@@ -42,7 +34,6 @@ class PlayerSubmissionForm extends Component {
     if (value.match(validation)) {
       return 'PlayerSubmissionFormt__input';
     }
-
     return 'PlayerSubmissionFormt__input--invalid';
   };
 
@@ -74,54 +65,49 @@ class PlayerSubmissionForm extends Component {
     this.props.addSubmissionCallback(newSubmission);
     this.props.lastSubmissionCallback(newSubmission);
     
-    this.setState({
-      adjective: '',
-      noun: '', 
-      adverb: '', 
-      verb: '', 
-      adjective2: '', 
-      noun2: '',
-    });
+    this.setState(
+      STATE
+    );
   };
 
   render() {
-    const adjectiveValid = this.validate('adjective');
-    const nounValid = this.validate('noun');
-    const adverbValid = this.validate('adverb');
-    const verbValid = this.validate('verb');
-    const adjective2Valid = this.validate('adjective2');
-    const noun2Valid = this.validate('noun2');
 
-    return (
-      <div className="PlayerSubmissionForm">
+  if (this.props.showPoem !== true) 
+    {
+      return (
+        <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{ this.props.player }</h3>
-
         <form className="PlayerSubmissionForm__form" >
-
           <div className="PlayerSubmissionForm__poem-inputs">
             The
-              <input placeholder="adjective" type="text" className={adjectiveValid} value={this.state.adjective} onChange={this.onFieldChange}/>              
-              <input placeholder="noun" type="text" className={nounValid} value={this.state.noun} onChange={this.onFieldChange}/>
-              <input placeholder="adverb" type="text" className={adverbValid} value={this.state.adverb} onChange={this.onFieldChange}/>
+              <input placeholder="adjective" type="text" className={this.validate('adjective')} value={this.state.adjective} onChange={this.onFieldChange}/>              
+              <input placeholder="noun" type="text" className={this.validate('noun')} value={this.state.noun} onChange={this.onFieldChange}/>
+              <input placeholder="adverb" type="text" className={this.validate('adverb')} value={this.state.adverb} onChange={this.onFieldChange}/>
             the  
-              <input placeholder="verb" type="text" className={verbValid} value={this.state.verb} onChange={this.onFieldChange}/>
-              <input placeholder="adjective2" type="text" className={adjective2Valid } value={this.state.adjective2} onChange={this.onFieldChange}/>
-              <input placeholder="noun2" type="text" className={noun2Valid} value={this.state.noun2} onChange={this.onFieldChange}/>
+              <input placeholder="verb" type="text" className={this.validate('verb')} value={this.state.verb} onChange={this.onFieldChange}/>
+              <input placeholder="adjective2" type="text" className={this.validate('adjective2') } value={this.state.adjective2} onChange={this.onFieldChange}/>
+              <input placeholder="noun2" type="text" className={this.validate('noun2')} value={this.state.noun2} onChange={this.onFieldChange}/>
             .
           </div>
-
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" onClick={this.onSubmit} />
           </div>
         </form>
-      </div>
-    );
+      </div>);
+    } else {
+      return ('')
+    }
   }
-}
-
-PlayerSubmissionForm.propTypes = {
-  addSubmissionCallback: PropTypes.func.isRequired,
-  lastSubmissionCallback: PropTypes.func.isRequired,
 };
+
+const STATE = {
+  adjective: '',
+  noun: '', 
+  adverb: '', 
+  verb: '', 
+  adjective2: '', 
+  noun2: '',
+};
+
 
 export default PlayerSubmissionForm;

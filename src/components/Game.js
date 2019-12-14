@@ -14,6 +14,7 @@ class Game extends Component {
       lastSubmission: {},
       player: 1,
       showPoem: false, 
+      showSubm: false
     }
   };
 
@@ -25,7 +26,7 @@ class Game extends Component {
     this.setState({
       submissions,
       player: this.state.player + 1,
-      showSubmission: true,
+      showSubm: true,
     })
   };
 
@@ -43,7 +44,8 @@ class Game extends Component {
     event.preventDefault();
     if (this.state.submissions.length > 0) {
       this.setState({
-        showPoem: true
+        showPoem: true,
+        showSubm: false,
       });
     };
   };
@@ -73,20 +75,21 @@ class Game extends Component {
 
         <RecentSubmission 
           submission={this.state.lastSubmission} 
-          showSubm={this.state.showSubmission} />
+          showSubm={this.state.showSubm} 
+          showPoem={this.state.showPoem}/>
 
         <PlayerSubmissionForm 
           addSubmissionCallback={this.addSubmission} 
           lastSubmissionCallback={this.lastSubmission} 
           player={this.state.player} 
-          fields={FIELDS}/>
-
-        <FinalPoem 
-          poems={this.state.submissions} 
-          revealPoem={this.revealPoem} 
           showPoem={this.state.showPoem}
+          fields={FIELDS}
           />
 
+        <FinalPoem 
+          poem={this.state.submissions} 
+          revealPoem={this.revealPoem} 
+          showPoem={this.state.showPoem} />
       </div>
     );
   }
@@ -95,15 +98,15 @@ class Game extends Component {
 const FIELDS = [
   "The",
   {
-    key: 'adj1',
+    key: 'adjective',
     placeholder: 'adjective',
   },
   {
-    key: 'noun1',
+    key: 'noun',
     placeholder: 'noun',
   },
   {
-    key: 'adv',
+    key: 'adverb',
     placeholder: 'adverb',
   },
   {
@@ -112,7 +115,7 @@ const FIELDS = [
   },
   "the",
   {
-    key: 'adj2',
+    key: 'adjective2',
     placeholder: 'adjective',
   },
   {

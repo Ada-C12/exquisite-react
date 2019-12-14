@@ -12,9 +12,9 @@ const FinalPoem = (props) => {
         onClick={props.revealPoem} />
     </div>
 
-  const submissionsCollection = props.poems.map((submission, i) => {
+  const submissionsCollection = props.poem.map((submission, i) => {
     const sentence = `The ${submission.adjective} ${submission.noun} ${submission.adverb} ${submission.verb} the ${submission.adjective2} ${submission.noun2}.` 
-    return <p key={i}> {sentence}</p>;
+      return <p key={i}> {sentence}</p>;
     }
   );
 
@@ -28,7 +28,6 @@ const FinalPoem = (props) => {
       </section>
     </div>;
     
-
   return ( 
     props.showPoem ? Poem : revealPoemButton 
     ); 
