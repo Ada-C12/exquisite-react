@@ -12,6 +12,7 @@ const FinalPoem = (props) => {
 
       <div className="FinalPoem__reveal-btn-container">
         <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+        {/* The lines of poetry that have been submitted will be passed down as a prop */}
       </div>
     </div>
   );

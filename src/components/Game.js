@@ -10,6 +10,10 @@ class Game extends Component {
     super(props);
   }
 
+  // the most recent line of poetry (Recent Submission, provided by the Player Submission Form) should live here
+
+  // the final poem (which will contain all the submitted lines of poetry) should also live here, probably in an array that gets updated every time the Player Submission Form is submitted.
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {

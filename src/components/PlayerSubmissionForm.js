@@ -5,6 +5,23 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      // user words are stored in state until submitted
+      adjective1: '',
+      noun1: '', 
+      adverb: '', 
+      verb: '', 
+      adjective2: '', 
+      noun2: '',
+    }
+
+onSubmitForm = () => {
+  // captures input from state and turns it into a line of poetry
+  // passes line up to Game
+  // Game passes line down to Recent Submission and Final Poem
+  // reset state?
+}
+
   }
 
   render() {
@@ -19,6 +36,7 @@ class PlayerSubmissionForm extends Component {
 
             {
               // Put your form inputs here... We've put in one below as an example
+
             }
             <input
               placeholder="hm..."
