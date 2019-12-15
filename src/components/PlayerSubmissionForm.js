@@ -14,6 +14,7 @@ class PlayerSubmissionForm extends Component {
       adjective2: '', 
       noun2: '',
     }
+    this.addLine = props.addLine;
 
 // onSubmitForm = () => {
 //   // captures input from state and turns it into a line of poetry
@@ -35,7 +36,7 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
 
           {/* If field is empty, placeholder name appears. Otherwise, word that the player has entered appears. */}
-
+            The
             <input
               placeholder={this.state.adjective1 === '' ? "adjective" : this.state.adjective1}
               type="text" />
@@ -51,6 +52,8 @@ class PlayerSubmissionForm extends Component {
             <input
               placeholder={this.state.verb === '' ? "verb" : this.state.verb}
               type="text" />
+
+            the
 
             <input
               placeholder={this.state.adjective2 === '' ? "adjective" : this.state.adjective2}

@@ -8,11 +8,27 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+     // the most recent line of poetry (Recent Submission, provided by the Player Submission Form) should live here
+
+    // the final poem (which will contain all the submitted lines of poetry) should also live here, probably in an array that gets updated every time the Player Submission Form is submitted.
+
+    this.state = {
+      currentLine: '',
+      finalPoem: []
+    }
+
+    // the newly submitted line becomes the currentSubmission and gets added to the finalPoem array. 
+    // addLine = (line) => {
+    //   const {finalPoem} = this.state;
+    //   finalPoem.push(line);
+    //   this.setState({
+    //     currentLine: line,
+    //     finalPoem,
+    //   })
+    //   console.log(line)
+    // }
   }
-
-  // the most recent line of poetry (Recent Submission, provided by the Player Submission Form) should live here
-
-  // the final poem (which will contain all the submitted lines of poetry) should also live here, probably in an array that gets updated every time the Player Submission Form is submitted.
 
   render() {
 
@@ -38,7 +54,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addLine={(line) => {this.addLine(line)}}/>
 
         <FinalPoem />
 
