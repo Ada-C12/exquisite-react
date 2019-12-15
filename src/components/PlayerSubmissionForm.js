@@ -7,23 +7,37 @@ class PlayerSubmissionForm extends Component {
     super(props);
     this.state = {
       // user words are stored in state until submitted
+      article1: 'The',
       adjective1: '',
       noun1: '', 
       adverb: '', 
       verb: '', 
+      article2: 'the',
       adjective2: '', 
       noun2: '',
     }
     this.addLine = props.addLine;
-
-// onSubmitForm = () => {
-//   // captures input from state and turns it into a line of poetry
-//   // passes line up to Game
-//   // Game passes line down to Recent Submission and Final Poem
-//   // reset state?
-// }
-
   }
+
+updateWord = (word, event) => {
+  let value = event.target.value
+  this.setState({
+    [word]: value
+  })
+}
+
+onSubmitForm = (event) => {
+  // captures input from state and turns it into a line of poetry
+  // passes line up to Game
+  // Game passes line down to Recent Submission and Final Poem
+  // reset state?
+  event.preventDefault();
+  let line = '';
+  Object.keys(this.state).forEach((key) => {
+    line += ' ' + this.state[key];
+  })
+  this.addLine(line)
+}
 
   render() {
 
@@ -31,35 +45,41 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
-
+        <form className="PlayerSubmissionForm__form" 
+        onSubmit={this.onSubmitForm}>
           <div className="PlayerSubmissionForm__poem-inputs">
 
-          {/* If field is empty, placeholder name appears. Otherwise, word that the player has entered appears. */}
+          {/* If field is empty, placeholder name appears. Otherwise, letters that the player has entered appear. */}
             The
             <input
+              onChange={(event) => {this.updateWord('adjective1', event)}}
               placeholder={this.state.adjective1 === '' ? "adjective" : this.state.adjective1}
               type="text" />
 
             <input
+              onChange={(event) => {this.updateWord('noun1', event)}}
               placeholder={this.state.noun1 === '' ? "noun" : this.state.noun1}
               type="text" />
 
             <input
+              onChange={(event) => {this.updateWord('adverb', event)}}
               placeholder={this.state.adverb === '' ? "adverb" : this.state.adverb}
               type="text" />
 
             <input
+              onChange={(event) => {this.updateWord('verb', event)}}
               placeholder={this.state.verb === '' ? "verb" : this.state.verb}
               type="text" />
 
             the
 
             <input
+              onChange={(event) => {this.updateWord('adjective2', event)}}
               placeholder={this.state.adjective2 === '' ? "adjective" : this.state.adjective2}
               type="text" />
 
             <input
+              onChange={(event) => {this.updateWord('noun2', event)}}
               placeholder={this.state.noun2 === '' ? "noun" : this.state.noun2}
               type="text" />
 

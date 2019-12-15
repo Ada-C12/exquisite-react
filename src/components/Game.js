@@ -16,19 +16,20 @@ class Game extends Component {
     this.state = {
       currentLine: '',
       finalPoem: []
-    }
+    } }
 
-    // the newly submitted line becomes the currentSubmission and gets added to the finalPoem array. 
-    // addLine = (line) => {
-    //   const {finalPoem} = this.state;
-    //   finalPoem.push(line);
-    //   this.setState({
-    //     currentLine: line,
-    //     finalPoem,
-    //   })
-    //   console.log(line)
-    // }
-  }
+    // the newly submitted line becomes the currentLine and gets added to the finalPoem array
+    addLine = (line) => {
+      const {finalPoem} = this.state;
+      finalPoem.push(line);
+      this.setState({
+        currentLine: line,
+        finalPoem,
+      })
+      console.log(line)
+      console.log(finalPoem)
+    }
+  
 
   render() {
 
