@@ -3,7 +3,6 @@ import './FinalPoem.css';
 import PropTypes from 'prop-types';
 
 const FinalPoem = (props) => {
-
   const revealPoemButton = 
     <div className="FinalPoem__reveal-btn-container">
       <input 
