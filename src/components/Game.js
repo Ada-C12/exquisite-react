@@ -8,7 +8,30 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      completedPoem: [],
+      poemSubmitted: false,
+      showForm: true
+    }
   }
+
+  showCompletedPoem = () => {
+    const itShows = this.state.showForm
+    this.setState({
+      poemSubmitted: true,
+      showForm: !itShows
+    })
+  }
+
+  addVerse = (singlePoemVerse) => {
+    let lines = this.state.completedPoem;
+    
+    lines.push(singlePoemVerse);
+    this.setState({
+      lines
+    });
+   }
 
   render() {
 
@@ -19,6 +42,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+
 
     return (
       <div className="Game">
@@ -32,12 +57,18 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+      { this.state.showForm ? 
+         <div>
+        <RecentSubmission lastVerse={this.state.completedPoem[this.state.completedPoem.length -1]}/> 
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addVerseCallBack={this.addVerse}
+        player={this.state.completedPoem.length} />
 
-        <FinalPoem />
-
+      </div> : null
+      }
+        <FinalPoem fullPoem={this.state.completedPoem}
+        showPoemStatus={this.state.poemSubmitted}
+        showCompletedPoemCallBack={this.showCompletedPoem}/>
       </div>
     );
   }
