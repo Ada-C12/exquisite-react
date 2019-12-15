@@ -5,6 +5,7 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+    this.playerNumber = 1;
     this.state = {
       // user words are stored in state until submitted
       article1: 'The',
@@ -37,13 +38,14 @@ onSubmitForm = (event) => {
     line += ' ' + this.state[key];
   })
   this.addLine(line)
+  this.playerNumber ++;
 }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.playerNumber}</h3>
 
         <form className="PlayerSubmissionForm__form" 
         onSubmit={this.onSubmitForm}>
