@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
 
@@ -7,7 +8,7 @@ class PlayerSubmissionForm extends Component {
     super(props);
 
     this.state = STATE
-
+    
     this.validators = {
       adjective: /.+/,
       noun: /.+/, 
@@ -53,14 +54,10 @@ class PlayerSubmissionForm extends Component {
       return;
     }
     
-    const newSubmission = {
-      adjective: this.state.adjective,
-      noun: this.state.noun, 
-      adverb: this.state.adverb, 
-      verb: this.state.verb, 
-      adjective2: this.state.adjective2, 
-      noun2: this.state.noun2,
-    }  
+    let newSubmission = {}
+    Object.keys(this.state).forEach((key) => {  
+      newSubmission[key] = this.state[key]
+    });  
 
     this.props.addSubmissionCallback(newSubmission);
     this.props.lastSubmissionCallback(newSubmission);
@@ -72,6 +69,19 @@ class PlayerSubmissionForm extends Component {
 
   render() {
 
+    let form = this.props.fields.map((field) => { 
+      if (field['key']) {
+        return <input placeholder={ field['key'] } 
+          type="text" 
+          className={this.validate(field['key'])} 
+          value={this.state[field['key']]} 
+          onChange={this.onFieldChange}
+          />              
+      } else {
+        return field
+      }
+    });
+ 
   if (this.props.showPoem !== true) 
     {
       return (
@@ -79,15 +89,7 @@ class PlayerSubmissionForm extends Component {
         <h3>Player Submission Form for Player #{ this.props.player }</h3>
         <form className="PlayerSubmissionForm__form" >
           <div className="PlayerSubmissionForm__poem-inputs">
-            The
-              <input placeholder="adjective" type="text" className={this.validate('adjective')} value={this.state.adjective} onChange={this.onFieldChange}/>              
-              <input placeholder="noun" type="text" className={this.validate('noun')} value={this.state.noun} onChange={this.onFieldChange}/>
-              <input placeholder="adverb" type="text" className={this.validate('adverb')} value={this.state.adverb} onChange={this.onFieldChange}/>
-            the  
-              <input placeholder="verb" type="text" className={this.validate('verb')} value={this.state.verb} onChange={this.onFieldChange}/>
-              <input placeholder="adjective2" type="text" className={this.validate('adjective2') } value={this.state.adjective2} onChange={this.onFieldChange}/>
-              <input placeholder="noun2" type="text" className={this.validate('noun2')} value={this.state.noun2} onChange={this.onFieldChange}/>
-            .
+            { form }
           </div>
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" onClick={this.onSubmit} />
@@ -100,14 +102,21 @@ class PlayerSubmissionForm extends Component {
   }
 };
 
-const STATE = {
+const STATE = { 
   adjective: '',
   noun: '', 
   adverb: '', 
   verb: '', 
   adjective2: '', 
-  noun2: '',
+  noun2: ''
 };
 
+PlayerSubmissionForm.propTypes = {
+  addSubmissionCallback: PropTypes.func.isRequired,
+  lastSubmissionCallback: PropTypes.func.isRequired,
+  player: PropTypes.number.isRequired,
+  showPoem: PropTypes.bool.isRequired,
+  fields: PropTypes.array.isRequired
+}
 
 export default PlayerSubmissionForm;

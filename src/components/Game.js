@@ -6,8 +6,8 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       submissions: [],
