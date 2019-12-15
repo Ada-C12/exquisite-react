@@ -6,9 +6,50 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
+    this.state = {
+      submissions: [],
+      lastSubmission: {},
+      player: 1,
+      showPoem: false, 
+      showSubm: false
+    }
+  };
+
+  addSubmission = (submission) => {
+
+    const submissions = this.state.submissions;
+    
+    submissions.push(submission);
+    this.setState({
+      submissions,
+      player: this.state.player + 1,
+      showSubm: true,
+    })
+  };
+
+  lastSubmission = (submission) => {
+
+    let { lastSubmission } = this.state.lastSubmission;
+
+    lastSubmission = submission
+    this.setState({
+      lastSubmission,
+    });
   }
+
+  revealPoem = (event) => {
+    event.preventDefault();
+    if (this.state.submissions.length > 0) {
+      this.setState({
+        showPoem: true,
+        showSubm: false,
+      });
+    };
+  };
+
 
   render() {
 
@@ -32,12 +73,23 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          submission={this.state.lastSubmission} 
+          showSubm={this.state.showSubm} 
+          showPoem={this.state.showPoem}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          addSubmissionCallback={this.addSubmission} 
+          lastSubmissionCallback={this.lastSubmission} 
+          player={this.state.player} 
+          showPoem={this.state.showPoem}
+          fields={FIELDS}
+          />
 
-        <FinalPoem />
-
+        <FinalPoem 
+          poem={this.state.submissions} 
+          revealPoem={this.revealPoem} 
+          showPoem={this.state.showPoem} />
       </div>
     );
   }
@@ -46,15 +98,15 @@ class Game extends Component {
 const FIELDS = [
   "The",
   {
-    key: 'adj1',
+    key: 'adjective',
     placeholder: 'adjective',
   },
   {
-    key: 'noun1',
+    key: 'noun',
     placeholder: 'noun',
   },
   {
-    key: 'adv',
+    key: 'adverb',
     placeholder: 'adverb',
   },
   {
@@ -63,7 +115,7 @@ const FIELDS = [
   },
   "the",
   {
-    key: 'adj2',
+    key: 'adjective2',
     placeholder: 'adjective',
   },
   {

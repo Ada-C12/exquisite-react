@@ -35,6 +35,6 @@
   background-color: #FFE9E9;
 }
 
-.PlayerSubmissionForm__input--invalid::placeholder {
+.PlayerSubmissionFormt__input--invalid::placeholder {
   color: black;
 }
