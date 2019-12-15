@@ -15,12 +15,12 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     }
 
-onSubmitForm = () => {
-  // captures input from state and turns it into a line of poetry
-  // passes line up to Game
-  // Game passes line down to Recent Submission and Final Poem
-  // reset state?
-}
+// onSubmitForm = () => {
+//   // captures input from state and turns it into a line of poetry
+//   // passes line up to Game
+//   // Game passes line down to Recent Submission and Final Poem
+//   // reset state?
+// }
 
   }
 
@@ -34,12 +34,30 @@ onSubmitForm = () => {
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {
-              // Put your form inputs here... We've put in one below as an example
+          {/* If field is empty, placeholder name appears. Otherwise, word that the player has entered appears. */}
 
-            }
             <input
-              placeholder="hm..."
+              placeholder={this.state.adjective1 === '' ? "adjective" : this.state.adjective1}
+              type="text" />
+
+            <input
+              placeholder={this.state.noun1 === '' ? "noun" : this.state.noun1}
+              type="text" />
+
+            <input
+              placeholder={this.state.adverb === '' ? "adverb" : this.state.adverb}
+              type="text" />
+
+            <input
+              placeholder={this.state.verb === '' ? "verb" : this.state.verb}
+              type="text" />
+
+            <input
+              placeholder={this.state.adjective2 === '' ? "adjective" : this.state.adjective2}
+              type="text" />
+
+            <input
+              placeholder={this.state.noun2 === '' ? "noun" : this.state.noun2}
               type="text" />
 
           </div>
