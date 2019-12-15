@@ -15,7 +15,8 @@ class Game extends Component {
 
     this.state = {
       currentLine: '',
-      finalPoem: []
+      finalPoem: [], 
+      displayPoem: false, 
     } }
 
     // the newly submitted line becomes the currentLine and gets added to the finalPoem array
@@ -29,7 +30,12 @@ class Game extends Component {
       console.log(line)
       console.log(finalPoem)
     }
-  
+
+    revealPoem = () => {
+      this.setState({
+        displayPoem: true
+      })
+    }
 
   render() {
 
@@ -57,7 +63,8 @@ class Game extends Component {
 
         <PlayerSubmissionForm addLine={(line) => {this.addLine(line)}}/>
 
-        <FinalPoem />
+{/* finalPoem stores the poem lines, displayPoem controls whether or not final poem is visible, reveal poem callback returns formatted lines */}
+        <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem}/>
 
       </div>
     );
