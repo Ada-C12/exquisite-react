@@ -49,6 +49,31 @@ onSubmitForm = (event) => {
   })
 }
 
+adjective1Valid = () => {
+  return this.state.adjective1.match(/.+/);
+};
+
+noun1Valid = () => {
+  return this.state.noun1.match(/.+/);
+};
+
+adverbValid = () => {
+  return this.state.adverb.match(/.+/);
+};
+
+verbValid = () => {
+  return this.state.verb.match(/.+/);
+};
+
+adjective2Valid = () => {
+  return this.state.adjective2.match(/.+/);
+};
+
+noun2Valid = () => {
+  return this.state.noun2.match(/.+/);
+};
+
+
   render() {
 
     return (
@@ -63,6 +88,7 @@ onSubmitForm = (event) => {
             The
             <input
               name="adjective1"
+              className={this.adjective1Valid() ? 'PlayerSubmissionForm__input' : 'PlayerSubmissionForm__input--invalid'}
               onChange={this.updateWord}
               placeholder={this.state.adjective1 === '' ? "adjective" : this.state.adjective1}
               value={this.state.adjective1}
@@ -70,6 +96,7 @@ onSubmitForm = (event) => {
 
             <input
               name="noun1"
+              className={this.noun1Valid() ? 'PlayerSubmissionForm__input' : 'PlayerSubmissionForm__input--invalid'}
               onChange={this.updateWord}
               placeholder={this.state.noun1 === '' ? "noun" : this.state.noun1}
               value={this.state.noun1}
@@ -77,6 +104,7 @@ onSubmitForm = (event) => {
 
             <input
               name="adverb"
+              className={this.adverbValid() ? 'PlayerSubmissionForm__input' : 'PlayerSubmissionForm__input--invalid'}
               onChange={this.updateWord}
               placeholder={this.state.adverb === '' ? "adverb" : this.state.adverb}
               value={this.state.adverb}
@@ -84,6 +112,7 @@ onSubmitForm = (event) => {
 
             <input
               name="verb"
+              className={this.verbValid() ? 'PlayerSubmissionForm__input' : 'PlayerSubmissionForm__input--invalid'}
               onChange={this.updateWord}
               placeholder={this.state.verb === '' ? "verb" : this.state.verb}
               value={this.state.verb}
@@ -93,6 +122,7 @@ onSubmitForm = (event) => {
 
             <input
               name="adjective2"
+              className={this.adjective2Valid() ? 'PlayerSubmissionForm__input' : 'PlayerSubmissionForm__input--invalid'}
               onChange={this.updateWord}
               placeholder={this.state.adjective2 === '' ? "adjective" : this.state.adjective2}
               value={this.state.adjective2}
@@ -100,6 +130,7 @@ onSubmitForm = (event) => {
 
             <input
               name="noun2"
+              className={this.noun2Valid() ? 'PlayerSubmissionForm__input' : 'PlayerSubmissionForm__input--invalid'}
               onChange={this.updateWord}
               placeholder={this.state.noun2 === '' ? "noun" : this.state.noun2}
               value={this.state.noun2}
