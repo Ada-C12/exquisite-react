@@ -9,7 +9,6 @@ const FinalPoem = (props) => {
 
   // format lines so they look like a poem
   const formatPoem = props.finalPoem.map((line, i) => {
-    console.log(line);
       return (
         <p key={i}> 
           {line}

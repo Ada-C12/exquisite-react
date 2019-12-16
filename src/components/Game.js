@@ -9,9 +9,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
 
-     // the most recent line of poetry (Recent Submission, provided by the Player Submission Form) lives here
-
-    // the final poem (which contains all the submitted lines of poetry) also lives here in an array that gets updated every time the Player Submission Form is submitted.
+    // game state stores current line (pushed up from player submission form), submitted lines get added to final poem array, and display poem controls whether or not finished poem is visible
 
     this.state = {
       currentLine: '',
@@ -19,7 +17,7 @@ class Game extends Component {
       displayPoem: false, 
     } }
 
-    // the newly submitted line becomes the currentLine and gets added to the finalPoem array
+    // the newly submitted line becomes the current line and gets added to the final poem array
   addLine = (line) => {
     const {finalPoem} = this.state;
     finalPoem.push(line);
@@ -27,8 +25,6 @@ class Game extends Component {
       currentLine: line,
       finalPoem,
     })
-    console.log(line)
-    console.log(finalPoem)
   }
 
   revealPoem = () => {
