@@ -8,9 +8,46 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    
+    this.state = {
+      recentLine: "",
+      submissions: [],
+      poemFinished: false,
+      playerNum: 1
+    }
+  }
+
+  showPoem = () => {
+    
+    this.setState({
+      poemFinished: true
+    }
+    )
+    console.log(this.state)
+
+  }
+
+  addLine = (words) => {
+    
+   
+    const wordArray = Object.values(words)
+    const line = `The ${wordArray[0]} ${wordArray[1]} ${wordArray[2]} ${wordArray[3]} the ${wordArray[4]} ${wordArray[5]}.`
+    
+    this.setState({
+      recentLine: line, 
+      playerNum: this.state.playerNum + 1
+    })
+    this.state.submissions.push(line)
+
   }
 
   render() {
+    let recentSubmission = ""
+    if (this.state.submissions.length >= 1 && !this.state.poemFinished){
+      recentSubmission = <RecentSubmission recentSubmission={this.state.recentLine} />
+    }
+   
+  
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +69,12 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        
+        {recentSubmission}
 
-        <PlayerSubmissionForm />
+    { this.state.poemFinished ? "" : <PlayerSubmissionForm fields={FIELDS} addLineCallback={this.addLine} playerNum={this.state.playerNum} /> }
 
-        <FinalPoem />
+        <FinalPoem poem={this.state.submissions} poemStatus={this.state.poemFinished} showPoemCallback={this.showPoem} />
 
       </div>
     );
