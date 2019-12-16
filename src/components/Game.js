@@ -9,9 +9,9 @@ class Game extends Component {
   constructor(props) {
     super(props);
 
-     // the most recent line of poetry (Recent Submission, provided by the Player Submission Form) should live here
+     // the most recent line of poetry (Recent Submission, provided by the Player Submission Form) lives here
 
-    // the final poem (which will contain all the submitted lines of poetry) should also live here, probably in an array that gets updated every time the Player Submission Form is submitted.
+    // the final poem (which contains all the submitted lines of poetry) also lives here in an array that gets updated every time the Player Submission Form is submitted.
 
     this.state = {
       currentLine: '',
@@ -20,22 +20,22 @@ class Game extends Component {
     } }
 
     // the newly submitted line becomes the currentLine and gets added to the finalPoem array
-    addLine = (line) => {
-      const {finalPoem} = this.state;
-      finalPoem.push(line);
-      this.setState({
-        currentLine: line,
-        finalPoem,
-      })
-      console.log(line)
-      console.log(finalPoem)
-    }
+  addLine = (line) => {
+    const {finalPoem} = this.state;
+    finalPoem.push(line);
+    this.setState({
+      currentLine: line,
+      finalPoem,
+    })
+    console.log(line)
+    console.log(finalPoem)
+  }
 
-    revealPoem = () => {
-      this.setState({
-        displayPoem: true
-      })
-    }
+  revealPoem = () => {
+    this.setState({
+      displayPoem: true
+    })
+  }
 
   render() {
 
@@ -47,29 +47,38 @@ class Game extends Component {
       }
     }).join(" ");
 
+if (this.state.displayPoem === true) {
+  return (
+      <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
+  )
+
+} else {
     return (
+
       <div className="Game">
-        <h2>Game</h2>
-
-        <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
-
-        <p>Please follow the following format for your poetry submission:</p>
-
-        <p className="Game__format-example">
-          { exampleFormat }
-        </p>
-
+      <h2>Game</h2>
+  
+      <p>Each player should take turns filling out and submitting the form below. Each turn should be done individually and <em>in secret!</em> Take inspiration from the revealed recent submission. When all players are finished, click the final button on the bottom to reveal the entire poem.</p>
+  
+      <p>Please follow the following format for your poetry submission:</p>
+  
+      <p className="Game__format-example">
+        { exampleFormat }
+      </p>
+        
+        <div>
         <RecentSubmission recentSubmission={this.state.currentLine}/>
 
         <PlayerSubmissionForm addLine={(line) => {this.addLine(line)}}/>
 
-{/* finalPoem stores the poem lines, displayPoem controls whether or not final poem is visible, reveal poem callback returns formatted lines */}
-        <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem}/>
+        <FinalPoem finalPoem={this.state.finalPoem} displayPoem={this.state.displayPoem} revealPoemCallback={this.revealPoem} />
+        </div>
+        </div>
 
-      </div>
     );
-  }
-}
+  };
+};
+};
 
 const FIELDS = [
   "The",
@@ -100,5 +109,6 @@ const FIELDS = [
   },
   ".",
 ];
+
 
 export default Game;

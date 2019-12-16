@@ -19,7 +19,6 @@ const FinalPoem = (props) => {
 })
 
   // logic for "reveal poem" button and displaying final poem: start with displayPoem value of false in game and "display poem" button visible. When button is clicked, displayPoem value turns to true and buttons is no longer visible.
-  console.log(props.displayPoem);
 
   if (props.displayPoem === true) {
 
