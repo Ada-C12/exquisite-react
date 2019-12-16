@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-
-  constructor(props) {
-    super(props);
+fieldState = () => {
   let  fieldState = {}
-  
   this.props.fields.forEach((field) => {
     if(field.key) {
     fieldState[field.key] = ""
     }
 
   })
-    this.state = fieldState 
+  return fieldState
+}
+
+  constructor(props) {
+    super(props);
+ 
+ 
+    this.state = this.fieldState()
   }
+ 
+
 
   onInputChange = (event) => {
     const updatedState = {};
@@ -26,8 +32,30 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   }
 
+  checkSubmission = () => {
+    let check = true 
+    this.props.fields.forEach((field) => {
+      if (field === ""){
+        check = false 
+      }
+    
+    })
+    return check 
+  }
+  onSubmit = (event) => {
+    event.preventDefault();
+    if (this.checkSubmission()) {
+      this.props.addLineCallback(this.state)
+    }
+
+      this.setState(this.fieldState());
+
+    }
+  
+
 
   render() {
+    
     console.log(this.state)
     const playerForm = this.props.fields.map((field, i) => {
       if(field.key) {
@@ -49,45 +77,19 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.playerNum}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {playerForm
-              // Put your form inputs here... We've put in one below as an example
-             
-             
- 
-            }
-            {/* <p> The </p>
-             <input
-              placeholder="adjective"
-              name="adjective1"
-              type="text" />
-              <input
-              placeholder="noun"
-              type="text" />
-            <input
-              placeholder="adverb"
-              type="text" />
-              
-                <input
-              placeholder="verb"
-              type="text" />
-              <p> the </p>
-            <input
-              placeholder="adjective"
-              type="text" />
-              <input
-              placeholder="noun"
-              type="text" /> */}
+            {playerForm}
+           
 
           </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input type="submit" value="Submit Line"className="PlayerSubmissionForm__submit-btn" />
           </div>
         </form>
       </div>
